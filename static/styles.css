@@ -85,12 +85,16 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    font-display: swap;
 }
 
-/* RTL styling specifically for Dhivehi content */
+/* RTL styling specifically for Dhivehi content - Enhanced */
 .faruma, [lang="dv"] {
     direction: rtl;
     text-align: center;
+    font-feature-settings: "liga" 1, "kern" 1;
+    -webkit-font-feature-settings: "liga" 1, "kern" 1;
 }
 
 /* Clean White Background */
@@ -759,31 +763,48 @@ li::before {
     margin-bottom: 1.5em;
 }
 .faruma {
-    font-family: 'Faruma', sans-serif;
+    font-family: 'Noto Sans Dhivehi', 'Faruma', 'Arial Unicode MS', Arial, sans-serif;
     font-size: 1.15em;
     letter-spacing: 0.03em;
     color: var(--text-primary);
+    font-weight: 400;
+    line-height: 1.7;
+    font-display: swap;
 }
 .meta {
     color: #888;
     font-size: 0.95em;
     margin-bottom: 1em;
 }
-/* Enhanced Responsive Design */
+/* Mobile Layout Matching Desktop Appearance */
 @media (max-width: 768px) {
-    /* Mobile Header Layout - Same as Desktop */
+    /* Force desktop-like scaling on mobile */
+    html {
+        font-size: 16px !important;
+        zoom: 1 !important;
+    }
+    /* Mobile Header Layout - Desktop Style */
     header {
-        padding: 1rem 1.5rem !important;
+        padding: 1.2rem 1rem !important;
+        min-height: 80px;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        position: relative;
     }
     
-    /* Hide mobile menu toggle */
+    /* Hide mobile menu toggle - use desktop navigation */
     .mobile-menu-toggle {
         display: none !important;
     }
     
-    /* Show desktop navigation on mobile */
+    /* Show desktop navigation on mobile with better sizing */
     .main-nav {
         display: flex !important;
+        align-items: center !important;
+        gap: 0.8rem !important;
+        margin-left: auto !important;
+        flex-wrap: nowrap !important;
     }
     
     /* Hide mobile navigation overlay */
@@ -791,18 +812,199 @@ li::before {
         display: none !important;
     }
     
-    /* Mobile Navigation Links - Smaller and Compact */
+    /* Mobile Navigation Links - Optimized for Touch */
     .main-nav a {
-        font-size: 0.8rem !important;
-        padding: 0.4rem 0.8rem !important;
-        border-radius: 10px !important;
+        font-size: 0.85rem !important;
+        padding: 0.6rem 1rem !important;
+        border-radius: 12px !important;
+        min-width: 70px !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
     }
     
-    /* Mobile Site Title Adjustments */
+    /* Mobile Site Title - Centered and Responsive */
     .site-title {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+        position: absolute !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 2 !important;
+    }
+    
+    .site-title img {
+        height: 55px !important;
+        width: 55px !important;
+        border-radius: 12px !important;
+    }
+    
+    /* Mobile Container with Better Spacing */
+    .container {
+        padding: 2rem 1.2rem !important;
+        margin: 1rem auto !important;
+        border-radius: 20px !important;
+        max-width: 95% !important;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important;
+    }
+    
+    /* Mobile Story Cards - Desktop-like Single Column Layout */
+    .story-list {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        padding: 1.5rem 0 !important;
+        max-width: 600px !important;
+        margin: 0 auto !important;
+    }
+    
+    .story-card {
+        width: 100% !important;
+        padding: 2rem !important;
+        border-radius: 20px !important;
+        transform: none !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    }
+    
+    .story-card:hover {
+        transform: translateY(-4px) !important;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+    }
+    
+    .story-cover, .story-cover-large {
+        height: 250px !important;
+        border-radius: 15px !important;
+        object-fit: cover !important;
+        width: 100% !important;
+    }
+    
+    /* Mobile Typography - Readable Sizes */
+    h1 {
+        font-size: 2.5rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    h2 {
+        font-size: 2rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 0.8rem !important;
+    }
+    
+    h3 {
+        font-size: 1.6rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 0.6rem !important;
+    }
+    
+    /* Mobile Text Content */
+    p, .story-info p {
+        font-size: 1.1rem !important;
+        line-height: 1.6 !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    /* Mobile Episode Content - Enhanced Reading */
+    .episode-content {
+        padding: 2.5rem 1.5rem !important;
+        font-size: 1.2rem !important;
+        line-height: 1.8 !important;
+        margin: 1.5rem 0 !important;
+        border-radius: 20px !important;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+    }
+    
+    .episode-content p {
+        font-size: 1.2rem !important;
+        line-height: 1.8 !important;
+        margin-bottom: 1.5rem !important;
+        text-align: justify !important;
+    }
+    
+    .episode-content p:first-letter {
+        font-size: 3.5rem !important;
+        line-height: 0.8 !important;
+        float: left !important;
+        margin: 0.1rem 0.5rem 0 0 !important;
+        font-weight: bold !important;
+    }
+    
+    /* Mobile Buttons - Full Width and Touch Friendly */
+    .btn {
+        padding: 1rem 1.5rem !important;
+        font-size: 1rem !important;
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        margin: 1rem 0 !important;
+        border-radius: 15px !important;
+        min-height: 50px !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    }
+    
+    /* Mobile Footer Improvements */
+    footer {
+        padding: 3rem 1.5rem 2rem !important;
+        margin-top: 3rem !important;
+    }
+    
+    footer h3 {
+        font-size: 2rem !important;
+    }
+    
+    footer p {
+        font-size: 1.1rem !important;
+    }
+    
+    footer div[style*="display: flex"] {
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+        align-items: center !important;
+    }
+    
+    footer a {
+        display: block !important;
+        width: 100% !important;
+        max-width: 300px !important;
+        text-align: center !important;
+        padding: 1.2rem !important;
+        border-radius: 15px !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    }
+    
+    /* Mobile Meta Information */
+    .meta {
+        font-size: 1rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    /* Mobile Episode List */
+    .episode-list li {
+        margin-bottom: 1rem !important;
+        font-size: 1.1rem !important;
+        padding: 0.8rem !important;
+        background: rgba(248, 232, 240, 0.1) !important;
+        border-radius: 10px !important;
+    }
+    
+    .episode-list a {
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+    }
+    
+    .episode-list .date {
+        font-size: 1rem !important;
+        margin-left: 0 !important;
+        display: block !important;
+        margin-top: 0.3rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra small screens - Maintain desktop-like appearance */
+    header {
+        padding: 1rem 0.8rem !important;
+        min-height: 75px !important;
     }
     
     .site-title img {
@@ -810,137 +1012,149 @@ li::before {
         width: 50px !important;
     }
     
-    /* Mobile Container */
-    .container {
-        padding: 1.5em 1em;
-        margin: 1em auto;
-        border-radius: 15px;
-    }
-    
-    /* Mobile Story Cards */
-    .story-list {
-        grid-template-columns: 1fr !important;
-        gap: 1.5em;
-        padding: 1em 0;
-    }
-    
-    .story-card {
-        width: 100%;
-        padding: 1.5em;
-        animation-delay: 0ms !important; /* Remove stagger on mobile */
-    }
-    
-    .story-cover, .story-cover-large {
-        height: 200px;
-        border-radius: 10px;
-    }
-    
-    /* Mobile Typography */
-    h1 {
-        font-size: 2.2em !important;
-    }
-    
-    h2 {
-        font-size: 1.8em !important;
-    }
-    
-    h3 {
-        font-size: 1.4em !important;
-    }
-    
-    /* Mobile Episode Content */
-    .episode-content {
-        padding: 1.5em;
-        font-size: 1.1em;
-        margin: 1em 0;
-    }
-    
-    .episode-content p:first-letter {
-        font-size: 3em;
-        line-height: 0.7;
-    }
-    
-    /* Mobile Buttons */
-    .btn {
-        padding: 0.8em 1.5em;
-        font-size: 0.9em;
-        display: block !important;
-        width: 100%;
-        text-align: center;
-        margin: 1em 0;
-    }
-    
-    /* Mobile Navigation Improvements */
-    footer {
-        padding: 2em 1em 1.5em;
-    }
-    
-    footer div[style*="display: flex"] {
-        flex-direction: column !important;
-        gap: 1em !important;
-    }
-    
-    footer a {
-        display: block !important;
-        width: 100% !important;
-        text-align: center !important;
-        padding: 1em !important;
-    }
-}
-
-@media (max-width: 480px) {
-    /* Extra small screens */
-    header {
-        padding: 0.8rem 1rem !important;
-    }
-    
-    .site-title img {
-        height: 45px !important;
-        width: 45px !important;
-    }
-    
-    /* Even smaller navigation links for very small screens */
+    /* Smaller but still readable navigation for tiny screens */
     .main-nav {
-        gap: 0.5rem !important;
+        gap: 0.6rem !important;
     }
     
     .main-nav a {
-        font-size: 0.75rem !important;
-        padding: 0.3rem 0.6rem !important;
+        font-size: 0.8rem !important;
+        padding: 0.5rem 0.8rem !important;
+        min-width: 65px !important;
     }
     
     .container {
-        padding: 1em 0.5em;
-        margin: 0.5em auto;
-        border-radius: 10px;
+        padding: 1.8rem 1rem !important;
+        margin: 0.8rem auto !important;
+        border-radius: 18px !important;
+        max-width: 98% !important;
     }
     
     .story-card {
-        padding: 1em;
-        border-radius: 10px;
+        padding: 1.8rem !important;
+        border-radius: 18px !important;
+    }
+    
+    .story-cover, .story-cover-large {
+        height: 220px !important;
+        border-radius: 12px !important;
     }
     
     h1 {
-        font-size: 1.8em !important;
+        font-size: 2.2rem !important;
     }
     
     h2 {
-        font-size: 1.5em !important;
+        font-size: 1.8rem !important;
+    }
+    
+    h3 {
+        font-size: 1.5rem !important;
     }
     
     .episode-content {
-        padding: 1em;
-        font-size: 1em;
-        line-height: 1.6;
+        padding: 2rem 1.2rem !important;
+        font-size: 1.1rem !important;
+        line-height: 1.7 !important;
+        border-radius: 18px !important;
+    }
+    
+    .episode-content p {
+        font-size: 1.1rem !important;
+        line-height: 1.7 !important;
     }
     
     .episode-content p:first-letter {
-        font-size: 2.5em;
+        font-size: 3rem !important;
+        line-height: 0.8 !important;
     }
     
-    /* Hide decorative floating elements on very small screens */
+    .btn {
+        padding: 0.9rem 1.3rem !important;
+        font-size: 0.95rem !important;
+        min-height: 48px !important;
+        border-radius: 12px !important;
+    }
+    
+    footer {
+        padding: 2.5rem 1rem 1.8rem !important;
+    }
+    
+    footer h3 {
+        font-size: 1.8rem !important;
+    }
+    
+    footer a {
+        padding: 1rem !important;
+        max-width: 280px !important;
+        border-radius: 12px !important;
+    }
+    
+    /* Keep decorative elements but make them smaller */
     div[style*="position: fixed"][style*="animation"] {
-        display: none !important;
+        display: block !important;
+        transform: scale(0.8) !important;
+    }
+    
+    /* Optimize episode list for small screens */
+    .episode-list li {
+        font-size: 1rem !important;
+        padding: 0.7rem !important;
+    }
+    
+    .episode-list a {
+        font-size: 1rem !important;
+    }
+    
+    .episode-list .date {
+        font-size: 0.9rem !important;
+    }
+    
+    /* Ensure mobile viewport never scales content down */
+    html {
+        -webkit-text-size-adjust: 100% !important;
+        -ms-text-size-adjust: 100% !important;
+        text-size-adjust: 100% !important;
+    }
+    
+    /* Touch-friendly interactions */
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Better scroll behavior on mobile */
+    body {
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        min-width: 360px !important;
+    }
+    
+    /* Mobile-specific story info styling to match desktop */
+    .story-info h2 {
+        font-size: 1.8rem !important;
+        text-align: center !important;
+        margin: 1rem 0 !important;
+    }
+    
+    .story-info p {
+        text-align: center !important;
+        font-style: italic !important;
+        opacity: 0.9 !important;
+    }
+    
+    /* Ensure buttons maintain desktop styling on mobile */
+    .story-card .btn, .episode-detail .btn {
+        margin-top: 1.5rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.025em !important;
+    }
+    
+    /* Mobile main title styling */
+    .main-title {
+        font-size: 2.5rem !important;
+        text-align: center !important;
+        margin-bottom: 2rem !important;
+        font-weight: 700 !important;
     }
 }
 
@@ -1074,19 +1288,21 @@ li::before {
         padding: 1em;
     }
 }
-/* Storybook Reading Experience */
+/* Storybook Reading Experience - Enhanced for All Devices */
 .episode-content {
     background: #ffffff !important;
     border-radius: 15px;
     padding: 3em;
     margin: 2em 0;
-    box-shadow: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     border: 2px solid var(--accent-gold) !important;
     position: relative;
     line-height: 1.8;
     font-size: 1.2em;
-    font-family: 'Faruma', 'Georgia', serif;
+    font-family: 'Noto Sans Dhivehi', 'Faruma', 'Georgia', serif;
     color: var(--text-primary);
+    word-spacing: 0.1em;
+    text-rendering: optimizeLegibility;
 }
 
 .episode-content::before {
