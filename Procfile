@@ -1,0 +1,1 @@
+web: gunicorn vaahakainn.wsgi --log-file -

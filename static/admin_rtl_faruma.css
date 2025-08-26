@@ -1,0 +1,18 @@
+/* RTL and Faruma font for Django admin */
+body, .faruma {
+    direction: rtl;
+    font-family: 'Faruma', sans-serif !important;
+}
+
+/* Optional: override admin form fields, headers, etc. */
+#header, .module caption, .form-row label, .form-row input, .form-row select, .form-row textarea {
+    font-family: 'Faruma', sans-serif !important;
+    direction: rtl;
+}
+
+/* Specifically target description and content fields */
+textarea, input[type="text"], .vLargeTextField {
+    font-family: 'Faruma', sans-serif !important;
+    direction: rtl;
+    text-align: right;
+}

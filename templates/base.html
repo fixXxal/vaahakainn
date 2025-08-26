@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="dv" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}VAAHAKAINN.{% endblock %}</title>
+    
+    <!-- Enhanced Meta Tags -->
+    <meta name="description" content="Discover amazing stories and tales. A unique reading experience with stunning interactive design.">
+    <meta name="keywords" content="stories, tales, literature, reading, interactive">
+    <meta name="author" content="VAAHAKAINN.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="VAAHAKAINN. - Stories">
+    <meta property="og:description" content="A magical reading experience with beautiful stories and tales">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/static/logovhk.PNG">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/fonts/faruma.css">
+    
+    <!-- Preload Important Resources -->
+    <link rel="preload" href="/static/enhanced-interactions.js" as="script">
+    <link rel="preload" href="/static/logovhk.PNG" as="image">
+    
+    <!-- Progressive Web App Support -->
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#8B4513">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="VAAHAKAINN.">
+    <link rel="apple-touch-icon" href="/static/logovhk.PNG">
+    <meta name="msapplication-TileColor" content="#8B4513">
+    <meta name="msapplication-TileImage" content="/static/logovhk.PNG">
+    
+    <!-- Font Loading Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body class="loading">
+    <!-- Page Loading Animation -->
+    <div id="page-loader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #ffffff, var(--accent-gold)); z-index: 10000; display: flex; align-items: center; justify-content: center; transition: all 0.8s ease;">
+        <div style="text-align: center; color: var(--text-primary);">
+            <h2 style="font-size: 3em; margin-bottom: 0.5em; font-family: 'Faruma', serif; font-weight: 800; background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">VAAHAKAINN.</h2>
+            <p style="font-size: 1.4em; opacity: 0.9; color: var(--text-primary);">Loading stories...</p>
+            <div style="width: 300px; height: 6px; background: var(--accent-amber); margin: 2em auto; border-radius: 3px; overflow: hidden; border: 2px solid var(--text-primary);">
+                <div style="width: 100%; height: 100%; background: var(--text-primary); animation: loadingBar 2s ease-in-out infinite;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Header -->
+    <header style="display: flex; align-items: center; justify-content: space-between;">
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        
+        <!-- Site Title -->
+        <div class="site-title">
+            <img src="/static/logovhk.PNG" alt="VAAHAKAINN. Logo" loading="lazy">
+        </div>
+        
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <a href="/" data-page="home" style="direction: ltr;">Home</a>
+            <a href="/stories/" data-page="stories" style="direction: ltr;">Stories</a>
+        </nav>
+        
+        <!-- Mobile Navigation Overlay -->
+        <nav class="mobile-nav-overlay">
+            <div class="mobile-nav-content">
+                <button class="mobile-nav-close" aria-label="Close mobile menu">&times;</button>
+                <div class="mobile-nav-links">
+                    <a href="/" data-page="home" style="direction: ltr;">Home</a>
+                    <a href="/stories/" data-page="stories" style="direction: ltr;">Stories</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content" role="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Enhanced Footer -->
+    <footer style="background: var(--gradient-primary); color: var(--text-primary); padding: 4rem 3rem 3rem; margin-top: 5rem; position: relative; overflow: hidden; border-top: 4px solid var(--accent-rose); box-shadow: 0 -10px 30px rgba(252, 228, 236, 0.4);">
+        
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+            <!-- Logo and Brand -->
+            <div style="margin-bottom: 2em;">
+                <img src="/static/logovhk.PNG" alt="VAAHAKAINN. Logo" style="height: 80px; border-radius: 15px; margin-bottom: 1em; box-shadow: var(--shadow-soft);">
+                <h3 style="font-size: 2.5em; margin-bottom: 0.8em; background: linear-gradient(135deg, #c287a3, #b4316a, #a52a5c); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800;">
+                    VAAHAKAINN.
+                </h3>
+                <p style="font-size: 1.3em; opacity: 0.95; max-width: 700px; margin: 0 auto; color: var(--text-primary); font-weight: 600; line-height: 1.6;">
+                    A magical world of stories and tales, where words meet imagination to create an unforgettable reading experience
+                </p>
+            </div>
+
+            <!-- Social Media Links -->
+            <div style="margin-bottom: 3em;">
+                <h4 style="font-size: 1.8em; margin-bottom: 1.5em; color: var(--text-primary); font-weight: 700;">
+                    Follow Us
+                </h4>
+                <div style="display: flex; justify-content: center; gap: 2em; flex-wrap: wrap;">
+                    <a href="https://www.instagram.com/vaahakainn/profilecard/?igsh=ZXFzbWp4dW5mZHN2" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.8em; background: linear-gradient(135deg, rgba(195, 135, 163, 0.2), rgba(180, 49, 106, 0.2)); color: var(--text-primary); text-decoration: none; padding: 1em 1.5em; border-radius: 15px; border: 2px solid var(--accent-rose); transition: all 0.3s ease; font-weight: 600; font-size: 1.1em;">
+                        <svg width="24" height="24" viewBox="0 0 24 24">
+                            <defs>
+                                <radialGradient id="instagram-gradient" cx="33%" cy="93%" fx="15%" fy="78%" r="65%">
+                                    <stop offset="0%" style="stop-color:#fdf497"/>
+                                    <stop offset="5%" style="stop-color:#fdf497"/>
+                                    <stop offset="45%" style="stop-color:#fd5949"/>
+                                    <stop offset="60%" style="stop-color:#d6249f"/>
+                                    <stop offset="90%" style="stop-color:#285AEB"/>
+                                </radialGradient>
+                            </defs>
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="url(#instagram-gradient)"/>
+                        </svg>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://web.facebook.com/profile.php?id=61552042116860&mibextid=LQQJ4d&_rdc=1&_rdr#" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.8em; background: linear-gradient(135deg, rgba(195, 135, 163, 0.2), rgba(180, 49, 106, 0.2)); color: var(--text-primary); text-decoration: none; padding: 1em 1.5em; border-radius: 15px; border: 2px solid var(--accent-rose); transition: all 0.3s ease; font-weight: 600; font-size: 1.1em;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#1877F2">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://t.me/Vaahakainn" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 0.8em; background: linear-gradient(135deg, rgba(195, 135, 163, 0.2), rgba(180, 49, 106, 0.2)); color: var(--text-primary); text-decoration: none; padding: 1em 1.5em; border-radius: 15px; border: 2px solid var(--accent-rose); transition: all 0.3s ease; font-weight: 600; font-size: 1.1em;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#0088CC">
+                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.820 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                        </svg>
+                        <span>Telegram</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Copyright and Credits -->
+            <div style="border-top: 3px solid var(--accent-rose); padding-top: 2.5em; font-size: 1em; opacity: 0.9; color: var(--text-primary); font-weight: 600;">
+                <p style="margin-bottom: 0.5em; direction: ltr; text-align: center;">
+                    © 2023 VAAHAKAINN. - All rights reserved
+                </p>
+                <p style="direction: ltr; text-align: center;">
+                    Made with <span style="color: var(--accent-gold); animation: pulse 2s infinite;">❤️</span> for story lovers
+                </p>
+            </div>
+        </div>
+
+    </footer>
+
+    <!-- Enhanced JavaScript -->
+    <script src="/static/enhanced-interactions.js"></script>
+    
+    <!-- Page Loading and Initialization Script -->
+    <script>
+        // Page loading management
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('page-loader');
+            const body = document.body;
+            
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                loader.style.transform = 'scale(1.1)';
+                
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    body.classList.remove('loading');
+                }, 800);
+            }, 1500);
+        });
+
+        // Enhanced page transitions
+        function initPageTransitions() {
+            const links = document.querySelectorAll('a[data-page]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (href && !href.startsWith('#') && !href.startsWith('mailto:')) {
+                        e.preventDefault();
+                        
+                        // Add exit animation
+                        document.body.style.transition = 'all 0.5s ease';
+                        document.body.style.opacity = '0.8';
+                        document.body.style.transform = 'scale(0.98)';
+                        
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 500);
+                    }
+                });
+            });
+        }
+
+        // Performance optimizations
+        function initPerformanceOptimizations() {
+            // Lazy loading for images
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+        }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            initPageTransitions();
+            initPerformanceOptimizations();
+            initMobileNavigation();
+            
+            // Add smooth scrolling
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Initialize accessibility features
+            initAccessibilityFeatures();
+        });
+
+        function initAccessibilityFeatures() {
+            // Add keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    document.body.classList.add('keyboard-navigation');
+                }
+            });
+
+            document.addEventListener('mousedown', function() {
+                document.body.classList.remove('keyboard-navigation');
+            });
+        }
+
+        // Register Service Worker for offline support
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/static/sw.js')
+                    .then(function(registration) {
+                        console.log('VAAHAKAINN: Service Worker registered successfully:', registration.scope);
+                        
+                        // Check for updates
+                        registration.addEventListener('updatefound', function() {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', function() {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // Show update notification
+                                    showUpdateNotification();
+                                }
+                            });
+                        });
+                    })
+                    .catch(function(error) {
+                        console.log('VAAHAKAINN: Service Worker registration failed:', error);
+                    });
+            });
+        }
+
+        function showUpdateNotification() {
+            const notification = document.createElement('div');
+            notification.innerHTML = `
+                <div style="position: fixed; bottom: 20px; right: 20px; background: var(--primary-brown); color: var(--light-text); padding: 1em 1.5em; border-radius: 15px; box-shadow: var(--shadow-hover); z-index: 10000; max-width: 300px; animation: slideInRight 0.5s ease;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 1em;">
+                        <strong>Update Available</strong>
+                    </div>
+                    <p style="margin: 0 0 1em 0; font-size: 0.9em;">
+                        New version of VAAHAKAINN is available!
+                    </p>
+                    <div style="display: flex; gap: 1em;">
+                        <button onclick="updateApp()" style="background: var(--accent-gold); color: var(--dark-text); border: none; padding: 0.5em 1em; border-radius: 10px; cursor: pointer; font-weight: bold;">
+                            Update
+                        </button>
+                        <button onclick="this.closest('div').remove()" style="background: transparent; color: var(--light-text); border: 1px solid rgba(255,255,255,0.3); padding: 0.5em 1em; border-radius: 10px; cursor: pointer;">
+                            Later
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(notification);
+
+            // Auto-hide after 10 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideOutRight 0.5s ease';
+                    setTimeout(() => notification.remove(), 500);
+                }
+            }, 10000);
+        }
+
+        function updateApp() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistration().then(function(registration) {
+                    if (registration && registration.waiting) {
+                        registration.waiting.postMessage({type: 'SKIP_WAITING'});
+                        registration.waiting.addEventListener('statechange', function() {
+                            if (this.state === 'activated') {
+                                window.location.reload();
+                            }
+                        });
+                    }
+                });
+            }
+        }
+
+        // Mobile Navigation Functionality
+        function initMobileNavigation() {
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const mobileOverlay = document.querySelector('.mobile-nav-overlay');
+            const mobileClose = document.querySelector('.mobile-nav-close');
+            const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+
+            if (mobileToggle && mobileOverlay && mobileClose) {
+                // Open mobile menu
+                mobileToggle.addEventListener('click', function() {
+                    mobileToggle.classList.add('active');
+                    mobileOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    mobileToggle.setAttribute('aria-expanded', 'true');
+                });
+
+                // Close mobile menu
+                function closeMobileMenu() {
+                    mobileToggle.classList.remove('active');
+                    mobileOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                }
+
+                mobileClose.addEventListener('click', closeMobileMenu);
+
+                // Close menu when clicking overlay
+                mobileOverlay.addEventListener('click', function(e) {
+                    if (e.target === mobileOverlay) {
+                        closeMobileMenu();
+                    }
+                });
+
+                // Close menu when clicking a link
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', closeMobileMenu);
+                });
+
+                // Close menu with Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && mobileOverlay.classList.contains('active')) {
+                        closeMobileMenu();
+                    }
+                });
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for loading animation -->
+    <style>
+        @keyframes loadingBar {
+            0% { transform: translateX(-100%); }
+            50% { transform: translateX(0%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .loading * {
+            pointer-events: none;
+        }
+        
+        .keyboard-navigation *:focus {
+            outline: 2px solid var(--accent-gold);
+            outline-offset: 2px;
+        }
+        
+        /* Enhanced hover effects for footer links */
+        footer a:hover {
+            background: rgba(212, 175, 55, 0.2) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Update notification animations */
+        @keyframes slideInRight {
+            0% { transform: translateX(100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOutRight {
+            0% { transform: translateX(0); opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+    </style>
+</body>
+</html>

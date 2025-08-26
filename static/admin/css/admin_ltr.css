@@ -1,0 +1,87 @@
+/* Force LTR direction for Django admin fields */
+
+/* Main admin body */
+body {
+    direction: ltr !important;
+    text-align: left !important;
+}
+
+/* All form fields */
+.form-row input,
+.form-row textarea,
+.form-row select,
+.vTextField,
+.vLargeTextField,
+.vCharField {
+    direction: ltr !important;
+    text-align: left !important;
+    unicode-bidi: embed !important;
+}
+
+/* Form labels */
+.form-row label,
+.required label {
+    direction: ltr !important;
+    text-align: left !important;
+}
+
+/* Help text */
+.help {
+    direction: ltr !important;
+    text-align: left !important;
+}
+
+/* Field containers */
+.field-name,
+.field-description,
+.field-icon,
+.field-title_en,
+.field-content_en {
+    direction: ltr !important;
+}
+
+/* List display */
+.results th,
+.results td {
+    direction: ltr !important;
+    text-align: left !important;
+}
+
+/* Change list */
+.changelist-search input {
+    direction: ltr !important;
+    text-align: left !important;
+}
+
+/* Specific for English fields */
+input[name*="name"],
+input[name*="icon"],
+input[name*="title_en"],
+textarea[name*="content_en"],
+textarea[name*="description"] {
+    direction: ltr !important;
+    text-align: left !important;
+    font-family: Arial, sans-serif !important;
+}
+
+/* Admin navigation */
+.module h2,
+.module caption,
+th {
+    direction: ltr !important;
+    text-align: left !important;
+}
+
+/* Buttons */
+.button,
+input[type="submit"],
+input[type="button"] {
+    direction: ltr !important;
+}
+
+/* Make sure Arabic/Dhivehi content can still be RTL when needed */
+input[name*="_dv"],
+textarea[name*="_dv"] {
+    direction: rtl !important;
+    text-align: right !important;
+}

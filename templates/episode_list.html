@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block title %}Episodes - VAAHAKAINN{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 style="font-size: 4em; margin-bottom: 1em; background: linear-gradient(135deg, #c287a3, #b4316a, #a52a5c); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; text-align: center;">
+        Episodes
+    </h1>
+
+    {% if episodes %}
+    <div class="episodes-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2em; padding: 2em 0;">
+        {% for episode in episodes %}
+        <div class="episode-card" style="
+            background: linear-gradient(145deg, #ffffff 0%, #fefcfd 50%, #f9f5f7 100%);
+            border-radius: 20px;
+            padding: 2em;
+            box-shadow: 0 10px 25px rgba(194, 135, 163, 0.15);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;"
+            onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 35px rgba(194, 135, 163, 0.25)'"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 25px rgba(194, 135, 163, 0.15)'">
+            
+            <!-- Episode Title -->
+            <h2 class="faruma" style="font-size: 1.8em; 
+                                     margin-bottom: 1.5em; 
+                                     background: linear-gradient(135deg, #c287a3, #b4316a, #a52a5c); 
+                                     background-clip: text; 
+                                     -webkit-background-clip: text; 
+                                     -webkit-text-fill-color: transparent; 
+                                     font-weight: 800; 
+                                     text-align: center;">
+                {{ episode.title_dv }}
+            </h2>
+            
+            <!-- Episode Metadata -->
+            <div style="margin-bottom: 2em; display: flex; flex-wrap: wrap; gap: 1em; justify-content: center;">
+                <span style="background: linear-gradient(135deg, var(--accent-gold), #f4e4c1); 
+                             padding: 0.5em 1.2em; 
+                             border-radius: 20px; 
+                             border: 2px solid var(--accent-gold); 
+                             font-size: 0.9em; 
+                             color: var(--text-primary); 
+                             font-weight: 600;">
+                    📖 Episode {{ episode.episode_number }}
+                </span>
+                {% if episode.author %}
+                <span style="background: linear-gradient(135deg, #f4e4c1, var(--accent-gold)); 
+                             padding: 0.5em 1.2em; 
+                             border-radius: 20px; 
+                             border: 2px solid var(--accent-gold); 
+                             font-size: 0.9em; 
+                             color: var(--text-primary); 
+                             font-weight: 600;">
+                    ✍️ {{ episode.author.name }}
+                </span>
+                {% endif %}
+                {% if episode.genre %}
+                <span style="background: linear-gradient(135deg, #e8d1dc, #c287a3); 
+                             padding: 0.5em 1.2em; 
+                             border-radius: 20px; 
+                             border: 2px solid #c287a3; 
+                             font-size: 0.9em; 
+                             color: #ffffff; 
+                             font-weight: 600;">
+                    {% if episode.genre.icon %}
+                        {{ episode.genre.icon }}
+                    {% else %}
+                        🎭
+                    {% endif %}
+                    {{ episode.genre.name }}
+                </span>
+                {% endif %}
+                <span style="background: var(--background-tertiary); padding: 0.4em 1em; border-radius: 15px; border: 1px solid var(--primary-dark); font-size: 0.85em; color: var(--text-primary);">
+                    📅 {{ episode.published_date|date:"M d, Y" }}
+                </span>
+            </div>
+            
+            <!-- Episode Link -->
+            <div style="text-align: center;">
+                <a href="/episodes/{{ episode.pk }}/" 
+                   style="display: inline-flex; 
+                          align-items: center; 
+                          gap: 0.5em; 
+                          background: linear-gradient(135deg, #c287a3, #b4316a);
+                          color: #ffffff;
+                          padding: 0.8em 2em;
+                          border-radius: 25px;
+                          text-decoration: none;
+                          font-weight: 700;
+                          transition: all 0.3s ease;
+                          box-shadow: 0 5px 15px rgba(194, 135, 163, 0.3);"
+                   onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 20px rgba(194, 135, 163, 0.4)'"
+                   onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 5px 15px rgba(194, 135, 163, 0.3)'">
+                    <span>📚</span>
+                    <span>Read Episode</span>
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <div style="text-align: center; padding: 3em; background: var(--gradient-tertiary); border-radius: 20px; border: 3px solid var(--accent-gold);">
+            <h2 style="color: var(--text-primary); margin-bottom: 1em;">No episodes found</h2>
+            <p style="color: var(--text-primary);">Check back soon for new episodes!</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div style="text-align: center; padding: 4em; background: var(--gradient-tertiary); border-radius: 25px; border: 4px solid var(--accent-gold); margin: 3em 0;">
+        <h2 style="color: var(--text-primary); margin-bottom: 1.5em;">No episodes available</h2>
+        <p style="color: var(--text-primary); font-size: 1.2em;">New episodes coming soon!</p>
+        <div style="margin-top: 2em;">
+            <a href="/" style="display: inline-flex; align-items: center; gap: 0.5em; background: linear-gradient(135deg, #c287a3, #b4316a); color: #ffffff; padding: 1em 2em; border-radius: 25px; text-decoration: none; font-weight: 700;">
+                🏠 Back to Home
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

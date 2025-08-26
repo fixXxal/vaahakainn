@@ -1,0 +1,578 @@
+{% extends 'base.html' %}
+{% block title %}Story Library{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Enhanced Header -->
+    <div style="text-align: center; margin-bottom: 4em; position: relative;">
+        <h1 style="font-size: 4em; margin-bottom: 1em; background: linear-gradient(135deg, #c287a3, #b4316a, #a52a5c); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900;">
+            The Glorious Story Library
+        </h1>
+        <p style="font-size: 1.5em; color: var(--text-primary); max-width: 800px; margin: 0 auto; line-height: 1.8; font-weight: 600;">
+            Explore an amazing world of legendary stories and tales, where words meet imagination to weave the most wonderful stories for you
+        </p>
+        <div style="width: 300px; height: 6px; background: var(--gradient-primary); margin: 2.5em auto; border-radius: 3px; box-shadow: 0 4px 15px rgba(252, 228, 236, 0.5);"></div>
+    </div>
+
+    <!-- Enhanced Category Filter -->
+    {% if categories %}
+    <div style="text-align: center; margin-bottom: 4em; padding: 2.5em; background: linear-gradient(135deg, #ffffff 0%, #f8f0f5 100%); border-radius: 25px; border: 3px solid var(--accent-gold); position: relative; box-shadow: 0 10px 30px rgba(252, 228, 236, 0.3);">
+        <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #c287a3, #b4316a); color: white; padding: 0.5em 1.5em; border-radius: 20px; font-weight: bold; font-size: 1.1em;">✨ Browse by Category</div>
+        
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2em; max-width: 900px; margin: 2em auto 0;">
+            {% for category in categories %}
+            <a href="?category={{ category.id }}" class="category-filter-btn" style="text-decoration: none; 
+               background: {% if selected_category == category.id %}linear-gradient(135deg, #c287a3, #b4316a){% else %}linear-gradient(135deg, var(--accent-gold), #e8d1dc){% endif %}; 
+               color: #ffffff; 
+               padding: 0.8em 1.5em; 
+               border-radius: 30px; 
+               font-weight: 700; 
+               font-size: 1em;
+               transition: all 0.4s ease; 
+               border: 3px solid {% if selected_category == category.id %}#c287a3{% else %}var(--accent-gold){% endif %}; 
+               box-shadow: 0 4px 15px rgba(194, 135, 163, {% if selected_category == category.id %}0.4{% else %}0.2{% endif %}); 
+               transform: {% if selected_category == category.id %}scale(1.05){% else %}scale(1){% endif %}; 
+               position: relative; 
+               overflow: hidden;
+               display: inline-flex;
+               align-items: center;
+               gap: 0.5em;">
+                {% if category.icon %}<span style="font-size: 1.3em;">{{ category.icon }}</span>{% else %}<span style="font-size: 1.3em;">📚</span>{% endif %}
+                <span>{{ category.name }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Beautiful Stories Grid -->
+    {% if stories %}
+    <div class="enhanced-story-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2.5em; padding: 3em 0; max-width: 1400px; margin: 0 auto;">
+        {% for story in stories %}
+        <div class="enhanced-story-card" data-index="{{ forloop.counter0 }}" style="
+            background: linear-gradient(145deg, #ffffff 0%, #fefcfd 50%, #f9f5f7 100%);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(194, 135, 163, 0.15), 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+            position: relative;
+            border: 2px solid transparent;
+            opacity: 0;
+            transform: translateY(60px) scale(0.8);
+            animation: cardEntrance 0.8s cubic-bezier(0.23, 1, 0.320, 1) forwards;
+            animation-delay: calc({{ forloop.counter0 }} * 0.15s);
+            ">
+            
+            <!-- Card Border Gradient -->
+            <div style="position: absolute; inset: 0; padding: 2px; background: linear-gradient(135deg, var(--accent-gold), #e8d1dc, var(--accent-gold)); border-radius: 25px; z-index: -1;">
+                <div style="width: 100%; height: 100%; background: linear-gradient(145deg, #ffffff 0%, #fefcfd 50%, #f9f5f7 100%); border-radius: 23px;"></div>
+            </div>
+            <!-- Enhanced Cover Image Section -->
+            {% if story.cover_image %}
+            <div class="cover-image-container" style="position: relative; width: 100%; height: 280px; overflow: hidden; margin-bottom: 0;">
+                <img src="{{ story.cover_image.url }}" alt="{{ story.title }} cover" 
+                     class="story-cover-image"
+                     style="width: 100%; height: 100%; object-fit: cover; transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1); filter: brightness(0.95);">
+                
+                <!-- Gradient Overlay -->
+                <div class="gradient-overlay" style="position: absolute; inset: 0; background: linear-gradient(135deg, transparent 0%, rgba(194, 135, 163, 0.1) 50%, rgba(180, 49, 106, 0.2) 100%); opacity: 0; transition: all 0.6s ease;"></div>
+                
+                <!-- Episode Count Badge -->
+                <div class="episode-badge" style="position: absolute; top: 15px; right: 15px; 
+                            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6)); 
+                            backdrop-filter: blur(10px);
+                            color: #ffffff; 
+                            padding: 0.6em 1.2em; 
+                            border-radius: 20px; 
+                            font-size: 0.9em; 
+                            font-weight: 700;
+                            border: 1px solid rgba(255,255,255,0.2);
+                            transform: translateY(-5px);
+                            opacity: 0.9;
+                            transition: all 0.4s ease;">
+                    📚 {{ story.episodes.count }} episodes
+                </div>
+            </div>
+            {% else %}
+            <div style="width: 100%; height: 280px; 
+                        background: linear-gradient(135deg, var(--accent-gold) 0%, #e8d1dc 50%, #c287a3 100%); 
+                        margin-bottom: 0; 
+                        display: flex; 
+                        align-items: center; 
+                        justify-content: center; 
+                        font-size: 4em; 
+                        color: rgba(255,255,255,0.9); 
+                        position: relative; 
+                        overflow: hidden;">
+                
+                <!-- Animated Background Pattern -->
+                <div style="position: absolute; inset: 0; 
+                            background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%), 
+                                              radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+                            animation: patternMove 10s linear infinite;"></div>
+                
+                <!-- Book Icon -->
+                <div style="font-size: 4em; z-index: 2;">📖</div>
+                
+                <!-- Episode Count -->
+                <div class="episode-badge" style="position: absolute; top: 15px; right: 15px; 
+                            background: rgba(255,255,255,0.2); 
+                            backdrop-filter: blur(10px);
+                            color: #ffffff; 
+                            padding: 0.6em 1.2em; 
+                            border-radius: 20px; 
+                            font-size: 0.9em; 
+                            font-weight: 700;
+                            border: 1px solid rgba(255,255,255,0.3);">
+                    📚 {{ story.episodes.count }} episodes
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Enhanced Story Content -->
+            <div style="padding: 2em; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <!-- Story Title -->
+                <h2 class="faruma" style="font-size: 1.9em; 
+                                           margin-bottom: 1.2em; 
+                                           background: linear-gradient(135deg, #c287a3, #b4316a, #a52a5c); 
+                                           background-clip: text; 
+                                           -webkit-background-clip: text; 
+                                           -webkit-text-fill-color: transparent; 
+                                           font-weight: 800; 
+                                           line-height: 1.3;
+                                           text-align: center;
+                                           width: 100%;">
+                    {{ story.title }}
+                </h2>
+                
+                <!-- Perfect Story Metadata -->
+                <div style="margin-bottom: 2em; display: flex; flex-wrap: wrap; gap: 1em; justify-content: center; align-items: center;">
+                    {% if story.category %}
+                    <span style="background: linear-gradient(135deg, {{ story.category.color }}, #b4316a); 
+                                 padding: 0.6em 1.3em; 
+                                 border-radius: 25px; 
+                                 border: 3px solid {{ story.category.color }}; 
+                                 font-size: 1em; 
+                                 color: #ffffff; 
+                                 font-weight: 700;
+                                 box-shadow: 0 4px 12px rgba(194, 135, 163, 0.3);
+                                 transition: all 0.3s ease;
+                                 display: inline-flex;
+                                 align-items: center;
+                                 gap: 0.5em;
+                                 position: relative;
+                                 overflow: hidden;"
+                          onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.boxShadow='0 6px 20px rgba(194, 135, 163, 0.5)'"
+                          onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 12px rgba(194, 135, 163, 0.3)'">
+                        {% if story.category.icon %}
+                            <span style="font-size: 1.2em;">{{ story.category.icon }}</span>
+                        {% else %}
+                            <span style="font-size: 1.2em;">🏷️</span>
+                        {% endif %}
+                        <span>{{ story.category.name }}</span>
+                        <div class="shine-effect" style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%); transition: left 0.6s ease;"></div>
+                    </span>
+                    {% endif %}
+                    {% if story.episodes.first.genre %}
+                    <span style="background: linear-gradient(135deg, #e8d1dc, #c287a3); 
+                                 padding: 0.6em 1.3em; 
+                                 border-radius: 25px; 
+                                 border: 3px solid #c287a3; 
+                                 font-size: 1em; 
+                                 color: #ffffff; 
+                                 font-weight: 700;
+                                 box-shadow: 0 3px 10px rgba(194, 135, 163, 0.4);
+                                 transition: all 0.3s ease;
+                                 display: inline-flex;
+                                 align-items: center;
+                                 gap: 0.5em;
+                                 position: relative;
+                                 overflow: hidden;"
+                          onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.boxShadow='0 5px 15px rgba(194, 135, 163, 0.6)'"
+                          onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 3px 10px rgba(194, 135, 163, 0.4)'">
+                        {% if story.episodes.first.genre.icon %}
+                            <span style="font-size: 1.2em;">{{ story.episodes.first.genre.icon }}</span>
+                        {% else %}
+                            <span style="font-size: 1.2em;">🎭</span>
+                        {% endif %}
+                        <span>{{ story.episodes.first.genre.name }}</span>
+                        <div class="shine-effect" style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%); transition: left 0.6s ease;"></div>
+                    </span>
+                    {% endif %}
+                    {% if story.episodes.first.author %}
+                    <span style="background: linear-gradient(135deg, #f4e4c1, var(--accent-gold)); 
+                                 padding: 0.6em 1.3em; 
+                                 border-radius: 25px; 
+                                 border: 3px solid var(--accent-gold); 
+                                 font-size: 1em; 
+                                 color: var(--text-primary); 
+                                 font-weight: 700;
+                                 box-shadow: 0 3px 10px rgba(248, 232, 192, 0.4);
+                                 transition: all 0.3s ease;
+                                 display: inline-flex;
+                                 align-items: center;
+                                 gap: 0.5em;
+                                 position: relative;
+                                 overflow: hidden;"
+                          onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.boxShadow='0 5px 15px rgba(248, 232, 192, 0.6)'"
+                          onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 3px 10px rgba(248, 232, 192, 0.4)'">
+                        <span style="font-size: 1.2em;">✍️</span>
+                        <span>{{ story.episodes.first.author.name }}</span>
+                        <div class="shine-effect" style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%); transition: left 0.6s ease;"></div>
+                    </span>
+                    {% endif %}
+                    <span style="background: var(--accent-gold); padding: 0.5em 1em; border-radius: 20px; border: 2px solid var(--accent-rose); font-size: 0.95em; color: var(--text-primary); font-weight: 600;">
+                        Released: {{ story.release_date|date:"F Y" }}
+                    </span>
+                    <span style="background: var(--background-tertiary); padding: 0.3em 0.8em; border-radius: 15px; border: 1px solid var(--primary-dark); font-size: 0.9em; color: var(--text-primary);">
+                        Episodes: {{ story.episodes.count }}
+                    </span>
+                </div>
+                
+                <!-- Beautiful Story Description -->
+                <div style="margin-bottom: 2.5em; position: relative;">
+                    <p class="faruma" style="font-size: 1.2em; 
+                                             line-height: 1.8; 
+                                             color: #555; 
+                                             font-weight: 500; 
+                                             text-align: center; 
+                                             font-family: 'Faruma', 'Georgia', serif !important;
+                                             margin: 0;
+                                             max-width: 90%;
+                                             margin: 0 auto;">
+                        {{ story.description|truncatewords:20 }}
+                    </p>
+                </div>
+                
+                <!-- Perfect Action Button -->
+                <div style="text-align: center;">
+                    <a href="{% url 'story_detail' story.pk %}" class="episode-scroll-btn">
+                        <div class="episode-scroll-paper">
+                            <div class="episode-scroll-content">
+                                <span class="episode-scroll-icon">📖</span>
+                                <span class="episode-scroll-text">Explore Episodes</span>
+                            </div>
+                            <div class="episode-scroll-ribbon"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <!-- Empty State -->
+    <div style="text-align: center; padding: 6em 3em; background: var(--gradient-tertiary); border-radius: 30px; border: 4px solid var(--accent-gold); margin: 4em 0; position: relative; box-shadow: 0 20px 50px rgba(252, 228, 236, 0.4);">
+        <h2 style="font-size: 3em; color: var(--text-primary); margin-bottom: 1.5em; font-weight: 800;">No stories available currently</h2>
+        <p style="font-size: 1.5em; color: var(--text-primary); max-width: 600px; margin: 0 auto; line-height: 1.8; font-weight: 600;">
+            We are working hard to add a wonderful collection of stories and tales soon. Follow us for more creativity!
+        </p>
+        <div style="margin-top: 2em;">
+            <a href="/" class="btn" style="display: inline-flex; align-items: center; gap: 12px;">
+                Back to Home
+            </a>
+        </div>
+    </div>
+    {% endif %}
+    
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add enhanced interactions to category badges
+    const categoryBadges = document.querySelectorAll('span[onmouseover]');
+    
+    categoryBadges.forEach(badge => {
+        const shineEffect = badge.querySelector('.shine-effect');
+        
+        badge.addEventListener('mouseenter', function() {
+            if (shineEffect) {
+                shineEffect.style.left = '100%';
+            }
+        });
+        
+        badge.addEventListener('mouseleave', function() {
+            if (shineEffect) {
+                setTimeout(() => {
+                    shineEffect.style.left = '-100%';
+                }, 200);
+            }
+        });
+    });
+
+    // Add staggered entrance animation to story cards
+    const storyCards = document.querySelectorAll('.story-card');
+    storyCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        
+        setTimeout(() => {
+            card.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+
+    // Add smooth interactions to category filter buttons
+    const categoryButtons = document.querySelectorAll('.category-filter-btn');
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            // Add a loading effect
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+    });
+});
+</script>
+
+<style>
+/* Stunning Story Page Animations */
+@keyframes cardEntrance {
+    0% { 
+        opacity: 0; 
+        transform: translateY(60px) scale(0.8) rotateX(15deg);
+        filter: blur(5px);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(-10px) scale(0.95) rotateX(5deg);
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0) scale(1) rotateX(0deg);
+        filter: blur(0px);
+    }
+}
+
+@keyframes patternMove {
+    0% { 
+        background-position: 0% 0%, 0% 0%; 
+    }
+    50% { 
+        background-position: 100% 100%, -100% -100%; 
+    }
+    100% { 
+        background-position: 0% 0%, 0% 0%; 
+    }
+}
+
+@keyframes floatingBadge {
+    0%, 100% {
+        transform: translateY(-5px) scale(1);
+    }
+    50% {
+        transform: translateY(-8px) scale(1.02);
+    }
+}
+
+/* Enhanced Card Hover Effects */
+.enhanced-story-card:hover {
+    transform: translateY(-15px) scale(1.02) !important;
+    box-shadow: 0 25px 60px rgba(194, 135, 163, 0.25), 
+                0 15px 35px rgba(0, 0, 0, 0.15) !important;
+}
+
+.enhanced-story-card:hover img {
+    transform: scale(1.05) !important;
+    filter: brightness(1.1) contrast(1.1) !important;
+}
+
+.enhanced-story-card:hover .gradient-overlay {
+    opacity: 1 !important;
+}
+
+.enhanced-story-card:hover .episode-badge {
+    animation: floatingBadge 2s ease-in-out infinite !important;
+}
+
+/* Enhanced category styling */
+@keyframes categoryEntrance {
+    0% { 
+        opacity: 0; 
+        transform: translateY(20px) scale(0.8) rotateY(15deg);
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0) scale(1) rotateY(0deg);
+    }
+}
+
+.category-filter-btn {
+    animation: categoryEntrance 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.category-filter-btn:nth-child(1) { animation-delay: 0.1s; }
+.category-filter-btn:nth-child(2) { animation-delay: 0.2s; }
+.category-filter-btn:nth-child(3) { animation-delay: 0.3s; }
+.category-filter-btn:nth-child(4) { animation-delay: 0.4s; }
+.category-filter-btn:nth-child(5) { animation-delay: 0.5s; }
+.category-filter-btn:nth-child(6) { animation-delay: 0.6s; }
+
+/* Perfect Responsive Design */
+@media (max-width: 768px) {
+    .enhanced-story-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2em !important;
+        padding: 2em 1em !important;
+    }
+    
+    .enhanced-story-card {
+        margin: 0 auto;
+        max-width: 400px;
+    }
+    
+    .category-filter-btn {
+        font-size: 0.9em !important;
+        padding: 0.6em 1.2em !important;
+    }
+    
+    .category-filter-btn span:first-child {
+        font-size: 1em !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .enhanced-story-grid {
+        padding: 1.5em 0.5em !important;
+    }
+    
+    .enhanced-story-card {
+        max-width: 350px;
+    }
+}
+
+/* Enhanced Container Layout */
+.container {
+    max-width: 1600px !important;
+    padding: 3em 2em !important;
+}
+
+/* Smooth Page Entrance */
+.enhanced-story-grid {
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Episode Scroll Button - Ancient Scroll with Ribbon */
+.episode-scroll-btn {
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.episode-scroll-paper {
+    position: relative;
+    background: var(--gradient-soft);
+    padding: 1.2rem 2.8rem 1.2rem 2rem;
+    border-radius: 25px 0 0 25px;
+    border-right: 6px solid #c287a3;
+    box-shadow: 0 2px 6px rgba(252, 228, 236, 0.25);
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid var(--accent-gold);
+    overflow: hidden;
+}
+
+.episode-scroll-content {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    position: relative;
+    z-index: 2;
+}
+
+.episode-scroll-icon {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.episode-scroll-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #c287a3, #b4316a);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.episode-scroll-ribbon {
+    position: absolute;
+    top: -2px;
+    right: -8px;
+    bottom: -2px;
+    width: 20px;
+    background: linear-gradient(135deg, #c287a3, #b4316a, #a52a5c);
+    clip-path: polygon(0 0, 80% 0, 100% 50%, 80% 100%, 0 100%);
+    box-shadow: 
+        0 3px 10px rgba(195, 135, 163, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.episode-scroll-ribbon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 60%;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 1px;
+}
+
+.episode-scroll-btn:hover .episode-scroll-paper {
+    transform: translateX(-5px) rotateY(-5deg);
+    background: var(--accent-gold);
+    box-shadow: 0 4px 12px rgba(248, 187, 217, 0.5);
+    border-color: var(--accent-rose);
+}
+
+.episode-scroll-btn:hover .episode-scroll-icon {
+    transform: rotate(5deg) scale(1.1);
+}
+
+.episode-scroll-btn:hover .episode-scroll-ribbon {
+    background: linear-gradient(135deg, #b4316a, #a52a5c, #8b2c4a);
+    box-shadow: 
+        0 5px 15px rgba(195, 135, 163, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Shimmer effect like nav buttons */
+.episode-scroll-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255,255,255,0.2) 50%, 
+        transparent 100%
+    );
+    transition: left 0.6s ease;
+}
+
+.episode-scroll-btn:hover .episode-scroll-paper::before {
+    left: 100%;
+}
+
+/* Clean style matching nav buttons - no decorative elements needed */
+</style>
+
+{% endblock %}

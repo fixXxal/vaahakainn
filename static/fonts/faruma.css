@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Faruma';
+    src: url('Faruma.woff2') format('woff2'),
+         url('Faruma.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.faruma {
+    font-family: 'Faruma', sans-serif;
+}
