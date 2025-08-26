@@ -1,12 +1,15 @@
 @font-face {
     font-family: 'Faruma';
-    src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+Dhivehi:wght@300;400;500;600;700&display=swap');
+    src: url('Faruma.woff2') format('woff2'),
+         url('Faruma.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 .faruma {
-    font-family: 'Noto Sans Dhivehi', 'Arial Unicode MS', Arial, sans-serif;
-    font-weight: 400;
+    font-family: 'Faruma', Arial, sans-serif;
+    font-weight: normal;
     line-height: 1.6;
+    direction: rtl;
+    text-align: right;
 }

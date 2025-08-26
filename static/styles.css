@@ -91,10 +91,12 @@ body {
 
 /* RTL styling specifically for Dhivehi content - Enhanced */
 .faruma, [lang="dv"] {
-    direction: rtl;
-    text-align: center;
+    direction: rtl !important;
+    text-align: right !important;
+    font-family: 'Faruma', Arial, sans-serif !important;
     font-feature-settings: "liga" 1, "kern" 1;
     -webkit-font-feature-settings: "liga" 1, "kern" 1;
+    unicode-bidi: bidi-override;
 }
 
 /* Clean White Background */
@@ -462,7 +464,7 @@ header nav::after {
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     margin: 1em 0 0.5em 0;
-    font-family: 'Faruma', 'Georgia', serif;
+    font-family: 'Faruma', Arial, serif !important;
     color: var(--text-primary);
     text-shadow: none;
     position: relative;
@@ -763,13 +765,15 @@ li::before {
     margin-bottom: 1.5em;
 }
 .faruma {
-    font-family: 'Noto Sans Dhivehi', 'Faruma', 'Arial Unicode MS', Arial, sans-serif;
+    font-family: 'Faruma', Arial, sans-serif !important;
     font-size: 1.15em;
     letter-spacing: 0.03em;
     color: var(--text-primary);
-    font-weight: 400;
+    font-weight: normal;
     line-height: 1.7;
     font-display: swap;
+    direction: rtl !important;
+    text-align: right !important;
 }
 .meta {
     color: #888;
@@ -904,7 +908,7 @@ li::before {
         margin-bottom: 1rem !important;
     }
     
-    /* Mobile Episode Content - Enhanced Reading */
+    /* Mobile Episode Content - Enhanced Reading with Faruma Font */
     .episode-content {
         padding: 2.5rem 1.5rem !important;
         font-size: 1.2rem !important;
@@ -912,21 +916,31 @@ li::before {
         margin: 1.5rem 0 !important;
         border-radius: 20px !important;
         box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+        font-family: 'Faruma', Arial, serif !important;
+        direction: rtl !important;
+        text-align: right !important;
     }
     
     .episode-content p {
         font-size: 1.2rem !important;
         line-height: 1.8 !important;
         margin-bottom: 1.5rem !important;
-        text-align: justify !important;
+        text-align: right !important;
+        font-family: 'Faruma', Arial, serif !important;
+        direction: rtl !important;
     }
     
     .episode-content p:first-letter {
-        font-size: 3.5rem !important;
-        line-height: 0.8 !important;
-        float: left !important;
-        margin: 0.1rem 0.5rem 0 0 !important;
-        font-weight: bold !important;
+        font-size: inherit !important;
+        font-weight: inherit !important;
+        color: inherit !important;
+        float: none !important;
+        line-height: inherit !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-shadow: none !important;
+        display: inline !important;
+        font-family: inherit !important;
     }
     
     /* Mobile Buttons - Full Width and Touch Friendly */
@@ -1057,16 +1071,30 @@ li::before {
         font-size: 1.1rem !important;
         line-height: 1.7 !important;
         border-radius: 18px !important;
+        font-family: 'Faruma', Arial, serif !important;
+        direction: rtl !important;
+        text-align: right !important;
     }
     
     .episode-content p {
         font-size: 1.1rem !important;
         line-height: 1.7 !important;
+        font-family: 'Faruma', Arial, serif !important;
+        direction: rtl !important;
+        text-align: right !important;
     }
     
     .episode-content p:first-letter {
-        font-size: 3rem !important;
-        line-height: 0.8 !important;
+        font-size: inherit !important;
+        font-weight: inherit !important;
+        color: inherit !important;
+        float: none !important;
+        line-height: inherit !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-shadow: none !important;
+        display: inline !important;
+        font-family: inherit !important;
     }
     
     .btn {
@@ -1299,10 +1327,12 @@ li::before {
     position: relative;
     line-height: 1.8;
     font-size: 1.2em;
-    font-family: 'Noto Sans Dhivehi', 'Faruma', 'Georgia', serif;
+    font-family: 'Faruma', Arial, serif !important;
     color: var(--text-primary);
     word-spacing: 0.1em;
     text-rendering: optimizeLegibility;
+    direction: rtl;
+    text-align: right;
 }
 
 .episode-content::before {
