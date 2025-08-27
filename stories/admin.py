@@ -27,7 +27,7 @@ class CategoryAdmin(admin.ModelAdmin):
 	
 	class Media:
 		css = {
-			'all': ('admin/css/admin_ltr.css',)
+			'all': ('admin/css/admin_rtl.css',)
 		}
 
 @admin.register(Author)
@@ -36,7 +36,7 @@ class AuthorAdmin(admin.ModelAdmin):
 	
 	class Media:
 		css = {
-			'all': ('admin/css/admin_ltr.css',)
+			'all': ('admin/css/admin_rtl.css',)
 		}
 
 @admin.register(Genre)
@@ -46,7 +46,7 @@ class GenreAdmin(admin.ModelAdmin):
 	
 	class Media:
 		css = {
-			'all': ('admin/css/admin_ltr.css',)
+			'all': ('admin/css/admin_rtl.css',)
 		}
 
 @admin.register(Episode)
@@ -59,7 +59,7 @@ class EpisodeAdmin(admin.ModelAdmin):
 	
 	class Media:
 		css = {
-			'all': ('admin/css/admin_ltr.css',)
+			'all': ('admin/css/admin_rtl.css',)
 		}
 
 @admin.register(Story)
@@ -72,7 +72,7 @@ class StoryAdmin(admin.ModelAdmin):
 	
 	class Media:
 		css = {
-			'all': ('admin/css/admin_ltr.css',)
+			'all': ('admin/css/admin_rtl.css',)
 		}
 
 @admin.register(Comment)
@@ -86,7 +86,7 @@ class CommentAdmin(admin.ModelAdmin):
 	
 	class Media:
 		css = {
-			'all': ('admin/css/admin_ltr.css',)
+			'all': ('admin/css/admin_rtl.css',)
 		}
 	
 	def comment_preview(self, obj):
@@ -107,7 +107,7 @@ class ReactionAdmin(admin.ModelAdmin):
 	
 	class Media:
 		css = {
-			'all': ('admin/css/admin_ltr.css',)
+			'all': ('admin/css/admin_rtl.css',)
 		}
 	
 	def reaction_display(self, obj):
