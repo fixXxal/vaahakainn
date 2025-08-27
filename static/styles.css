@@ -803,8 +803,8 @@ li::before {
     }
     
     body {
-        font-size: 20px !important; /* Bigger on mobile for better readability */
-        line-height: 1.8 !important;
+        font-size: 16px !important; /* Desktop-like base font size */
+        line-height: 1.6 !important;
         font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, sans-serif !important;
     }
     /* Mobile Header Layout - Desktop Style */
@@ -864,12 +864,12 @@ li::before {
         border-radius: 12px !important;
     }
     
-    /* Mobile Container with Better Spacing */
+    /* Mobile Container - Desktop-like Width */
     .container {
-        padding: 2rem 1.2rem !important;
+        padding: 2rem 1.5rem !important;
         margin: 1rem auto !important;
         border-radius: 20px !important;
-        max-width: 95% !important;
+        max-width: 98% !important; /* Wider for desktop-like feel */
         box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important;
     }
     
@@ -928,13 +928,14 @@ li::before {
         margin-bottom: 1rem !important;
     }
     
-    /* Mobile Episode Content - Enhanced Reading with Faruma Font */
+    /* Mobile Episode Content - Desktop-like Reading Experience */
     .episode-content {
-        padding: 2.5rem 1.5rem !important;
-        font-size: 1.4rem !important; /* Larger font for better mobile reading */
-        line-height: 2 !important; /* More spacing like desktop */
-        margin: 1.5rem 0 !important;
-        border-radius: 20px !important;
+        padding: 3rem 2.5rem !important; /* More padding like desktop */
+        font-size: 1.1rem !important; /* Smaller text for better reading */
+        line-height: 1.8 !important; /* Desktop-like line spacing */
+        margin: 2rem auto !important;
+        max-width: 95% !important; /* Wider like desktop */
+        border-radius: 15px !important;
         box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
         font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
         direction: rtl !important;
@@ -958,9 +959,9 @@ li::before {
     }
     
     .episode-content p {
-        font-size: 1.4rem !important; /* Match container size */
-        line-height: 2 !important; /* Match desktop spacing */
-        margin-bottom: 1.5rem !important;
+        font-size: 1.1rem !important; /* Smaller, more readable text */
+        line-height: 1.8 !important; /* Better reading spacing */
+        margin-bottom: 1.2rem !important;
         text-align: right !important;
         font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
         direction: rtl !important;
@@ -1061,8 +1062,8 @@ li::before {
     }
     
     body {
-        font-size: 19px !important; /* Consistent with desktop */
-        line-height: 1.7 !important;
+        font-size: 16px !important; /* Same as desktop */
+        line-height: 1.6 !important;
         font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, sans-serif !important;
     }
     
@@ -1088,10 +1089,10 @@ li::before {
     }
     
     .container {
-        padding: 1.8rem 1rem !important;
+        padding: 2rem 1.2rem !important;
         margin: 0.8rem auto !important;
         border-radius: 18px !important;
-        max-width: 98% !important;
+        max-width: 98% !important; /* Full width for better reading */
     }
     
     .story-card {
@@ -1117,10 +1118,12 @@ li::before {
     }
     
     .episode-content {
-        padding: 2rem 1.2rem !important;
-        font-size: 1.3rem !important; /* Larger for better readability */
-        line-height: 1.9 !important; /* Better spacing */
-        border-radius: 18px !important;
+        padding: 2.5rem 2rem !important; /* More padding like desktop */
+        font-size: 1.05rem !important; /* Smaller, cleaner text */
+        line-height: 1.7 !important; /* Tighter, more readable spacing */
+        border-radius: 15px !important;
+        max-width: 96% !important; /* Wider for better reading */
+        margin: 1.5rem auto !important;
         font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
         direction: rtl !important;
         text-align: right !important;
@@ -1143,8 +1146,9 @@ li::before {
     }
     
     .episode-content p {
-        font-size: 1.3rem !important; /* Match container size */
-        line-height: 1.9 !important; /* Better spacing */
+        font-size: 1.05rem !important; /* Smaller, consistent with container */
+        line-height: 1.7 !important; /* Tighter reading spacing */
+        margin-bottom: 1rem !important;
         font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
         direction: rtl !important;
         text-align: right !important;
