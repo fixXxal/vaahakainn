@@ -466,7 +466,7 @@ header nav::after {
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     margin: 1em 0 0.5em 0;
-    font-family: 'Faruma', Arial, serif !important;
+    font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
     color: var(--text-primary);
     text-shadow: none;
     position: relative;
@@ -918,9 +918,23 @@ li::before {
         margin: 1.5rem 0 !important;
         border-radius: 20px !important;
         box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
-        font-family: 'Faruma', Arial, serif !important;
+        font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
         direction: rtl !important;
         text-align: right !important;
+    }
+    
+    /* Mobile - Force Faruma for ALL episode page elements */
+    .episode-content *, 
+    .episode-content div, 
+    .episode-content p, 
+    .episode-content span {
+        font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
+        direction: rtl !important;
+        text-align: right !important;
+    }
+    
+    .episode-detail * {
+        font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
     }
     
     .episode-content p {
@@ -928,7 +942,7 @@ li::before {
         line-height: 1.8 !important;
         margin-bottom: 1.5rem !important;
         text-align: right !important;
-        font-family: 'Faruma', Arial, serif !important;
+        font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
         direction: rtl !important;
     }
     
@@ -1073,15 +1087,29 @@ li::before {
         font-size: 1.1rem !important;
         line-height: 1.7 !important;
         border-radius: 18px !important;
-        font-family: 'Faruma', Arial, serif !important;
+        font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
         direction: rtl !important;
         text-align: right !important;
+    }
+    
+    /* Small Mobile - Force Faruma for ALL episode page elements */
+    .episode-content *, 
+    .episode-content div, 
+    .episode-content p, 
+    .episode-content span {
+        font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
+        direction: rtl !important;
+        text-align: right !important;
+    }
+    
+    .episode-detail * {
+        font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
     }
     
     .episode-content p {
         font-size: 1.1rem !important;
         line-height: 1.7 !important;
-        font-family: 'Faruma', Arial, serif !important;
+        font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
         direction: rtl !important;
         text-align: right !important;
     }
@@ -1347,12 +1375,41 @@ li::before {
     position: relative;
     line-height: 1.8;
     font-size: 1.2em;
-    font-family: 'Faruma', Arial, serif !important;
+    font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
     color: var(--text-primary);
     word-spacing: 0.1em;
     text-rendering: optimizeLegibility;
-    direction: rtl;
-    text-align: right;
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+/* Force Faruma font for ALL elements in episode content */
+.episode-content *, 
+.episode-content div, 
+.episode-content p, 
+.episode-content span, 
+.episode-content strong, 
+.episode-content em, 
+.episode-content h1, 
+.episode-content h2, 
+.episode-content h3, 
+.episode-content h4, 
+.episode-content h5, 
+.episode-content h6 {
+    font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+/* Episode detail page specific styling */
+.episode-detail * {
+    font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
+}
+
+.episode-detail .faruma {
+    direction: rtl !important;
+    text-align: right !important;
+    font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
 }
 
 .episode-content::before {
