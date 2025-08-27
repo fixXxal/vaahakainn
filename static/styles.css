@@ -974,14 +974,17 @@ li::before {
     
     /* Mobile Story Title - Perfect Size with RTL */
     .story-detail h1.faruma {
-        font-size: 1.0em !important; /* Extra small for mobile */
-        line-height: 1.3 !important;
+        font-size: 0.9em !important; /* Extra small for mobile */
+        line-height: 1.2 !important;
         text-align: center !important;
         direction: rtl !important;
         margin: 1rem auto !important;
         max-width: 95% !important;
         padding: 0 1rem !important;
         font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
+        white-space: nowrap !important; /* Keep on one line */
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
     
     .episode-content p {
@@ -1188,7 +1191,7 @@ li::before {
     
     /* Small Mobile Story Title - Compact Size with RTL */
     .story-detail h1.faruma {
-        font-size: 1.0em !important; /* Extra small for small mobile screens */
+        font-size: 0.9em !important; /* Extra small for small mobile screens */
         line-height: 1.2 !important;
         text-align: center !important;
         direction: rtl !important;
@@ -1196,6 +1199,9 @@ li::before {
         max-width: 98% !important;
         padding: 0 0.5rem !important;
         font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
+        white-space: nowrap !important; /* Keep on one line */
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
     
     .episode-content p {
