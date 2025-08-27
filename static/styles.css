@@ -958,15 +958,16 @@ li::before {
         font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
     }
     
-    /* Mobile Episode Title - Perfect Size */
+    /* Mobile Episode Title - Perfect Size with RTL */
     .episode-detail h1.faruma {
         font-size: 2.2em !important; /* Smaller for mobile */
         line-height: 1.3 !important;
         text-align: center !important;
-        direction: ltr !important;
+        direction: rtl !important;
         margin: 1rem auto !important;
         max-width: 95% !important;
         padding: 0 1rem !important;
+        font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
     }
     
     .episode-content p {
@@ -1156,15 +1157,16 @@ li::before {
         font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
     }
     
-    /* Small Mobile Episode Title - Compact Size */
+    /* Small Mobile Episode Title - Compact Size with RTL */
     .episode-detail h1.faruma {
         font-size: 2em !important; /* Even smaller for small screens */
         line-height: 1.2 !important;
         text-align: center !important;
-        direction: ltr !important;
+        direction: rtl !important;
         margin: 0.8rem auto !important;
         max-width: 98% !important;
         padding: 0 0.5rem !important;
+        font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
     }
     
     .episode-content p {
@@ -1476,14 +1478,15 @@ li::before {
     font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
 }
 
-/* Episode Title Styling - Centered and Responsive */
+/* Episode Title Styling - Centered and RTL for Dhivehi */
 .episode-detail h1.faruma {
     text-align: center !important;
-    direction: ltr !important;
+    direction: rtl !important;
     font-size: 3em !important;
     line-height: 1.2 !important;
     margin: 1rem auto !important;
     max-width: 90% !important;
+    font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
 }
 
 .episode-content::before {
