@@ -71,8 +71,15 @@
     box-sizing: border-box;
 }
 
+/* Prevent Safari from auto-adjusting text size */
+html {
+    -webkit-text-size-adjust: 100% !important;
+    -ms-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+}
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Faruma', 'Noto Sans Dhivehi', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', 'Helvetica Neue', Arial, sans-serif;
     background: #ffffff;
     color: var(--text-primary);
     margin: 0;
@@ -85,8 +92,11 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 16px;
+    font-size: 18px; /* Increased base font size */
     font-display: swap;
+    /* Prevent text shrinking on mobile */
+    -webkit-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
 }
 
 /* RTL styling specifically for Dhivehi content - Enhanced */
@@ -784,10 +794,18 @@ li::before {
 }
 /* Mobile Layout Matching Desktop Appearance */
 @media (max-width: 768px) {
-    /* Force desktop-like scaling on mobile */
+    /* Force consistent font sizing on mobile - bigger like desktop */
     html {
-        font-size: 16px !important;
+        font-size: 18px !important;
         zoom: 1 !important;
+        -webkit-text-size-adjust: 100% !important;
+        text-size-adjust: 100% !important;
+    }
+    
+    body {
+        font-size: 20px !important; /* Bigger on mobile for better readability */
+        line-height: 1.8 !important;
+        font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, sans-serif !important;
     }
     /* Mobile Header Layout - Desktop Style */
     header {
@@ -913,14 +931,16 @@ li::before {
     /* Mobile Episode Content - Enhanced Reading with Faruma Font */
     .episode-content {
         padding: 2.5rem 1.5rem !important;
-        font-size: 1.2rem !important;
-        line-height: 1.8 !important;
+        font-size: 1.4rem !important; /* Larger font for better mobile reading */
+        line-height: 2 !important; /* More spacing like desktop */
         margin: 1.5rem 0 !important;
         border-radius: 20px !important;
         box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
         font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
         direction: rtl !important;
         text-align: right !important;
+        -webkit-text-size-adjust: 100% !important;
+        text-size-adjust: 100% !important;
     }
     
     /* Mobile - Force Faruma for ALL episode page elements */
@@ -938,12 +958,14 @@ li::before {
     }
     
     .episode-content p {
-        font-size: 1.2rem !important;
-        line-height: 1.8 !important;
+        font-size: 1.4rem !important; /* Match container size */
+        line-height: 2 !important; /* Match desktop spacing */
         margin-bottom: 1.5rem !important;
         text-align: right !important;
         font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
         direction: rtl !important;
+        -webkit-text-size-adjust: 100% !important;
+        text-size-adjust: 100% !important;
     }
     
     .episode-content p:first-letter {
@@ -1032,6 +1054,18 @@ li::before {
 
 @media (max-width: 480px) {
     /* Extra small screens - Maintain desktop-like appearance */
+    html {
+        font-size: 18px !important;
+        -webkit-text-size-adjust: 100% !important;
+        text-size-adjust: 100% !important;
+    }
+    
+    body {
+        font-size: 19px !important; /* Consistent with desktop */
+        line-height: 1.7 !important;
+        font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, sans-serif !important;
+    }
+    
     header {
         padding: 1rem 0.8rem !important;
         min-height: 75px !important;
@@ -1084,12 +1118,14 @@ li::before {
     
     .episode-content {
         padding: 2rem 1.2rem !important;
-        font-size: 1.1rem !important;
-        line-height: 1.7 !important;
+        font-size: 1.3rem !important; /* Larger for better readability */
+        line-height: 1.9 !important; /* Better spacing */
         border-radius: 18px !important;
         font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
         direction: rtl !important;
         text-align: right !important;
+        -webkit-text-size-adjust: 100% !important;
+        text-size-adjust: 100% !important;
     }
     
     /* Small Mobile - Force Faruma for ALL episode page elements */
@@ -1107,11 +1143,13 @@ li::before {
     }
     
     .episode-content p {
-        font-size: 1.1rem !important;
-        line-height: 1.7 !important;
+        font-size: 1.3rem !important; /* Match container size */
+        line-height: 1.9 !important; /* Better spacing */
         font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
         direction: rtl !important;
         text-align: right !important;
+        -webkit-text-size-adjust: 100% !important;
+        text-size-adjust: 100% !important;
     }
     
     .episode-content p:first-letter {
