@@ -1538,6 +1538,102 @@ li::before {
     font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
 }
 
+/* Universal Small Metadata Buttons - Consistent Across All Pages */
+.metadata-badge, .metadata-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.3rem !important;
+    padding: 0.4rem 0.8rem !important;
+    border-radius: 15px !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    margin: 0.2rem !important;
+    border: 2px solid transparent !important;
+    text-decoration: none !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+}
+
+/* Metadata Badge Types */
+.metadata-badge.category {
+    background: linear-gradient(135deg, rgba(194, 135, 163, 0.9), rgba(180, 49, 106, 0.9)) !important;
+    color: white !important;
+    border-color: rgba(194, 135, 163, 0.3) !important;
+}
+
+.metadata-badge.genre {
+    background: linear-gradient(135deg, rgba(232, 209, 220, 0.9), rgba(194, 135, 163, 0.9)) !important;
+    color: white !important;
+    border-color: rgba(194, 135, 163, 0.3) !important;
+}
+
+.metadata-badge.author {
+    background: linear-gradient(135deg, rgba(244, 228, 193, 0.9), rgba(248, 232, 192, 0.9)) !important;
+    color: #8b4513 !important;
+    border-color: rgba(212, 175, 55, 0.3) !important;
+}
+
+.metadata-badge.date {
+    background: linear-gradient(135deg, rgba(248, 232, 192, 0.9), rgba(244, 228, 193, 0.9)) !important;
+    color: #8b4513 !important;
+    border-color: rgba(212, 175, 55, 0.3) !important;
+}
+
+.metadata-badge.episodes {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 248, 248, 0.9)) !important;
+    color: #333 !important;
+    border-color: rgba(224, 224, 224, 0.5) !important;
+}
+
+/* Hover Effects for Metadata Badges */
+.metadata-badge:hover {
+    transform: translateY(-1px) scale(1.02) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Icon Styling in Badges */
+.metadata-badge span:first-child {
+    font-size: 0.9rem !important;
+}
+
+/* Mobile Metadata Badges - Linear Layout Like Desktop */
+@media (max-width: 768px) {
+    .metadata-badge, .metadata-btn {
+        padding: 0.3rem 0.6rem !important;
+        font-size: 0.75rem !important;
+        margin: 0.15rem !important;
+        border-radius: 12px !important;
+        gap: 0.25rem !important;
+    }
+    
+    .metadata-badge span:first-child {
+        font-size: 0.8rem !important;
+    }
+    
+    /* Force horizontal layout on mobile */
+    .metadata-container {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 0.3rem !important;
+        margin: 1rem 0 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .metadata-badge, .metadata-btn {
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.7rem !important;
+        margin: 0.1rem !important;
+        border-radius: 10px !important;
+    }
+    
+    .metadata-badge span:first-child {
+        font-size: 0.75rem !important;
+    }
+}
+
 /* Episode Title Styling - Centered and RTL for Dhivehi */
 .episode-detail h1.faruma {
     text-align: center !important;

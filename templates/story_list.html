@@ -148,86 +148,40 @@
                 </h2>
                 
                 <!-- Perfect Story Metadata -->
-                <div style="margin-bottom: 2em; display: flex; flex-wrap: wrap; gap: 1em; justify-content: center; align-items: center;">
+                <div class="metadata-container" style="margin-bottom: 1.5em; display: flex; flex-wrap: wrap; gap: 0.4em; justify-content: center; align-items: center;">
                     {% if story.category %}
-                    <span style="background: linear-gradient(135deg, {{ story.category.color }}, #b4316a); 
-                                 padding: 0.6em 1.3em; 
-                                 border-radius: 25px; 
-                                 border: 3px solid {{ story.category.color }}; 
-                                 font-size: 1em; 
-                                 color: #ffffff; 
-                                 font-weight: 700;
-                                 box-shadow: 0 4px 12px rgba(194, 135, 163, 0.3);
-                                 transition: all 0.3s ease;
-                                 display: inline-flex;
-                                 align-items: center;
-                                 gap: 0.5em;
-                                 position: relative;
-                                 overflow: hidden;"
-                          onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.boxShadow='0 6px 20px rgba(194, 135, 163, 0.5)'"
-                          onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 12px rgba(194, 135, 163, 0.3)'">
+                    <span class="metadata-badge category">
                         {% if story.category.icon %}
-                            <span style="font-size: 1.2em;">{{ story.category.icon }}</span>
+                            <span>{{ story.category.icon }}</span>
                         {% else %}
-                            <span style="font-size: 1.2em;">🏷️</span>
+                            <span>🏷️</span>
                         {% endif %}
                         <span>{{ story.category.name }}</span>
-                        <div class="shine-effect" style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%); transition: left 0.6s ease;"></div>
                     </span>
                     {% endif %}
                     {% if story.episodes.first.genre %}
-                    <span style="background: linear-gradient(135deg, #e8d1dc, #c287a3); 
-                                 padding: 0.6em 1.3em; 
-                                 border-radius: 25px; 
-                                 border: 3px solid #c287a3; 
-                                 font-size: 1em; 
-                                 color: #ffffff; 
-                                 font-weight: 700;
-                                 box-shadow: 0 3px 10px rgba(194, 135, 163, 0.4);
-                                 transition: all 0.3s ease;
-                                 display: inline-flex;
-                                 align-items: center;
-                                 gap: 0.5em;
-                                 position: relative;
-                                 overflow: hidden;"
-                          onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.boxShadow='0 5px 15px rgba(194, 135, 163, 0.6)'"
-                          onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 3px 10px rgba(194, 135, 163, 0.4)'">
+                    <span class="metadata-badge genre">
                         {% if story.episodes.first.genre.icon %}
-                            <span style="font-size: 1.2em;">{{ story.episodes.first.genre.icon }}</span>
+                            <span>{{ story.episodes.first.genre.icon }}</span>
                         {% else %}
-                            <span style="font-size: 1.2em;">🎭</span>
+                            <span>🎭</span>
                         {% endif %}
                         <span>{{ story.episodes.first.genre.name }}</span>
-                        <div class="shine-effect" style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%); transition: left 0.6s ease;"></div>
                     </span>
                     {% endif %}
                     {% if story.episodes.first.author %}
-                    <span style="background: linear-gradient(135deg, #f4e4c1, var(--accent-gold)); 
-                                 padding: 0.6em 1.3em; 
-                                 border-radius: 25px; 
-                                 border: 3px solid var(--accent-gold); 
-                                 font-size: 1em; 
-                                 color: var(--text-primary); 
-                                 font-weight: 700;
-                                 box-shadow: 0 3px 10px rgba(248, 232, 192, 0.4);
-                                 transition: all 0.3s ease;
-                                 display: inline-flex;
-                                 align-items: center;
-                                 gap: 0.5em;
-                                 position: relative;
-                                 overflow: hidden;"
-                          onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.boxShadow='0 5px 15px rgba(248, 232, 192, 0.6)'"
-                          onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 3px 10px rgba(248, 232, 192, 0.4)'">
-                        <span style="font-size: 1.2em;">✍️</span>
+                    <span class="metadata-badge author">
+                        <span>✍️</span>
                         <span>{{ story.episodes.first.author.name }}</span>
-                        <div class="shine-effect" style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%); transition: left 0.6s ease;"></div>
                     </span>
                     {% endif %}
-                    <span style="background: var(--accent-gold); padding: 0.5em 1em; border-radius: 20px; border: 2px solid var(--accent-rose); font-size: 0.95em; color: var(--text-primary); font-weight: 600;">
-                        Released: {{ story.release_date|date:"F Y" }}
+                    <span class="metadata-badge date">
+                        <span>📅</span>
+                        <span>{{ story.release_date|date:"M Y" }}</span>
                     </span>
-                    <span style="background: var(--background-tertiary); padding: 0.3em 0.8em; border-radius: 15px; border: 1px solid var(--primary-dark); font-size: 0.9em; color: var(--text-primary);">
-                        Episodes: {{ story.episodes.count }}
+                    <span class="metadata-badge episodes">
+                        <span>📚</span>
+                        <span>{{ story.episodes.count }} episodes</span>
                     </span>
                 </div>
                 
