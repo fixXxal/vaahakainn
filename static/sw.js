@@ -107,7 +107,7 @@ self.addEventListener('fetch', function(event) {
                     <style>
                         body {
                             font-family: Arial, sans-serif;
-                            background: linear-gradient(135deg, #8B4513, #A0522D);
+                            background: linear-gradient(135deg, #f8e8f0, #e8d1dc);
                             color: white;
                             text-align: center;
                             padding: 2em;
@@ -135,8 +135,8 @@ self.addEventListener('fetch', function(event) {
                             60% { transform: translateY(-5px); }
                         }
                         .retry-btn {
-                            background: #DAA520;
-                            color: #8B4513;
+                            background: #e8d1dc;
+                            color: #1a1a1a;
                             padding: 1em 2em;
                             border: none;
                             border-radius: 25px;

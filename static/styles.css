@@ -1583,13 +1583,13 @@ li::before {
 
 .metadata-badge.author {
     background: linear-gradient(135deg, rgba(244, 228, 193, 0.9), rgba(248, 232, 192, 0.9)) !important;
-    color: #8b4513 !important;
+    color: #1a1a1a !important;
     border-color: rgba(212, 175, 55, 0.3) !important;
 }
 
 .metadata-badge.date {
     background: linear-gradient(135deg, rgba(248, 232, 192, 0.9), rgba(244, 228, 193, 0.9)) !important;
-    color: #8b4513 !important;
+    color: #1a1a1a !important;
     border-color: rgba(212, 175, 55, 0.3) !important;
 }
 

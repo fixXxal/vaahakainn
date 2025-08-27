@@ -4,8 +4,8 @@
   "description": "Explore a magical world of stories and exciting tales with a unique reading experience and stunning interactive design",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#8B4513",
-  "theme_color": "#8B4513",
+  "background_color": "#f8e8f0",
+  "theme_color": "#e8d1dc",
   "orientation": "portrait-primary",
   "icons": [
     {

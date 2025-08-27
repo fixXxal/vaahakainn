@@ -82,7 +82,7 @@ function createMagicalCursor() {
         position: fixed;
         width: 20px;
         height: 20px;
-        background: radial-gradient(circle, #DAA520, transparent);
+        background: radial-gradient(circle, #f8e8f0, transparent);
         border-radius: 50%;
         pointer-events: none;
         z-index: 9999;
@@ -106,11 +106,11 @@ function initReadingProgress() {
         
         // Change color based on progress
         if (progress < 30) {
-            progressBar.style.background = 'linear-gradient(90deg, #8B4513, #DAA520)';
+            progressBar.style.background = 'linear-gradient(90deg, #f8e8f0, #e8d1dc)';
         } else if (progress < 70) {
-            progressBar.style.background = 'linear-gradient(90deg, #DAA520, #A0522D)';
+            progressBar.style.background = 'linear-gradient(90deg, #e8d1dc, #d1bcc7)';
         } else {
-            progressBar.style.background = 'linear-gradient(90deg, #A0522D, #8B4513)';
+            progressBar.style.background = 'linear-gradient(90deg, #d1bcc7, #f8e8f0)';
         }
     });
 }
@@ -122,7 +122,7 @@ function createProgressBar() {
         top: 0;
         left: 0;
         height: 4px;
-        background: linear-gradient(90deg, #8B4513, #DAA520);
+        background: linear-gradient(90deg, #f8e8f0, #e8d1dc);
         z-index: 10000;
         transition: width 0.3s ease;
         box-shadow: 0 0 10px rgba(218, 165, 32, 0.5);
@@ -258,7 +258,7 @@ function createSparkleEffect(x, y) {
         top: ${y}px;
         width: 4px;
         height: 4px;
-        background: #DAA520;
+        background: #f8e8f0;
         border-radius: 50%;
         pointer-events: none;
         z-index: 9998;
@@ -353,7 +353,7 @@ style.textContent = `
     
     .cursor-hover {
         transform: scale(1.5) !important;
-        background: radial-gradient(circle, #DAA520, #8B4513) !important;
+        background: radial-gradient(circle, #f8e8f0, #e8d1dc) !important;
     }
     
     .reading-mode {
