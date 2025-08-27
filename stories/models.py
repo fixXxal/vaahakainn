@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.core.validators import MinLengthValidator
+from cloudinary.models import CloudinaryField
 
 class Category(models.Model):
 	name = models.CharField(max_length=100)
@@ -22,7 +23,7 @@ class Category(models.Model):
 class Author(models.Model):
 	name = models.CharField(max_length=100)
 	bio = models.TextField(blank=True)
-	profile_image = models.ImageField(upload_to='authors/', blank=True, null=True)
+	profile_image = CloudinaryField('image', blank=True, null=True)
 	website = models.URLField(blank=True)
 
 	def __str__(self):
@@ -70,7 +71,7 @@ class Episode(models.Model):
 class Story(models.Model):
 	title = models.CharField(max_length=200)
 	description = models.TextField()
-	cover_image = models.ImageField(upload_to='stories/', blank=True, null=True)
+	cover_image = CloudinaryField('image', blank=True, null=True)
 	release_date = models.DateField()
 	category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name='stories')
 	episodes = models.ManyToManyField(Episode, related_name='stories')
