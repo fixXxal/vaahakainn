@@ -928,15 +928,17 @@ li::before {
         margin-bottom: 1rem !important;
     }
     
-    /* Mobile Episode Content - Desktop-like Reading Experience */
+    /* Mobile Episode Content - Wider Reading Experience */
     .episode-content {
-        padding: 3rem 2.5rem !important; /* More padding like desktop */
-        font-size: 1.1rem !important; /* Smaller text for better reading */
-        line-height: 1.8 !important; /* Desktop-like line spacing */
-        margin: 2rem auto !important;
-        max-width: 95% !important; /* Wider like desktop */
-        border-radius: 15px !important;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+        padding: 2rem 1.5rem !important; /* Optimized mobile padding */
+        font-size: 1.1rem !important; /* Good mobile reading size */
+        line-height: 1.8 !important; /* Comfortable line spacing */
+        margin: 1rem auto !important;
+        max-width: 100% !important; /* Full width on mobile */
+        width: 98% !important; /* Almost full width */
+        border-radius: 10px !important; /* Smaller border radius */
+        border: 1px solid var(--accent-gold) !important; /* Thinner border */
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important; /* Lighter shadow */
         font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
         direction: rtl !important;
         text-align: right !important;
@@ -1142,12 +1144,15 @@ li::before {
     }
     
     .episode-content {
-        padding: 2.5rem 2rem !important; /* More padding like desktop */
-        font-size: 1.05rem !important; /* Smaller, cleaner text */
-        line-height: 1.7 !important; /* Tighter, more readable spacing */
-        border-radius: 15px !important;
-        max-width: 96% !important; /* Wider for better reading */
-        margin: 1.5rem auto !important;
+        padding: 1.5rem 1rem !important; /* Compact mobile padding */
+        font-size: 1.05rem !important; /* Clean reading text */
+        line-height: 1.7 !important; /* Good mobile spacing */
+        border-radius: 8px !important; /* Smaller radius */
+        max-width: 100% !important; /* Full width */
+        width: 99% !important; /* Almost full width */
+        margin: 0.5rem auto !important;
+        border: 1px solid var(--accent-gold) !important; /* Thin border */
+        box-shadow: 0 1px 5px rgba(0,0,0,0.1) !important; /* Minimal shadow */
         font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
         direction: rtl !important;
         text-align: right !important;
@@ -1459,7 +1464,9 @@ li::before {
     background: #ffffff !important;
     border-radius: 15px;
     padding: 3em;
-    margin: 2em 0;
+    margin: 2em auto;
+    max-width: 1000px; /* Wider for more text */
+    width: 90%; /* Responsive width */
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     border: 2px solid var(--accent-gold) !important;
     position: relative;
