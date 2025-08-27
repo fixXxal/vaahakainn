@@ -974,7 +974,7 @@ li::before {
     
     /* Mobile Story Title - Perfect Size with RTL */
     .story-detail h1.faruma {
-        font-size: 2.5em !important; /* Smaller for mobile */
+        font-size: 1.8em !important; /* Smaller for mobile */
         line-height: 1.3 !important;
         text-align: center !important;
         direction: rtl !important;
@@ -1524,7 +1524,7 @@ li::before {
 .story-detail h1.faruma {
     text-align: center !important;
     direction: rtl !important;
-    font-size: 3.8em !important;
+    font-size: 2.2em !important;
     line-height: 1.2 !important;
     margin: 1rem auto !important;
     max-width: 90% !important;
