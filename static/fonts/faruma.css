@@ -1,15 +1,19 @@
+/* Import Dhivehi font from Google Fonts as Faruma replacement */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Dhivehi:wght@300;400;500;600;700&display=swap');
+
 @font-face {
     font-family: 'Faruma';
-    src: url('Faruma.woff2') format('woff2'),
-         url('Faruma.woff') format('woff');
+    src: local('Noto Sans Dhivehi'), local('NotoSansDhivehi-Regular');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
+
 .faruma {
-    font-family: 'Faruma', Arial, sans-serif;
+    font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, sans-serif !important;
     font-weight: normal;
     line-height: 1.6;
-    direction: rtl;
-    text-align: right;
+    direction: rtl !important;
+    text-align: right !important;
+    font-display: swap;
 }

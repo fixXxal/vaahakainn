@@ -17,7 +17,7 @@
 
     <!-- Storybook Reading Area -->
     <div class="episode-content">
-        <div class="faruma" style="font-family: 'Faruma', 'Georgia', serif !important; font-size: 1.3em; line-height: 2; text-align: center; opacity: 1;">
+        <div class="faruma" style="font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important; font-size: 1.3em; line-height: 2; text-align: right; opacity: 1; direction: rtl !important;">
             {{ episode.content_dv|linebreaks }}
         </div>
     </div>
@@ -76,7 +76,7 @@
                 <form id="commentForm" style="margin-top: 1em;">
                     <div style="margin-bottom: 1.5em;">
                         <label for="username" style="display: block; margin-bottom: 0.5em; font-weight: 600; color: #c287a3;">Your Name</label>
-                        <input type="text" id="username" name="username" required minlength="2" maxlength="50" style="width: 100%; padding: 0.8em; border: 2px solid #c287a3; border-radius: 10px; font-size: 1em; box-sizing: border-box; font-family: 'Faruma', 'Georgia', serif;">
+                        <input type="text" id="username" name="username" required minlength="2" maxlength="50" style="width: 100%; padding: 0.8em; border: 2px solid #c287a3; border-radius: 10px; font-size: 1em; box-sizing: border-box; font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;">
                     </div>
                     
                     <div style="margin-bottom: 1.5em;">
@@ -86,7 +86,7 @@
                     
                     <div style="margin-bottom: 1.5em;">
                         <label for="comment" style="display: block; margin-bottom: 0.5em; font-weight: 600; color: #c287a3;">Your Comment</label>
-                        <textarea id="comment" name="comment" required minlength="5" rows="4" style="width: 100%; padding: 0.8em; border: 2px solid #c287a3; border-radius: 10px; font-size: 1em; box-sizing: border-box; font-family: 'Faruma', 'Georgia', serif; resize: vertical;"></textarea>
+                        <textarea id="comment" name="comment" required minlength="5" rows="4" style="width: 100%; padding: 0.8em; border: 2px solid #c287a3; border-radius: 10px; font-size: 1em; box-sizing: border-box; font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important; resize: vertical; direction: rtl; text-align: right;"></textarea>
                     </div>
                     
                     <button type="submit" style="background: linear-gradient(135deg, #c287a3, #ff6b9d); color: white; border: none; padding: 1em 2em; border-radius: 25px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(194, 135, 163, 0.4);">
@@ -109,7 +109,7 @@
                         <span style="color: var(--text-secondary); font-size: 0.9em;">{{ comment.created_at|date:"M d, Y" }}</span>
                     </div>
                     
-                    <p class="faruma" style="font-family: 'Faruma', 'Georgia', serif !important; line-height: 1.6; color: var(--text-primary); margin-bottom: 1em;">
+                    <p class="faruma" style="font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important; line-height: 1.6; color: var(--text-primary); margin-bottom: 1em; direction: rtl !important; text-align: right !important;">
                         {{ comment.comment|linebreaks }}
                     </p>
                     

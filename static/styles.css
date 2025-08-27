@@ -93,10 +93,12 @@ body {
 .faruma, [lang="dv"] {
     direction: rtl !important;
     text-align: right !important;
-    font-family: 'Faruma', Arial, sans-serif !important;
+    font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, sans-serif !important;
     font-feature-settings: "liga" 1, "kern" 1;
     -webkit-font-feature-settings: "liga" 1, "kern" 1;
     unicode-bidi: bidi-override;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Clean White Background */
@@ -765,7 +767,7 @@ li::before {
     margin-bottom: 1.5em;
 }
 .faruma {
-    font-family: 'Faruma', Arial, sans-serif !important;
+    font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, sans-serif !important;
     font-size: 1.15em;
     letter-spacing: 0.03em;
     color: var(--text-primary);
@@ -1138,6 +1140,15 @@ li::before {
         font-size: 0.9rem !important;
     }
     
+    /* Force Faruma font for all Dhivehi content on small mobile */
+    .faruma, [lang="dv"], .episode-content, .episode-content p, .episode-content span, .episode-content div {
+        font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, sans-serif !important;
+        direction: rtl !important;
+        text-align: right !important;
+        -webkit-font-feature-settings: "liga" 1, "kern" 1 !important;
+        font-feature-settings: "liga" 1, "kern" 1 !important;
+    }
+    
     /* Ensure mobile viewport never scales content down */
     html {
         -webkit-text-size-adjust: 100% !important;
@@ -1155,6 +1166,15 @@ li::before {
         -webkit-overflow-scrolling: touch;
         scroll-behavior: smooth;
         min-width: 360px !important;
+    }
+    
+    /* Force Faruma font for all Dhivehi content on mobile */
+    .faruma, [lang="dv"], .episode-content, .episode-content p, .episode-content span, .episode-content div {
+        font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, sans-serif !important;
+        direction: rtl !important;
+        text-align: right !important;
+        -webkit-font-feature-settings: "liga" 1, "kern" 1 !important;
+        font-feature-settings: "liga" 1, "kern" 1 !important;
     }
     
     /* Mobile-specific story info styling to match desktop */
