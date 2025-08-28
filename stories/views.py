@@ -3,16 +3,18 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.contenttypes.models import ContentType
-from .models import Episode, Story, Category, Comment, Reaction
+from .models import Episode, Story, Category, Comment, Reaction, ShortStory
 import json
 
 def home(request):
 	featured_stories = Story.objects.order_by('-release_date')[:3]
 	featured_episodes = Episode.objects.order_by('-published_date')[:5]
+	featured_short_stories = ShortStory.objects.filter(is_published=True, is_featured=True).order_by('-published_date')[:3]
 	lang = request.session.get('lang', 'dv')
 	return render(request, 'home.html', {
 		'featured_stories': featured_stories,
 		'featured_episodes': featured_episodes,
+		'featured_short_stories': featured_short_stories,
 		'lang': lang,
 	})
 
@@ -140,6 +142,9 @@ def add_comment(request):
         elif content_type == 'episode':
             ct = ContentType.objects.get_for_model(Episode)
             content_obj = get_object_or_404(Episode, pk=object_id)
+        elif content_type == 'shortstory':
+            ct = ContentType.objects.get_for_model(ShortStory)
+            content_obj = get_object_or_404(ShortStory, pk=object_id)
         else:
             return JsonResponse({'success': False, 'error': 'Invalid content type'})
         
@@ -183,6 +188,9 @@ def add_reaction(request):
         elif content_type == 'episode':
             ct = ContentType.objects.get_for_model(Episode)
             content_obj = get_object_or_404(Episode, pk=object_id)
+        elif content_type == 'shortstory':
+            ct = ContentType.objects.get_for_model(ShortStory)
+            content_obj = get_object_or_404(ShortStory, pk=object_id)
         elif content_type == 'comment':
             ct = ContentType.objects.get_for_model(Comment)
             content_obj = get_object_or_404(Comment, pk=object_id)
@@ -236,3 +244,41 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
+
+def short_story_list(request):
+    category_filter = request.GET.get('category')
+    if category_filter:
+        short_stories = ShortStory.objects.filter(
+            category__id=category_filter, 
+            is_published=True
+        ).order_by('-published_date')
+    else:
+        short_stories = ShortStory.objects.filter(is_published=True).order_by('-published_date')
+    
+    categories = Category.objects.filter(is_active=True).order_by('name')
+    lang = request.session.get('lang', 'dv')
+    
+    return render(request, 'short_story_list.html', {
+        'short_stories': short_stories,
+        'categories': categories,
+        'selected_category': int(category_filter) if category_filter else None,
+        'lang': lang,
+    })
+
+def short_story_detail(request, pk):
+    short_story = get_object_or_404(ShortStory, pk=pk, is_published=True)
+    lang = request.session.get('lang', 'dv')
+    
+    # Get comments for this short story
+    shortstory_ct = ContentType.objects.get_for_model(ShortStory)
+    comments = Comment.objects.filter(
+        content_type=shortstory_ct, 
+        object_id=short_story.id, 
+        is_approved=True
+    ).order_by('-created_at')
+    
+    return render(request, 'short_story_detail.html', {
+        'short_story': short_story,
+        'comments': comments,
+        'lang': lang,
+    })

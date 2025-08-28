@@ -1,0 +1,498 @@
+{% extends 'base.html' %}
+{% block title %}{{ short_story.title_en }}{% endblock %}
+
+{% block content %}
+<div class="container short-story-detail">
+    <!-- Story Header -->
+    <div style="text-align: center; margin-bottom: 4em; position: relative;">
+        
+        <!-- Cover Image Section -->
+        {% if short_story.cover_image %}
+        <div style="position: relative; max-width: 400px; margin: 0 auto 2em auto;">
+            <img src="{{ short_story.cover_image.url }}" alt="{{ short_story.title_en }} cover" style="width: 100%; height: 400px; object-fit: cover; border-radius: 20px; box-shadow: none; border: 4px solid var(--accent-gold); transition: var(--transition);">
+            <div style="position: absolute; top: 15px; right: 20px; background: var(--primary-dark); color: var(--background-primary); padding: 0.5em 1em; border-radius: 20px; font-size: 0.9em; backdrop-filter: blur(10px);">
+                📖 Complete Story
+            </div>
+        </div>
+        {% else %}
+        <div style="max-width: 400px; margin: 0 auto 2em auto; height: 400px; background: var(--gradient-primary); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 6em; color: var(--background-primary); position: relative; overflow: hidden; border: 4px solid var(--accent-gold); box-shadow: none;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 200\"><rect x=\"40\" y=\"40\" width=\"120\" height=\"120\" fill=\"none\" stroke=\"rgba(255,255,255,0.1)\" stroke-width=\"3\"/><line x1=\"60\" y1=\"80\" x2=\"140\" y2=\"80\" stroke=\"rgba(255,255,255,0.1)\" stroke-width=\"2\"/><line x1=\"60\" y1=\"100\" x2=\"140\" y2=\"100\" stroke=\"rgba(255,255,255,0.1)\" stroke-width=\"2\"/><line x1=\"60\" y1=\"120\" x2=\"140\" y2=\"120\" stroke=\"rgba(255,255,255,0.1)\" stroke-width=\"2\"/></svg>'); opacity: 0.4;"></div>
+            <div style="position: absolute; top: 15px; right: 20px; background: var(--accent-gold); color: var(--text-primary); padding: 0.5em 1em; border-radius: 20px; font-size: 0.9em;">
+                📖 Complete Story
+            </div>
+            📖
+        </div>
+        {% endif %}
+        
+        <!-- Story Title -->
+        <h1 class="faruma" style="margin-bottom: 1em; background: linear-gradient(135deg, #c287a3, #b4316a, #a52a5c); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; text-align: center !important; direction: rtl !important; font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important; font-size: 3em;">
+            {{ short_story.title_dv }}
+        </h1>
+        
+        <!-- Story Subtitle (English Title) -->
+        <h2 style="font-size: 1.8em; color: var(--text-secondary); margin-bottom: 1.5em; font-weight: 600;">
+            {{ short_story.title_en }}
+        </h2>
+        
+        <!-- Enhanced Story Metadata -->
+        <div class="metadata-container" style="margin-bottom: 2em; display: flex; flex-wrap: wrap; gap: 0.5em; justify-content: center;">
+            {% if short_story.author %}
+            <span class="metadata-badge author" style="background: linear-gradient(135deg, #f4e4c1, var(--accent-gold)); 
+                         padding: 0.4rem 0.8rem; 
+                         border-radius: 15px; 
+                         border: 2px solid var(--accent-gold); 
+                         font-size: 0.8rem; 
+                         color: var(--text-primary); 
+                         font-weight: 600;
+                         box-shadow: 0 3px 8px rgba(248, 232, 192, 0.3);
+                         transition: all 0.3s ease;
+                         display: inline-flex;
+                         align-items: center;
+                         gap: 0.3rem;
+                         position: relative;
+                         overflow: hidden;"
+                  onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.boxShadow='0 5px 12px rgba(248, 232, 192, 0.5)'"
+                  onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 3px 8px rgba(248, 232, 192, 0.3)'">
+                <span style="font-size: 0.9rem;">✍️</span>
+                <span>{{ short_story.author.name }}</span>
+                <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%); transition: left 0.6s ease;" onmouseenter="this.style.left='100%'"></div>
+            </span>
+            {% endif %}
+            {% if short_story.genre %}
+            <span class="metadata-badge genre" style="background: linear-gradient(135deg, #e8d1dc, #c287a3); 
+                         padding: 0.4rem 0.8rem; 
+                         border-radius: 15px; 
+                         border: 2px solid #c287a3; 
+                         font-size: 0.8rem; 
+                         color: #ffffff; 
+                         font-weight: 600;
+                         box-shadow: 0 3px 8px rgba(194, 135, 163, 0.3);
+                         transition: all 0.3s ease;
+                         display: inline-flex;
+                         align-items: center;
+                         gap: 0.3rem;
+                         position: relative;
+                         overflow: hidden;"
+                  onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.boxShadow='0 5px 12px rgba(194, 135, 163, 0.5)'"
+                  onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 3px 8px rgba(194, 135, 163, 0.3)'">
+                {% if short_story.genre.icon %}
+                    <span style="font-size: 0.9rem;">{{ short_story.genre.icon }}</span>
+                {% else %}
+                    <span style="font-size: 0.9rem;">🎭</span>
+                {% endif %}
+                <span>{{ short_story.genre.name }}</span>
+                <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%); transition: left 0.6s ease;" onmouseenter="this.style.left='100%'"></div>
+            </span>
+            {% endif %}
+            {% if short_story.category %}
+            <span class="metadata-badge category" style="background: linear-gradient(135deg, {{ short_story.category.color }}, #b4316a); 
+                         padding: 0.4rem 0.8rem; 
+                         border-radius: 15px; 
+                         border: 2px solid {{ short_story.category.color }}; 
+                         font-size: 0.8rem; 
+                         color: #ffffff; 
+                         font-weight: 600;
+                         box-shadow: 0 3px 8px rgba(194, 135, 163, 0.3);
+                         transition: all 0.3s ease;
+                         display: inline-flex;
+                         align-items: center;
+                         gap: 0.3rem;
+                         position: relative;
+                         overflow: hidden;"
+                  onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.boxShadow='0 5px 12px rgba(194, 135, 163, 0.5)'"
+                  onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 3px 8px rgba(194, 135, 163, 0.3)'">
+                {% if short_story.category.icon %}
+                    <span style="font-size: 0.9rem;">{{ short_story.category.icon }}</span>
+                {% else %}
+                    <span style="font-size: 0.9rem;">🏷️</span>
+                {% endif %}
+                <span>{{ short_story.category.name }}</span>
+                <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%); transition: left 0.6s ease;" onmouseenter="this.style.left='100%'"></div>
+            </span>
+            {% endif %}
+            <span class="metadata-badge date" style="background: linear-gradient(135deg, var(--accent-gold), #f4e4c1); 
+                         padding: 0.4rem 0.8rem; 
+                         border-radius: 15px; 
+                         border: 2px solid var(--accent-gold); 
+                         font-size: 0.8rem; 
+                         color: var(--text-primary); 
+                         font-weight: 600;
+                         box-shadow: 0 2px 6px rgba(248, 232, 192, 0.3);
+                         transition: all 0.3s ease;
+                         display: inline-flex;
+                         align-items: center;
+                         gap: 0.3rem;"
+                  onmouseover="this.style.transform='translateY(-1px) scale(1.03)'"
+                  onmouseout="this.style.transform='translateY(0) scale(1)'">
+                <span style="font-size: 0.9rem;">📅</span>
+                <span>{{ short_story.published_date|date:"M d, Y" }}</span>
+            </span>
+        </div>
+        
+        <div style="width: 200px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-gold), transparent); margin: 2em auto;"></div>
+    </div>
+
+    <!-- Story Content Section -->
+    <section style="margin-bottom: 4em;">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <!-- Content Toggle Buttons -->
+            <div style="text-align: center; margin-bottom: 3em;">
+                <div style="display: inline-flex; background: var(--gradient-soft); border-radius: 25px; padding: 0.5em; border: 2px solid var(--accent-gold); box-shadow: 0 4px 15px rgba(252, 228, 236, 0.3);">
+                    <button id="dhivehiBtn" class="content-toggle-btn active" onclick="showContent('dv')" style="
+                        padding: 0.8em 1.5em; 
+                        background: linear-gradient(135deg, #c287a3, #b4316a); 
+                        color: white; 
+                        border: none; 
+                        border-radius: 20px; 
+                        font-weight: 700; 
+                        cursor: pointer; 
+                        transition: all 0.3s ease;
+                        box-shadow: 0 2px 8px rgba(194, 135, 163, 0.4);">
+                        <span style="font-size: 1.1em; margin-right: 0.5em;">🇲🇻</span>
+                        Dhivehi
+                    </button>
+                    <button id="englishBtn" class="content-toggle-btn" onclick="showContent('en')" style="
+                        padding: 0.8em 1.5em; 
+                        background: transparent; 
+                        color: var(--text-primary); 
+                        border: none; 
+                        border-radius: 20px; 
+                        font-weight: 700; 
+                        cursor: pointer; 
+                        transition: all 0.3s ease;">
+                        <span style="font-size: 1.1em; margin-right: 0.5em;">🇺🇸</span>
+                        English
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Story Content -->
+            <div id="content-dv" class="story-content active" style="
+                background: linear-gradient(135deg, #ffffff 0%, #f8e8f0 100%); 
+                padding: 4em; 
+                border-radius: 25px; 
+                box-shadow: 0 15px 40px rgba(252, 228, 236, 0.4); 
+                border: 4px solid #c287a3; 
+                position: relative;
+                line-height: 2;
+                font-size: 1.3em;">
+                <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #c287a3; color: white; padding: 0.5em 1.5em; border-radius: 20px; font-weight: bold;">
+                    <span style="margin-right: 0.5em;">🇲🇻</span>Story in Dhivehi
+                </div>
+                <div class="faruma" style="color: #333; font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important; direction: rtl !important; text-align: justify;">
+                    {{ short_story.content_dv|linebreaks }}
+                </div>
+            </div>
+            
+            <div id="content-en" class="story-content" style="
+                background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%); 
+                padding: 4em; 
+                border-radius: 25px; 
+                box-shadow: 0 15px 40px rgba(176, 196, 222, 0.4); 
+                border: 4px solid #4682b4; 
+                position: relative;
+                line-height: 2;
+                font-size: 1.3em;
+                display: none;">
+                <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #4682b4; color: white; padding: 0.5em 1.5em; border-radius: 20px; font-weight: bold;">
+                    <span style="margin-right: 0.5em;">🇺🇸</span>Story in English
+                </div>
+                <div style="color: #333; font-family: 'Georgia', serif; text-align: justify;">
+                    {{ short_story.content_en|linebreaks }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comments and Reactions Section -->
+    <section style="margin-top: 4em; padding-top: 3em; border-top: 3px solid var(--accent-gold);">
+        <!-- Story Reactions -->
+        <div style="text-align: center; margin-bottom: 3em;">
+            <h3 style="font-size: 1.8em; margin-bottom: 1em; background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">How did you like this story?</h3>
+            <div style="display: flex; justify-content: center; gap: 1em; flex-wrap: wrap;">
+                <button class="reaction-btn" data-reaction="heart" data-content-type="shortstory" data-object-id="{{ short_story.id }}" style="background: linear-gradient(135deg, #ff6b9d, #c287a3); color: white; border: none; padding: 0.8em 1.5em; border-radius: 25px; font-size: 1.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(194, 135, 163, 0.3);">
+                    ❤️ <span class="reaction-count">{{ short_story.heart_reactions }}</span>
+                </button>
+                <button class="reaction-btn" data-reaction="like" data-content-type="shortstory" data-object-id="{{ short_story.id }}" style="background: linear-gradient(135deg, #4ecdc4, #44a08d); color: white; border: none; padding: 0.8em 1.5em; border-radius: 25px; font-size: 1.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(76, 205, 196, 0.3);">
+                    👍 <span class="reaction-count">{{ short_story.total_reactions }}</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Comments Section -->
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h3 style="font-size: 2em; margin-bottom: 1.5em; background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; font-weight: 700;">Reader Comments ({{ comments|length }})</h3>
+            
+            <!-- Comment Form -->
+            <div style="background: linear-gradient(135deg, #ffffff 0%, #f8e8f0 100%); padding: 2.5em; border-radius: 20px; border: 3px solid #c287a3; margin-bottom: 3em; position: relative;">
+                <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #c287a3; color: white; padding: 0.5em 1.5em; border-radius: 20px; font-weight: bold;">Share Your Thoughts</div>
+                
+                <form id="commentForm" style="margin-top: 1em;">
+                    <div style="margin-bottom: 1.5em;">
+                        <label for="username" style="display: block; margin-bottom: 0.5em; font-weight: 600; color: #c287a3;">Your Name</label>
+                        <input type="text" id="username" name="username" required minlength="2" maxlength="50" style="width: 100%; padding: 0.8em; border: 2px solid #c287a3; border-radius: 10px; font-size: 1em; box-sizing: border-box; font-family: 'Faruma', 'Georgia', serif;">
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5em;">
+                        <label for="email" style="display: block; margin-bottom: 0.5em; font-weight: 600; color: #c287a3;">Email (Optional)</label>
+                        <input type="email" id="email" name="email" style="width: 100%; padding: 0.8em; border: 2px solid #c287a3; border-radius: 10px; font-size: 1em; box-sizing: border-box;">
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5em;">
+                        <label for="comment" style="display: block; margin-bottom: 0.5em; font-weight: 600; color: #c287a3;">Your Comment</label>
+                        <textarea id="comment" name="comment" required minlength="5" rows="4" style="width: 100%; padding: 0.8em; border: 2px solid #c287a3; border-radius: 10px; font-size: 1em; box-sizing: border-box; font-family: 'Faruma', 'Georgia', serif; resize: vertical;"></textarea>
+                    </div>
+                    
+                    <button type="submit" style="background: linear-gradient(135deg, #c287a3, #ff6b9d); color: white; border: none; padding: 1em 2em; border-radius: 25px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(194, 135, 163, 0.4);">
+                        💬 Post Comment
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Comments List -->
+            <div id="commentsList">
+                {% for comment in comments %}
+                <div class="comment-item" style="background: #ffffff; border-radius: 15px; padding: 2em; margin-bottom: 1.5em; border: 2px solid var(--accent-gold); position: relative; box-shadow: 0 4px 15px rgba(252, 228, 236, 0.2);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1em;">
+                        <div>
+                            <strong style="color: #c287a3; font-size: 1.1em;">{{ comment.username }}</strong>
+                            {% if comment.is_featured %}
+                            <span style="background: gold; color: black; padding: 0.2em 0.5em; border-radius: 10px; font-size: 0.8em; margin-left: 0.5em;">⭐ Featured</span>
+                            {% endif %}
+                        </div>
+                        <span style="color: var(--text-secondary); font-size: 0.9em;">{{ comment.created_at|date:"M d, Y" }}</span>
+                    </div>
+                    
+                    <p class="faruma" style="font-family: 'Faruma', 'Georgia', serif !important; line-height: 1.6; color: var(--text-primary); margin-bottom: 1em;">
+                        {{ comment.comment|linebreaks }}
+                    </p>
+                    
+                    <div style="display: flex; align-items: center; gap: 1em;">
+                        <button class="reaction-btn reaction-btn-small" data-reaction="heart" data-content-type="comment" data-object-id="{{ comment.id }}" style="background: transparent; border: 2px solid #c287a3; color: #c287a3; padding: 0.4em 0.8em; border-radius: 20px; font-size: 0.9em; cursor: pointer; transition: all 0.3s ease;">
+                            ❤️ <span class="reaction-count">{{ comment.heart_reactions }}</span>
+                        </button>
+                    </div>
+                </div>
+                {% empty %}
+                <div style="text-align: center; padding: 3em; background: var(--accent-gold); border-radius: 20px; border: 2px dashed #c287a3;">
+                    <h4 style="background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1em; font-weight: 600;">No comments yet</h4>
+                    <p style="color: var(--text-primary);">Be the first to share your thoughts about this story!</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <div style="text-align: center; margin-top: 4em; padding-top: 2em; border-top: 2px solid var(--accent-gold);">
+        <a href="{% url 'short_story_list' %}" style="display: inline-flex; align-items: center; gap: 0.5em; background: linear-gradient(135deg, #c287a3, #b4316a); color: white; padding: 1em 2em; text-decoration: none; border-radius: 25px; font-weight: 700; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(194, 135, 163, 0.4);">
+            <span>←</span>
+            <span>Back to Short Stories</span>
+        </a>
+    </div>
+
+</div>
+
+<script>
+// Content Toggle Function
+function showContent(lang) {
+    const dhivehiContent = document.getElementById('content-dv');
+    const englishContent = document.getElementById('content-en');
+    const dhivehiBtn = document.getElementById('dhivehiBtn');
+    const englishBtn = document.getElementById('englishBtn');
+    
+    if (lang === 'dv') {
+        dhivehiContent.style.display = 'block';
+        englishContent.style.display = 'none';
+        dhivehiBtn.style.background = 'linear-gradient(135deg, #c287a3, #b4316a)';
+        dhivehiBtn.style.color = 'white';
+        dhivehiBtn.style.boxShadow = '0 2px 8px rgba(194, 135, 163, 0.4)';
+        englishBtn.style.background = 'transparent';
+        englishBtn.style.color = 'var(--text-primary)';
+        englishBtn.style.boxShadow = 'none';
+    } else {
+        dhivehiContent.style.display = 'none';
+        englishContent.style.display = 'block';
+        englishBtn.style.background = 'linear-gradient(135deg, #4682b4, #5f9ea0)';
+        englishBtn.style.color = 'white';
+        englishBtn.style.boxShadow = '0 2px 8px rgba(70, 130, 180, 0.4)';
+        dhivehiBtn.style.background = 'transparent';
+        dhivehiBtn.style.color = 'var(--text-primary)';
+        dhivehiBtn.style.boxShadow = 'none';
+    }
+}
+
+// Comments and Reactions JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle comment form submission
+    const commentForm = document.getElementById('commentForm');
+    if (commentForm) {
+        commentForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                content_type: 'shortstory',
+                object_id: {{ short_story.id }},
+                username: document.getElementById('username').value,
+                email: document.getElementById('email').value,
+                comment: document.getElementById('comment').value
+            };
+            
+            try {
+                const response = await fetch('/api/comments/add/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showMessage('Comment posted successfully! 💬', 'success');
+                    commentForm.reset();
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1500);
+                } else {
+                    showMessage('Error: ' + result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('Network error. Please try again.', 'error');
+            }
+        });
+    }
+    
+    // Handle reaction buttons
+    document.querySelectorAll('.reaction-btn').forEach(button => {
+        button.addEventListener('click', async function() {
+            const reactionData = {
+                content_type: this.dataset.contentType,
+                object_id: this.dataset.objectId,
+                reaction_type: this.dataset.reaction,
+                username: document.getElementById('username')?.value || ''
+            };
+            
+            try {
+                const response = await fetch('/api/reactions/add/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(reactionData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    const countSpan = this.querySelector('.reaction-count');
+                    const currentCount = parseInt(countSpan.textContent) || 0;
+                    
+                    if (result.action === 'added') {
+                        countSpan.textContent = currentCount + 1;
+                        this.style.transform = 'scale(1.1)';
+                        showMessage('Reaction added! ❤️', 'success');
+                    } else {
+                        countSpan.textContent = Math.max(0, currentCount - 1);
+                        this.style.transform = 'scale(0.9)';
+                        showMessage('Reaction removed', 'info');
+                    }
+                    
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                } else {
+                    showMessage('Error: ' + result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('Network error. Please try again.', 'error');
+            }
+        });
+    });
+});
+
+// Show message function
+function showMessage(message, type) {
+    const messageDiv = document.createElement('div');
+    messageDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 1em 1.5em;
+        border-radius: 10px;
+        color: white;
+        font-weight: bold;
+        z-index: 10000;
+        animation: slideInRight 0.3s ease;
+    `;
+    
+    switch(type) {
+        case 'success':
+            messageDiv.style.background = 'linear-gradient(135deg, #4ecdc4, #44a08d)';
+            break;
+        case 'error':
+            messageDiv.style.background = 'linear-gradient(135deg, #ff6b9d, #c287a3)';
+            break;
+        case 'info':
+            messageDiv.style.background = 'linear-gradient(135deg, #c287a3, #ff6b9d)';
+            break;
+    }
+    
+    messageDiv.textContent = message;
+    document.body.appendChild(messageDiv);
+    
+    setTimeout(() => {
+        messageDiv.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => messageDiv.remove(), 300);
+    }, 3000);
+}
+</script>
+
+<style>
+@keyframes slideInRight {
+    0% { transform: translateX(100%); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutRight {
+    0% { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+}
+
+.content-toggle-btn:hover {
+    transform: scale(1.05) !important;
+}
+
+.reaction-btn:hover {
+    transform: scale(1.05) !important;
+    box-shadow: 0 6px 20px rgba(194, 135, 163, 0.5) !important;
+}
+
+.reaction-btn-small:hover {
+    background: #c287a3 !important;
+    color: white !important;
+}
+
+@media (max-width: 768px) {
+    .story-content {
+        padding: 2em !important;
+        font-size: 1.1em !important;
+    }
+    
+    h1.faruma {
+        font-size: 2.5em !important;
+    }
+    
+    .metadata-container {
+        gap: 0.3em !important;
+    }
+    
+    .content-toggle-btn {
+        padding: 0.6em 1.2em !important;
+        font-size: 0.9em !important;
+    }
+}
+</style>
+
+{% endblock %}

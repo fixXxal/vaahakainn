@@ -172,3 +172,48 @@ class Reaction(models.Model):
 	def __str__(self):
 		username_part = f' by {self.username}' if self.username else ''
 		return f'{self.get_reaction_type_display()}{username_part} on {self.content_object}'
+
+class ShortStory(models.Model):
+	title_dv = models.CharField(max_length=200, help_text='Title in Dhivehi')
+	title_en = models.CharField(max_length=200, help_text='Title in English')
+	author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='short_stories')
+	genre = models.ForeignKey(Genre, on_delete=models.SET_NULL, null=True, blank=True)
+	category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name='short_stories')
+	content_dv = models.TextField(help_text='Story content in Dhivehi')
+	content_en = models.TextField(help_text='Story content in English')
+	cover_image = CloudinaryField('image', blank=True, null=True)
+	published_date = models.DateField()
+	is_featured = models.BooleanField(default=False, help_text='Feature this story on homepage')
+	is_published = models.BooleanField(default=True, help_text='Published status')
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
+
+	class Meta:
+		verbose_name = "Short Story"
+		verbose_name_plural = "Short Stories"
+		ordering = ['-published_date', '-created_at']
+		indexes = [
+			models.Index(fields=['published_date']),
+			models.Index(fields=['is_published', 'is_featured']),
+		]
+
+	def __str__(self):
+		return f"{self.title_en} by {self.author.name}"
+
+	@property
+	def total_comments(self):
+		from django.contrib.contenttypes.models import ContentType
+		ct = ContentType.objects.get_for_model(self)
+		return Comment.objects.filter(content_type=ct, object_id=self.id, is_approved=True).count()
+
+	@property
+	def total_reactions(self):
+		from django.contrib.contenttypes.models import ContentType
+		ct = ContentType.objects.get_for_model(self)
+		return Reaction.objects.filter(content_type=ct, object_id=self.id).count()
+
+	@property
+	def heart_reactions(self):
+		from django.contrib.contenttypes.models import ContentType
+		ct = ContentType.objects.get_for_model(self)
+		return Reaction.objects.filter(content_type=ct, object_id=self.id, reaction_type='heart').count()

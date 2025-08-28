@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django.utils.html import format_html
-from .models import Author, Genre, Episode, Story, Category, Comment, Reaction
+from .models import Author, Genre, Episode, Story, Category, Comment, Reaction, ShortStory
 
 # Inline classes for comments and reactions
 class CommentInline(GenericTabularInline):
@@ -113,3 +113,35 @@ class ReactionAdmin(admin.ModelAdmin):
 	def reaction_display(self, obj):
 		return format_html('<span style="font-size: 16px;">{}</span>', obj.get_reaction_type_display())
 	reaction_display.short_description = 'Reaction'
+
+@admin.register(ShortStory)
+class ShortStoryAdmin(admin.ModelAdmin):
+	list_display = ('title_en', 'title_dv', 'author', 'genre', 'category', 'published_date', 'is_featured', 'is_published', 'total_comments', 'heart_reactions')
+	list_filter = ('author', 'genre', 'category', 'published_date', 'is_featured', 'is_published')
+	search_fields = ('title_en', 'title_dv', 'content_en', 'content_dv', 'author__name')
+	list_editable = ('is_featured', 'is_published')
+	fields = (
+		('title_en', 'title_dv'),
+		'author',
+		('genre', 'category'),
+		('is_featured', 'is_published'),
+		'published_date',
+		'cover_image',
+		'content_en',
+		'content_dv',
+	)
+	inlines = [CommentInline, ReactionInline]
+	date_hierarchy = 'published_date'
+	
+	class Media:
+		css = {
+			'all': ('admin/css/admin_rtl.css',)
+		}
+	
+	def total_comments(self, obj):
+		return obj.total_comments
+	total_comments.short_description = 'Comments'
+	
+	def heart_reactions(self, obj):
+		return obj.heart_reactions
+	heart_reactions.short_description = '❤️ Hearts'
