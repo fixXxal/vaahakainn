@@ -814,7 +814,8 @@ li::before {
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
-        position: relative;
+        position: sticky !important;
+        overflow: hidden !important;
     }
     
     /* Hide mobile menu toggle - use desktop navigation */
