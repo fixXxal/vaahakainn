@@ -1107,10 +1107,30 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .hero-section {
+        min-height: 35vh !important;
+        padding: 1rem 0 !important;
+    }
+    
+    .hero-content {
+        padding: 0.5rem 1rem !important;
+    }
+    
+    .hero-title {
+        margin-bottom: 0.5rem !important;
+        font-size: clamp(2rem, 6vw, 3.5rem) !important;
+    }
+    
+    .hero-subtitle {
+        margin-bottom: 1rem !important;
+        font-size: 1rem !important;
+    }
+    
     .hero-cta {
         flex-direction: column;
         align-items: center;
         gap: 1rem;
+        margin-bottom: 2rem !important;
     }
     
     .scroll-button {
@@ -1135,6 +1155,26 @@
 }
 
 @media (max-width: 480px) {
+    .hero-section {
+        min-height: 30vh !important;
+        padding: 0.5rem 0 !important;
+    }
+    
+    .hero-content {
+        padding: 0.25rem 0.5rem !important;
+    }
+    
+    .hero-title {
+        margin-bottom: 0.25rem !important;
+        font-size: clamp(1.5rem, 5vw, 2.5rem) !important;
+    }
+    
+    .hero-subtitle {
+        margin-bottom: 0.75rem !important;
+        font-size: 0.9rem !important;
+        line-height: 1.4 !important;
+    }
+    
     .stats-container {
         grid-template-columns: 1fr;
     }
