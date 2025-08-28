@@ -14,9 +14,9 @@
         <div style="width: 300px; height: 6px; background: var(--gradient-primary); margin: 2.5em auto; border-radius: 3px; box-shadow: 0 4px 15px rgba(252, 228, 236, 0.5);"></div>
     </div>
 
-    <!-- Floating Category Menu -->
+    <!-- Category Menu -->
     {% if categories %}
-    <div class="floating-category-menu" style="position: fixed; top: 50%; right: 20px; transform: translateY(-50%); z-index: 1000;">
+    <div class="category-menu" style="text-align: center; margin-bottom: 3em;">
         <div class="category-toggle-btn" onclick="toggleCategoryMenu()" style="
             background: linear-gradient(135deg, #c287a3, #b4316a); 
             color: white; 
@@ -28,31 +28,31 @@
             font-weight: 700; 
             font-size: 0.9rem;
             transition: all 0.3s ease;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             user-select: none;">
             <span style="font-size: 1.2em;">📚</span>
-            <span>Categories</span>
+            <span>Browse Categories</span>
             <span class="menu-arrow" style="font-size: 0.8em; transition: transform 0.3s ease;">▼</span>
         </div>
         
         <div class="category-dropdown" style="
-            position: absolute; 
-            bottom: 100%; 
-            right: 0; 
+            position: relative; 
+            top: 15px; 
             background: white; 
             border-radius: 20px; 
             box-shadow: 0 20px 40px rgba(194, 135, 163, 0.3); 
             border: 2px solid var(--accent-gold);
-            min-width: 220px;
+            min-width: 280px;
+            max-width: 400px;
             max-height: 400px;
             overflow-y: auto;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(10px) scale(0.95);
+            transform: translateY(-10px) scale(0.95);
             transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
-            margin-bottom: 10px;">
+            margin: 0 auto;">
             
             <div style="padding: 1rem; border-bottom: 1px solid var(--accent-gold);">
                 <div style="font-weight: 700; color: var(--text-primary); font-size: 0.9rem; text-align: center;">
@@ -669,7 +669,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* Clean style matching nav buttons - no decorative elements needed */
 
-/* Floating Category Menu Styles */
+/* Category Menu Styles */
 .category-toggle-btn:hover {
     transform: scale(1.05) !important;
     box-shadow: 0 12px 30px rgba(194, 135, 163, 0.5) !important;
@@ -697,19 +697,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-    .floating-category-menu {
-        position: fixed !important;
-        bottom: 20px !important;
-        right: 20px !important;
-        top: auto !important;
-        transform: none !important;
+    .category-menu {
+        margin-bottom: 2rem !important;
     }
     
     .category-dropdown {
-        bottom: 100% !important;
-        right: 0 !important;
+        min-width: 250px !important;
+        max-width: 90vw !important;
         max-height: 300px !important;
-        min-width: 200px !important;
     }
     
     .category-toggle-btn {
@@ -719,9 +714,8 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 @media (max-width: 480px) {
-    .floating-category-menu {
-        bottom: 15px !important;
-        right: 15px !important;
+    .category-menu {
+        margin-bottom: 1.5rem !important;
     }
     
     .category-toggle-btn {
@@ -730,7 +724,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     .category-dropdown {
-        min-width: 180px !important;
+        min-width: 200px !important;
+        max-width: 95vw !important;
     }
 }
 </style>
