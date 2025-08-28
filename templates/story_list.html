@@ -11,12 +11,12 @@
         <p style="font-size: 1.5em; color: var(--text-primary); max-width: 800px; margin: 0 auto; line-height: 1.8; font-weight: 600;">
             Explore an amazing world of legendary stories and tales, where words meet imagination to weave the most wonderful stories for you
         </p>
-        <div style="width: 300px; height: 6px; background: var(--gradient-primary); margin: 2.5em auto; border-radius: 3px; box-shadow: 0 4px 15px rgba(252, 228, 236, 0.5);"></div>
+        <div style="width: 300px; height: 6px; background: var(--gradient-primary); margin: 1.5em auto; border-radius: 3px; box-shadow: 0 4px 15px rgba(252, 228, 236, 0.5);"></div>
     </div>
 
     <!-- Category Menu -->
     {% if categories %}
-    <div class="category-menu" style="text-align: center; margin-bottom: 3em;">
+    <div class="category-menu" style="text-align: center; margin-bottom: 2em;">
         <div class="category-toggle-btn" onclick="toggleCategoryMenu()" style="
             background: linear-gradient(135deg, #c287a3, #b4316a); 
             color: white; 
@@ -697,8 +697,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
+    /* Reduce header spacing on mobile */
+    .container > div:first-child div[style*="margin: 1.5em auto"] {
+        margin: 1rem auto !important;
+    }
+    
     .category-menu {
-        margin-bottom: 2rem !important;
+        margin-bottom: 1.5rem !important;
     }
     
     .category-dropdown {
@@ -714,8 +719,13 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 @media (max-width: 480px) {
+    /* Further reduce header spacing on small mobile */
+    .container > div:first-child div[style*="margin: 1.5em auto"] {
+        margin: 0.8rem auto !important;
+    }
+    
     .category-menu {
-        margin-bottom: 1.5rem !important;
+        margin-bottom: 1rem !important;
     }
     
     .category-toggle-btn {
