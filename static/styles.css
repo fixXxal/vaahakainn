@@ -814,10 +814,7 @@ li::before {
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
-        position: sticky !important;
-        top: 0 !important;
-        z-index: 1000 !important;
-        overflow: hidden !important;
+        position: relative;
     }
     
     /* Hide mobile menu toggle - use desktop navigation */
