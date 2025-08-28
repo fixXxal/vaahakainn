@@ -121,13 +121,12 @@ class ShortStoryAdmin(admin.ModelAdmin):
 	search_fields = ('title_en', 'title_dv', 'content_en', 'content_dv', 'author__name')
 	list_editable = ('is_featured', 'is_published')
 	fields = (
-		('title_en', 'title_dv'),
+		'title_dv',
 		'author',
 		('genre', 'category'),
 		('is_featured', 'is_published'),
 		'published_date',
 		'cover_image',
-		'content_en',
 		'content_dv',
 	)
 	inlines = [CommentInline, ReactionInline]
