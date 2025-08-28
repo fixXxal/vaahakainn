@@ -161,7 +161,7 @@
         
         {% if episodes %}
         
-        <div style="display: grid; gap: 1.5em; max-width: 800px; margin: 0 auto;">
+        <div class="episodes-grid" style="display: grid; gap: 1.5em; max-width: 800px; margin: 0 auto;">
             {% for episode in episodes %}
             <div style="border-radius: 20px; padding: 2.5em; box-shadow: 0 10px 30px rgba(252, 228, 236, 0.3); border: 3px solid var(--accent-gold); transition: var(--transition); position: relative; overflow: hidden; 
                         {% if story.cover_image %}background-image: url('{{ story.cover_image.url }}'); background-size: cover; background-position: center;{% else %}background: var(--gradient-warm);{% endif %}">
@@ -571,6 +571,58 @@ function showMessage(message, type) {
 .reaction-btn-small:hover {
     background: #c287a3 !important;
     color: white !important;
+}
+
+/* Mobile Responsiveness for Episode Containers */
+@media (max-width: 768px) {
+    .episodes-grid {
+        max-width: 350px !important;
+        gap: 1rem !important;
+    }
+    
+    .episodes-grid > div {
+        padding: 1.8rem !important;
+        border-radius: 15px !important;
+        border-width: 2px !important;
+    }
+    
+    .episodes-grid h3 {
+        font-size: 1.5em !important;
+        margin-bottom: 0.8em !important;
+    }
+    
+    .episodes-grid a[href*="episode_detail"] {
+        padding: 0.6em 1.8em !important;
+        font-size: 0.8em !important;
+        min-width: 130px !important;
+        height: 42px !important;
+        border-radius: 40px 8px 40px 8px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .episodes-grid {
+        max-width: 320px !important;
+        gap: 0.8rem !important;
+    }
+    
+    .episodes-grid > div {
+        padding: 1.5rem !important;
+        border-radius: 12px !important;
+    }
+    
+    .episodes-grid h3 {
+        font-size: 1.3em !important;
+        margin-bottom: 0.6em !important;
+    }
+    
+    .episodes-grid a[href*="episode_detail"] {
+        padding: 0.5em 1.5em !important;
+        font-size: 0.75em !important;
+        min-width: 120px !important;
+        height: 38px !important;
+        border-radius: 35px 6px 35px 6px !important;
+    }
 }
 </style>
 
