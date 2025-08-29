@@ -38,6 +38,8 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 CSRF_TRUSTED_ORIGINS = [
     'https://*.railway.app',
     'https://*.up.railway.app',
+    'https://vaahakainn.com',
+    'https://www.vaahakainn.com',
 ]
 
 # Temporarily disable CSRF for debugging
