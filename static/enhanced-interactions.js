@@ -27,6 +27,7 @@ function initScrollAnimations() {
                 // Special effects for different elements
                 if (entry.target.classList.contains('story-card')) {
                     animateStoryCard(entry.target);
+                }
             }
         });
     }, observerOptions);
