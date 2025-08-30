@@ -4,7 +4,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all interactive features
     initScrollAnimations();
-    initMagicalCursor();
+    // initMagicalCursor(); // Disabled - remove custom cursor
     initReadingProgress();
     initParallaxEffects();
     initSoundEffects();
