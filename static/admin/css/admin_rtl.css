@@ -11,7 +11,7 @@ textarea,
     font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
     direction: rtl !important;
     text-align: right !important;
-    unicode-bidi: embed;
+    unicode-bidi: plaintext;
     text-rendering: optimizeLegibility;
 }
 
@@ -24,6 +24,7 @@ textarea[name*="comment"] {
     font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
     direction: rtl !important;
     text-align: right !important;
+    unicode-bidi: plaintext;
     font-size: 14px !important;
     line-height: 1.6 !important;
 }
@@ -34,6 +35,7 @@ input[name="title_dv"] {
     font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
     direction: rtl !important;
     text-align: right !important;
+    unicode-bidi: plaintext;
     font-size: 16px !important;
 }
 
@@ -56,10 +58,12 @@ textarea[name*="content_dv"] {
     font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
     direction: rtl !important;
     text-align: right !important;
+    unicode-bidi: plaintext;
 }
 
 /* Preview text in admin list should also be RTL */
 .field-comment_preview {
     font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
     direction: rtl !important;
+    unicode-bidi: plaintext;
 }
