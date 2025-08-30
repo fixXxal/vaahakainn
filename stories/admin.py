@@ -64,10 +64,11 @@ class EpisodeAdmin(admin.ModelAdmin):
 
 @admin.register(Story)
 class StoryAdmin(admin.ModelAdmin):
-	list_display = ('title', 'category', 'release_date', 'total_comments', 'heart_reactions')
-	list_filter = ('category', 'release_date')
+	list_display = ('title', 'category', 'release_date', 'is_featured', 'total_comments', 'heart_reactions')
+	list_filter = ('category', 'release_date', 'is_featured')
 	search_fields = ('title', 'description')
-	fields = ('title', 'description', 'category', 'cover_image', 'release_date', 'episodes')
+	list_editable = ('is_featured',)
+	fields = ('title', 'description', 'category', 'cover_image', 'release_date', 'is_featured', 'episodes')
 	inlines = [CommentInline, ReactionInline]
 	
 	class Media:

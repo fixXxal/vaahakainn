@@ -75,6 +75,7 @@ class Story(models.Model):
 	release_date = models.DateField()
 	category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name='stories')
 	episodes = models.ManyToManyField(Episode, related_name='stories')
+	is_featured = models.BooleanField(default=False, help_text='Feature this story on homepage')
 
 	def __str__(self):
 		return self.title
