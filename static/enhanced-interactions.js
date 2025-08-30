@@ -297,7 +297,7 @@ function initReadingMode() {
     toggleButton.style.cssText = `
         position: fixed;
         top: 15px;
-        right: 15px;
+        left: 15px;
         width: 35px;
         height: 35px;
         border-radius: 50%;
@@ -377,7 +377,7 @@ style.textContent = `
             width: 32px !important;
             height: 32px !important;
             top: 12px !important;
-            right: 12px !important;
+            left: 12px !important;
             font-size: 13px !important;
         }
     }
@@ -387,7 +387,7 @@ style.textContent = `
             width: 28px !important;
             height: 28px !important;
             top: 10px !important;
-            right: 10px !important;
+            left: 10px !important;
             font-size: 12px !important;
         }
     }
@@ -397,7 +397,7 @@ style.textContent = `
             width: 26px !important;
             height: 26px !important;
             top: 8px !important;
-            right: 8px !important;
+            left: 8px !important;
             font-size: 11px !important;
         }
     }
