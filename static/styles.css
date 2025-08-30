@@ -106,7 +106,7 @@ body {
     font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, sans-serif !important;
     font-feature-settings: "liga" 1, "kern" 1;
     -webkit-font-feature-settings: "liga" 1, "kern" 1;
-    unicode-bidi: bidi-override;
+    unicode-bidi: plaintext;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
