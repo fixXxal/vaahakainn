@@ -293,21 +293,26 @@ function initReadingMode() {
     // Create reading mode toggle
     const toggleButton = document.createElement('button');
     toggleButton.innerHTML = '🌙';
+    toggleButton.id = 'night-mode-toggle';
     toggleButton.style.cssText = `
         position: fixed;
-        bottom: 80px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
+        top: 15px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
         border-radius: 50%;
-        background: var(--primary-brown);
-        color: var(--light-text);
-        border: none;
-        font-size: 20px;
+        background: linear-gradient(135deg, #c287a3, #b4316a);
+        color: #ffffff;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        font-size: 14px;
         cursor: pointer;
-        z-index: 1000;
-        box-shadow: var(--shadow-soft);
-        transition: var(--transition);
+        z-index: 9999;
+        box-shadow: 0 4px 15px rgba(194, 135, 163, 0.3);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     `;
     
     toggleButton.addEventListener('click', () => {
@@ -364,6 +369,46 @@ style.textContent = `
     .reading-mode .container {
         background: #ffffff !important;
         color: #1a1a1a !important;
+    }
+    
+    /* Responsive night mode button */
+    @media (max-width: 768px) {
+        #night-mode-toggle {
+            width: 32px !important;
+            height: 32px !important;
+            top: 12px !important;
+            right: 12px !important;
+            font-size: 13px !important;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        #night-mode-toggle {
+            width: 28px !important;
+            height: 28px !important;
+            top: 10px !important;
+            right: 10px !important;
+            font-size: 12px !important;
+        }
+    }
+    
+    @media (max-width: 320px) {
+        #night-mode-toggle {
+            width: 26px !important;
+            height: 26px !important;
+            top: 8px !important;
+            right: 8px !important;
+            font-size: 11px !important;
+        }
+    }
+    
+    #night-mode-toggle:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(194, 135, 163, 0.5);
+    }
+    
+    #night-mode-toggle:active {
+        transform: scale(0.95);
     }
     
     .animate-in {
