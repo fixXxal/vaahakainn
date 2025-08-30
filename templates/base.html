@@ -86,12 +86,6 @@
         </nav>
     </header>
 
-    <!-- Day/Night Mode Toggle Button -->
-    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
-        <span class="sun-icon">☀️</span>
-        <span class="moon-icon">🌙</span>
-    </button>
-
     <!-- Main Content Area -->
     <main id="main-content" role="main">
         {% block content %}{% endblock %}
@@ -232,7 +226,6 @@
             initPageTransitions();
             initPerformanceOptimizations();
             initMobileNavigation();
-            initThemeToggle();
             
             // Add smooth scrolling
             document.documentElement.style.scrollBehavior = 'smooth';
@@ -324,36 +317,6 @@
             }
         }
 
-        // Day/Night Mode Toggle Functionality
-        function initThemeToggle() {
-            const themeToggle = document.getElementById('theme-toggle');
-            const body = document.body;
-            
-            // Load saved theme from localStorage
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                body.classList.add('dark-mode');
-            }
-            
-            // Toggle theme on button click
-            themeToggle.addEventListener('click', function() {
-                body.classList.toggle('dark-mode');
-                
-                // Save theme preference
-                if (body.classList.contains('dark-mode')) {
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    localStorage.setItem('theme', 'light');
-                }
-                
-                // Add click animation
-                this.style.transform = 'scale(0.9)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 150);
-            });
-        }
-
         // Mobile Navigation Functionality
         function initMobileNavigation() {
             const mobileToggle = document.querySelector('.mobile-menu-toggle');
@@ -435,111 +398,6 @@
         @keyframes slideOutRight {
             0% { transform: translateX(0); opacity: 1; }
             100% { transform: translateX(100%); opacity: 0; }
-        }
-
-        /* Day/Night Mode Toggle Button */
-        .theme-toggle-btn {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #c287a3, #b4316a);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(194, 135, 163, 0.3);
-            font-size: 14px;
-            backdrop-filter: blur(10px);
-        }
-
-        .theme-toggle-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(194, 135, 163, 0.5);
-        }
-
-        .theme-toggle-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* Sun and Moon Icons */
-        .sun-icon, .moon-icon {
-            position: absolute;
-            transition: all 0.3s ease;
-            pointer-events: none;
-        }
-
-        /* Default state - show sun (light mode) */
-        body:not(.dark-mode) .sun-icon {
-            opacity: 1;
-            transform: scale(1) rotate(0deg);
-        }
-
-        body:not(.dark-mode) .moon-icon {
-            opacity: 0;
-            transform: scale(0.5) rotate(180deg);
-        }
-
-        /* Dark mode - show moon */
-        body.dark-mode .sun-icon {
-            opacity: 0;
-            transform: scale(0.5) rotate(-180deg);
-        }
-
-        body.dark-mode .moon-icon {
-            opacity: 1;
-            transform: scale(1) rotate(0deg);
-        }
-
-        /* Dark mode styles */
-        body.dark-mode {
-            --text-primary: #ffffff;
-            --text-secondary: #cccccc;
-            --background-primary: #1a1a1a;
-            --background-secondary: #2d2d2d;
-            --background-tertiary: #3a3a3a;
-            filter: invert(1) hue-rotate(180deg);
-        }
-
-        body.dark-mode img, 
-        body.dark-mode svg {
-            filter: invert(1) hue-rotate(180deg);
-        }
-
-        /* Mobile responsive sizes */
-        @media (max-width: 768px) {
-            .theme-toggle-btn {
-                width: 32px;
-                height: 32px;
-                top: 12px;
-                right: 12px;
-                font-size: 13px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .theme-toggle-btn {
-                width: 28px;
-                height: 28px;
-                top: 10px;
-                right: 10px;
-                font-size: 12px;
-            }
-        }
-
-        @media (max-width: 320px) {
-            .theme-toggle-btn {
-                width: 26px;
-                height: 26px;
-                top: 8px;
-                right: 8px;
-                font-size: 11px;
-            }
         }
     </style>
 </body>
