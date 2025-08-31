@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-31 12:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: dv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Home"
+msgstr "ގޭ"
+
+msgid "Stories"
+msgstr "ކަހާޅާ"
+
+msgid "Loading stories..."
+msgstr "ކަހާޅާ ލޯޑުކުރަމުން..."
+
+msgid "Welcome to VAAHAKAINN."
+msgstr "ވާހަކައިން އަށް މަރުހަބާ."
+
+msgid "Discover a wonderful collection of stories and exciting tales that take you on journeys through different worlds full of adventures and imagination"
+msgstr "އެކްއެކް ދުނިޔެއްގައި އެޑްވެންޗަރާއި تصور ގެ ދުނިޔަކަށް ގެންދާ ފަރުވާ ކަހާޅާ އާއި ފުހުލްކަ ހަދިޔާއެއް ފުންސަންތާ"
+
+msgid "Scroll to explore"
+msgstr "ދުރުކަން ކުރުމަށް ސްކުރޯލް ކުރޭ"
+
+msgid "Featured"
+msgstr "ފީޗާ ކުރުވާފައިވާ"
+
+msgid "Handpicked tales that will take you on unforgettable journeys"
+msgstr "ހަތްހަވާނު ޞާރިކެއްގެ އަހާހީއް ފަތީހެކީ ގެ ކަހާޅާ"
+
+msgid "Episodes"
+msgstr "ޖަލްސާތަކެއް"
+
+msgid "Dive into this captivating story filled with adventure and wonder."
+msgstr "އެޑްވެންޗަރާއި ޔާކަލީސް ވާހަކައަކަށް ރައްދުވާ"
+
+msgid "Explore Story"
+msgstr "ވާހަކަ ހޯއް"
+
+msgid "Stories Coming Soon"
+msgstr "ކަހާޅާ އަވަސް"
+
+msgid "We're crafting amazing tales that will transport you to magical worlds. Stay tuned for incredible adventures!"
+msgstr "އަޅު ސިއުރީޔު ދުނިޔެއް ގައި ގެންދާ ހާސްކަހާޅާ މަސައްކަތް ކުރައާ އަވަސްވެކަން!"

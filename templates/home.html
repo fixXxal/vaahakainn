@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% block title %}Home - VAAHAKAINN.{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Home" %} - VAAHAKAINN.{% endblock %}
 
 {% block content %}
 
@@ -25,17 +26,17 @@
         <div class="hero-content">
             
             <h1 class="hero-title">
-                <span class="title-line title-main">Welcome to VAAHAKAINN.</span>
+                <span class="title-line title-main">{% trans "Welcome to VAAHAKAINN." %}</span>
             </h1>
             
             <p class="hero-subtitle">
-                Discover a wonderful collection of stories and exciting tales that take you on journeys through different worlds full of adventures and imagination
+                {% trans "Discover a wonderful collection of stories and exciting tales that take you on journeys through different worlds full of adventures and imagination" %}
             </p>
             
             
             <div class="hero-scroll">
                 <div class="scroll-indicator">
-                    <span>Scroll to explore</span>
+                    <span>{% trans "Scroll to explore" %}</span>
                     <div class="scroll-arrow"></div>
                 </div>
             </div>
@@ -49,11 +50,11 @@
     <section id="featured" class="featured-section">
         <div class="section-header">
             <h2 class="section-title">
-                <span class="title-accent-bg">Featured</span>
-                <span class="title-main-text">Stories</span>
+                <span class="title-accent-bg">{% trans "Featured" %}</span>
+                <span class="title-main-text">{% trans "Stories" %}</span>
             </h2>
             <p class="section-subtitle">
-                Handpicked tales that will take you on unforgettable journeys
+                {% trans "Handpicked tales that will take you on unforgettable journeys" %}
             </p>
         </div>
         
@@ -74,7 +75,7 @@
                             <div class="cover-overlay">
                                 <div class="episode-count">
                                     <span class="count-number">{{ story.episodes.count }}</span>
-                                    <span class="count-text">Episodes</span>
+                                    <span class="count-text">{% trans "Episodes" %}</span>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +93,7 @@
                             <div class="story-stats">
                                 <div class="stat">
                                     <span class="stat-icon">📖</span>
-                                    <span class="stat-value">{{ story.episodes.count }} Episodes</span>
+                                    <span class="stat-value">{{ story.episodes.count }} {% trans "Episodes" %}</span>
                                 </div>
                             </div>
                         </div>
@@ -105,14 +106,14 @@
                                 {% if story.description %}
                                     {{ story.description|truncatewords:20 }}
                                 {% else %}
-                                    Dive into this captivating story filled with adventure and wonder.
+                                    {% trans "Dive into this captivating story filled with adventure and wonder." %}
                                 {% endif %}
                             </p>
                             <a href="{% url 'story_detail' story.pk %}" class="episode-scroll-btn">
                                 <div class="episode-scroll-paper">
                                     <div class="episode-scroll-content">
                                         <span class="episode-scroll-icon">📖</span>
-                                        <span class="episode-scroll-text">Explore Story</span>
+                                        <span class="episode-scroll-text">{% trans "Explore Story" %}</span>
                                     </div>
                                     <div class="episode-scroll-ribbon"></div>
                                 </div>
@@ -126,10 +127,9 @@
         {% else %}
         <div class="empty-state">
             <div class="empty-icon">📚</div>
-            <h3 class="empty-title">Stories Coming Soon</h3>
+            <h3 class="empty-title">{% trans "Stories Coming Soon" %}</h3>
             <p class="empty-text">
-                We're crafting amazing tales that will transport you to magical worlds. 
-                Stay tuned for incredible adventures!
+                {% trans "We're crafting amazing tales that will transport you to magical worlds. Stay tuned for incredible adventures!" %}
             </p>
             <div class="empty-animation">
                 <div class="loading-dots">

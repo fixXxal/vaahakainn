@@ -99,6 +99,88 @@ body {
     text-size-adjust: 100% !important;
 }
 
+/* Dhivehi Language Specific Styling */
+html[lang="dv"] body, 
+.dhivehi-text, 
+[lang="dv"] {
+    font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, sans-serif !important;
+    direction: rtl !important;
+    text-align: right !important;
+    font-weight: normal;
+    line-height: 1.8;
+    font-display: swap;
+}
+
+/* Ensure Dhivehi content in RTL layout maintains proper styling */
+html[dir="rtl"] .hero-title,
+html[dir="rtl"] .section-title,
+html[dir="rtl"] .story-title,
+html[dir="rtl"] .hero-subtitle,
+html[dir="rtl"] .section-subtitle,
+html[dir="rtl"] p,
+html[dir="rtl"] h1, 
+html[dir="rtl"] h2, 
+html[dir="rtl"] h3, 
+html[dir="rtl"] h4, 
+html[dir="rtl"] h5, 
+html[dir="rtl"] h6 {
+    font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, sans-serif !important;
+    direction: rtl;
+    text-align: right;
+}
+
+/* Navigation should remain LTR for both languages */
+.main-nav a,
+.mobile-nav-links a {
+    direction: ltr !important;
+    text-align: center !important;
+}
+
+/* Language Switcher Styling */
+.language-switcher {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.language-select {
+    background: var(--gradient-primary);
+    border: 2px solid var(--accent-gold);
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    direction: ltr;
+    text-align: center;
+}
+
+.language-select:hover {
+    background: var(--accent-gold);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    transform: translateY(-2px);
+}
+
+.language-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+}
+
+.mobile-language-switcher {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 2px solid rgba(195, 135, 163, 0.2);
+}
+
+.language-select.mobile {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
 /* RTL styling specifically for Dhivehi content - Enhanced */
 .faruma, [lang="dv"] {
     direction: rtl !important;
