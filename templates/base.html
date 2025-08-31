@@ -75,18 +75,18 @@
             <a href="/stories/" data-page="stories">{% trans "Stories" %}</a>
             <!-- Language Switcher -->
             <div class="language-switcher">
-                <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+                {% get_current_language as CURRENT_LANGUAGE %}
+                <div class="language-toggle" onclick="switchLanguage()">
+                    <div class="toggle-switch {% if CURRENT_LANGUAGE == 'dv' %}active{% endif %}">
+                        <div class="toggle-slider"></div>
+                        <span class="toggle-label left {% if CURRENT_LANGUAGE == 'en' %}active{% endif %}">EN</span>
+                        <span class="toggle-label right {% if CURRENT_LANGUAGE == 'dv' %}active{% endif %}">ދވ</span>
+                    </div>
+                </div>
+                <form id="languageForm" action="{% url 'set_language' %}" method="post" style="display: none;">
                     {% csrf_token %}
                     <input name="next" type="hidden" value="{{ request.get_full_path }}" />
-                    <select name="language" onchange="this.form.submit()" class="language-select">
-                        {% get_current_language as CURRENT_LANGUAGE %}
-                        {% get_available_languages as LANGUAGES %}
-                        {% for code, name in LANGUAGES %}
-                            <option value="{{ code }}" {% if code == CURRENT_LANGUAGE %}selected{% endif %}>
-                                {{ name }}
-                            </option>
-                        {% endfor %}
-                    </select>
+                    <input name="language" type="hidden" id="languageInput" />
                 </form>
             </div>
         </nav>
@@ -100,19 +100,14 @@
                     <a href="/stories/" data-page="stories">{% trans "Stories" %}</a>
                     <!-- Mobile Language Switcher -->
                     <div class="mobile-language-switcher">
-                        <form action="{% url 'set_language' %}" method="post" style="margin-top: 2rem;">
-                            {% csrf_token %}
-                            <input name="next" type="hidden" value="{{ request.get_full_path }}" />
-                            <select name="language" onchange="this.form.submit()" class="language-select mobile">
-                                {% get_current_language as CURRENT_LANGUAGE %}
-                                {% get_available_languages as LANGUAGES %}
-                                {% for code, name in LANGUAGES %}
-                                    <option value="{{ code }}" {% if code == CURRENT_LANGUAGE %}selected{% endif %}>
-                                        {{ name }}
-                                    </option>
-                                {% endfor %}
-                            </select>
-                        </form>
+                        {% get_current_language as CURRENT_LANGUAGE %}
+                        <div class="language-toggle mobile" onclick="switchLanguage()">
+                            <div class="toggle-switch {% if CURRENT_LANGUAGE == 'dv' %}active{% endif %}">
+                                <div class="toggle-slider"></div>
+                                <span class="toggle-label left {% if CURRENT_LANGUAGE == 'en' %}active{% endif %}">EN</span>
+                                <span class="toggle-label right {% if CURRENT_LANGUAGE == 'dv' %}active{% endif %}">ދވ</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -348,6 +343,19 @@
                     }
                 });
             }
+        }
+
+        // Language Switcher Function
+        function switchLanguage() {
+            {% get_current_language as CURRENT_LANGUAGE %}
+            const currentLang = '{{ CURRENT_LANGUAGE }}';
+            const newLang = currentLang === 'dv' ? 'en' : 'dv';
+            
+            // Update hidden form input
+            document.getElementById('languageInput').value = newLang;
+            
+            // Submit the form
+            document.getElementById('languageForm').submit();
         }
 
         // Mobile Navigation Functionality
