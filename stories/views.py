@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.contenttypes.models import ContentType
-from .models import Episode, Story, Category, Comment, Reaction, ShortStory
+from .models import Episode, Story, Category, Comment, Reaction, ShortStory, Character
 import json
 
 def home(request):
@@ -281,4 +281,26 @@ def short_story_detail(request, pk):
         'short_story': short_story,
         'comments': comments,
         'lang': lang,
+    })
+
+def story_characters(request, pk):
+    """API endpoint to get characters for a story"""
+    story = get_object_or_404(Story, pk=pk)
+    characters = story.characters.all().order_by('-is_main_character', 'name')
+    
+    characters_data = []
+    for character in characters:
+        character_data = {
+            'id': character.id,
+            'name': character.name,
+            'description': character.description,
+            'image_url': character.image.url if character.image else None,
+            'is_main_character': character.is_main_character,
+        }
+        characters_data.append(character_data)
+    
+    return JsonResponse({
+        'success': True,
+        'characters': characters_data,
+        'story_title': story.title
     })

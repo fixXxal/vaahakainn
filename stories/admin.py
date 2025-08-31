@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django.utils.html import format_html
-from .models import Author, Genre, Episode, Story, Category, Comment, Reaction, ShortStory
+from .models import Author, Genre, Episode, Story, Category, Comment, Reaction, ShortStory, Character
 
 # Inline classes for comments and reactions
 class CommentInline(GenericTabularInline):
@@ -17,6 +17,12 @@ class ReactionInline(GenericTabularInline):
 	fields = ('reaction_type', 'username', 'created_at')
 	readonly_fields = ('created_at', 'ip_address', 'user_agent')
 	ordering = ['-created_at']
+
+class CharacterInline(admin.TabularInline):
+	model = Character
+	extra = 1
+	fields = ('name', 'description', 'image', 'is_main_character')
+	classes = ['collapse']
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -64,12 +70,16 @@ class EpisodeAdmin(admin.ModelAdmin):
 
 @admin.register(Story)
 class StoryAdmin(admin.ModelAdmin):
-	list_display = ('title', 'category', 'release_date', 'is_featured', 'total_comments', 'heart_reactions')
+	list_display = ('title', 'category', 'release_date', 'is_featured', 'character_count', 'total_comments', 'heart_reactions')
 	list_filter = ('category', 'release_date', 'is_featured')
 	search_fields = ('title', 'description')
 	list_editable = ('is_featured',)
 	fields = ('title', 'description', 'category', 'cover_image', 'release_date', 'is_featured', 'episodes')
-	inlines = [CommentInline, ReactionInline]
+	inlines = [CharacterInline, CommentInline, ReactionInline]
+	
+	def character_count(self, obj):
+		return obj.characters.count()
+	character_count.short_description = 'Characters'
 	
 	class Media:
 		css = {
@@ -145,3 +155,20 @@ class ShortStoryAdmin(admin.ModelAdmin):
 	def heart_reactions(self, obj):
 		return obj.heart_reactions
 	heart_reactions.short_description = '❤️ Hearts'
+
+@admin.register(Character)
+class CharacterAdmin(admin.ModelAdmin):
+	list_display = ('name', 'story', 'is_main_character', 'has_image', 'created_at')
+	list_filter = ('is_main_character', 'story__category', 'created_at')
+	search_fields = ('name', 'description', 'story__title')
+	list_editable = ('is_main_character',)
+	fields = ('name', 'story', 'description', 'image', 'is_main_character')
+	
+	def has_image(self, obj):
+		return '✅' if obj.image else '❌'
+	has_image.short_description = 'Image'
+	
+	class Media:
+		css = {
+			'all': ('admin/css/admin_rtl.css',)
+		}

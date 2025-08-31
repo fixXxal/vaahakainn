@@ -13,4 +13,6 @@ urlpatterns = [
     # Comment and Reaction APIs
     path('api/comments/add/', views.add_comment, name='add_comment'),
     path('api/reactions/add/', views.add_reaction, name='add_reaction'),
+    # Character API
+    path('stories/<int:pk>/characters/', views.story_characters, name='story_characters'),
 ]
