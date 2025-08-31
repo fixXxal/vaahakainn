@@ -1,13 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python manage.py runserver:*)",
-      "Bash(python manage.py:*)",
-      "Bash(pip install:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(git push:*)",
-      "Bash(msgfmt:*)"
+      "Bash(ss:*)"
     ],
     "deny": [],
     "ask": []
