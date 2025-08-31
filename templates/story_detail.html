@@ -138,26 +138,6 @@
                 <span style="font-size: 0.9rem;">📚</span>
                 <span>{{ episodes|length }} episodes</span>
             </span>
-            <button id="charactersBtn" class="metadata-badge characters-btn" style="background: linear-gradient(135deg, #e8d1dc, #c287a3); 
-                         padding: 0.4rem 0.8rem; 
-                         border: 2px solid #c287a3; 
-                         border-radius: 15px; 
-                         font-size: 0.8rem; 
-                         color: #ffffff; 
-                         font-weight: 600;
-                         box-shadow: 0 3px 8px rgba(194, 135, 163, 0.3);
-                         transition: all 0.3s ease;
-                         display: inline-flex;
-                         align-items: center;
-                         gap: 0.3rem;
-                         cursor: pointer;
-                         position: relative;
-                         overflow: hidden;"
-                  onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.boxShadow='0 5px 12px rgba(194, 135, 163, 0.5)'"
-                  onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 3px 8px rgba(194, 135, 163, 0.3)'">
-                <span style="font-size: 0.9rem;">👥</span>
-                <span>Characters</span>
-            </button>
         </div>
         
         <!-- Story Description -->
@@ -198,11 +178,70 @@
 
     <!-- Episodes Section -->
     <section style="margin-bottom: 4em;">
-        <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; position: relative; color: var(--text-primary); font-weight: 700;">
-            <span style="color: var(--text-primary); padding: 0.3rem 1rem; background: var(--gradient-primary); border-radius: 20px; border: 2px solid var(--accent-rose); box-shadow: 0 4px 12px rgba(252, 228, 236, 0.3); font-size: 1rem;">
-                Story Chapters
-            </span>
-        </h2>
+        <!-- Section Header with Characters Button -->
+        <div style="text-align: center; margin-bottom: 2rem; position: relative;">
+            <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">
+                <span style="color: var(--text-primary); padding: 0.3rem 1rem; background: var(--gradient-primary); border-radius: 20px; border: 2px solid var(--accent-rose); box-shadow: 0 4px 12px rgba(252, 228, 236, 0.3); font-size: 1rem;">
+                    Story Chapters
+                </span>
+            </h2>
+            
+            <!-- Beautiful Characters Button -->
+            <button id="charactersBtn" style="display: inline-flex; 
+                                              align-items: center; 
+                                              justify-content: center;
+                                              gap: 0.3em; 
+                                              background: linear-gradient(135deg, #c287a3, #b4316a, #a52a5c);
+                                              color: #ffffff;
+                                              padding: 0.3rem 1rem;
+                                              text-decoration: none;
+                                              font-weight: 600;
+                                              font-size: 1rem;
+                                              border: 2px solid var(--accent-rose);
+                                              cursor: pointer;
+                                              transition: all 0.3s ease;
+                                              box-shadow: 0 4px 12px rgba(194, 135, 163, 0.3);
+                                              border-radius: 20px;
+                                              position: relative;
+                                              overflow: hidden;
+                                              transform: translateY(0);
+                                              background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px),
+                                                               radial-gradient(circle at 75% 75%, rgba(255,255,255,0.08) 1px, transparent 1px);
+                                              background-size: 20px 20px, 25px 25px;
+                                              margin: 0.5em 0;"
+                   onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; 
+                                this.style.boxShadow='0 8px 20px rgba(194, 135, 163, 0.5)'; 
+                                this.style.background='linear-gradient(135deg, #b4316a, #a52a5c, #8b2847)';
+                                this.querySelector('.char-glow').style.opacity='1';
+                                this.querySelector('.char-particles').style.opacity='1';
+                                this.querySelector('.char-text').style.transform='scale(1.05)';"
+                   onmouseout="this.style.transform='translateY(0) scale(1)'; 
+                               this.style.boxShadow='0 4px 12px rgba(194, 135, 163, 0.3)'; 
+                               this.style.background='linear-gradient(135deg, #c287a3, #b4316a, #a52a5c)';
+                               this.querySelector('.char-glow').style.opacity='0.7';
+                               this.querySelector('.char-particles').style.opacity='0';
+                               this.querySelector('.char-text').style.transform='scale(1)';">
+                
+                <!-- Animated Background Glow -->
+                <div class="char-glow" style="position: absolute; inset: -2px; 
+                            background: linear-gradient(45deg, transparent 30%, rgba(194, 135, 163, 0.3) 50%, transparent 70%); 
+                            border-radius: 20px;
+                            opacity: 0.7;
+                            animation: charShine 3s ease-in-out infinite;
+                            z-index: -1;
+                            transition: opacity 0.3s ease;"></div>
+                
+                <!-- Floating Magic Particles -->
+                <div class="char-particles" style="position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s ease;">
+                    <span style="position: absolute; top: 15%; left: 10%; color: rgba(255,255,255,0.8); animation: charFloat 2s ease-in-out infinite; font-size: 0.6em;">✨</span>
+                    <span style="position: absolute; top: 70%; right: 10%; color: rgba(255,255,255,0.6); animation: charFloat 1.8s ease-in-out infinite 0.5s; font-size: 0.5em;">🎭</span>
+                </div>
+                
+                <!-- Button Content -->
+                <span style="font-size: 0.9em; z-index: 2; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));">👥</span>
+                <span class="char-text" style="z-index: 2; letter-spacing: 0.5px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3)); transition: transform 0.3s ease;">Characters</span>
+            </button>
+        </div>
         
         {% if episodes %}
         
@@ -333,6 +372,18 @@
                         @keyframes float {
                             0%, 100% { transform: translateY(0px) scale(1); opacity: 0.6; }
                             50% { transform: translateY(-8px) scale(1.2); opacity: 1; }
+                        }
+                        @keyframes charShine {
+                            0%, 100% { transform: translateX(-100%) skewX(-15deg); }
+                            50% { transform: translateX(200%) skewX(-15deg); }
+                        }
+                        @keyframes charFloat {
+                            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.7; }
+                            50% { transform: translateY(-12px) rotate(10deg) scale(1.3); opacity: 1; }
+                        }
+                        @keyframes charPulse {
+                            0%, 100% { transform: scale(1); }
+                            50% { transform: scale(1.1); }
                         }
                     </style>
                 </div>
