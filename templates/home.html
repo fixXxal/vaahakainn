@@ -101,17 +101,23 @@
                     <div class="card-back">
                         <div class="card-content">
                             <h3 class="story-title">{{ story.title_dv|default:story.title_en|default:story.title }}</h3>
-                            <p class="story-description">
-                                {% if story.description_dv %}
+                            {% if story.description_dv %}
+                                <p class="story-description story-description-dv">
                                     {{ story.description_dv|truncatewords:20 }}
-                                {% elif story.description_en %}
+                                </p>
+                            {% elif story.description_en %}
+                                <p class="story-description story-description-en">
                                     {{ story.description_en|truncatewords:20 }}
-                                {% elif story.description %}
+                                </p>
+                            {% elif story.description %}
+                                <p class="story-description story-description-legacy">
                                     {{ story.description|truncatewords:20 }}
-                                {% else %}
+                                </p>
+                            {% else %}
+                                <p class="story-description story-description-en">
                                     Dive into this captivating story filled with adventure and wonder.
-                                {% endif %}
-                            </p>
+                                </p>
+                            {% endif %}
                             <a href="{% url 'story_detail' story.pk %}" class="episode-scroll-btn">
                                 <div class="episode-scroll-paper">
                                     <div class="episode-scroll-content">
@@ -783,11 +789,24 @@
     color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: 2rem;
+}
+
+/* Dhivehi descriptions (RTL) */
+.story-description-dv,
+.story-description-legacy {
     font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif;
     direction: rtl;
     text-align: right;
     unicode-bidi: embed;
     text-rendering: optimizeLegibility;
+}
+
+/* English descriptions (LTR) */
+.story-description-en {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    direction: ltr;
+    text-align: left;
+    unicode-bidi: embed;
 }
 
 /* Episode Scroll Button - Ancient Scroll with Ribbon (for both home and story list) */

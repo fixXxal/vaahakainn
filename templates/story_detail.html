@@ -196,11 +196,11 @@
             
             <!-- English Description -->
             {% if story.description_en %}
-            <div id="description-en" class="description-content" style="max-width: 800px; margin: 0 auto; background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%); padding: 3em; border-radius: 25px; box-shadow: 0 15px 40px rgba(176, 196, 222, 0.4); border: 4px solid #4682b4; position: relative; {% if story.description_dv %}display: none;{% endif %}">
-                <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #4682b4; color: white; padding: 0.5em 1.5em; border-radius: 20px; font-weight: bold;">
-                    <span style="margin-right: 0.5em;">🇺🇸</span>Description in English
+            <div id="description-en" class="description-content" style="max-width: 800px; margin: 0 auto; background: linear-gradient(135deg, #ffffff 0%, #f8e8f0 100%); padding: 3em; border-radius: 25px; box-shadow: 0 15px 40px rgba(252, 228, 236, 0.4); border: 4px solid #c287a3; position: relative; {% if story.description_dv %}display: none;{% endif %}">
+                <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #c287a3; color: white; padding: 0.5em 1.5em; border-radius: 20px; font-weight: bold;">
+                    Description
                 </div>
-                <p style="font-size: 1.3em; line-height: 1.8; color: #4682b4; margin: 0; text-align: center; font-weight: 600; font-family: 'Georgia', serif; direction: ltr !important; text-align: justify;">
+                <p style="font-size: 1.3em; line-height: 1.8; color: #c287a3; margin: 0; text-align: center; font-weight: 600; font-family: 'Georgia', serif; direction: ltr !important; text-align: justify;">
                     {{ story.description_en|linebreaks }}
                 </p>
             </div>
@@ -998,9 +998,9 @@ function showDescription(lang) {
         if (dhivehiDesc) dhivehiDesc.style.display = 'none';
         englishDesc.style.display = 'block';
         if (englishBtn) {
-            englishBtn.style.background = 'linear-gradient(135deg, #4682b4, #5f9ea0)';
+            englishBtn.style.background = 'linear-gradient(135deg, #c287a3, #b4316a)';
             englishBtn.style.color = 'white';
-            englishBtn.style.boxShadow = '0 2px 8px rgba(70, 130, 180, 0.4)';
+            englishBtn.style.boxShadow = '0 2px 8px rgba(194, 135, 163, 0.4)';
         }
         if (dhivehiBtn) {
             dhivehiBtn.style.background = 'transparent';
