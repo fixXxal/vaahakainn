@@ -73,7 +73,7 @@
         <nav class="main-nav">
             <a href="/" data-page="home" style="direction: ltr;">Home</a>
             <a href="/stories/" data-page="stories" style="direction: ltr;">Stories</a>
-            <button onclick="startVaahakainTutorial()" style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; padding: 0; text-decoration: underline; opacity: 0.7; font-size: 0.9rem;" title="Show tutorial">
+            <button onclick="resetVaahakainTutorial(); startVaahakainTutorial();" style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; padding: 0; text-decoration: underline; opacity: 0.7; font-size: 0.9rem;" title="Show tutorial">
                 ?
             </button>
         </nav>
@@ -85,7 +85,7 @@
                 <div class="mobile-nav-links">
                     <a href="/" data-page="home" style="direction: ltr;">Home</a>
                     <a href="/stories/" data-page="stories" style="direction: ltr;">Stories</a>
-                    <button onclick="startVaahakainTutorial(); document.querySelector('.mobile-nav-close').click();" style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; padding: 0; text-decoration: underline; opacity: 0.7; font-size: 0.9rem;" title="Show tutorial">
+                    <button onclick="resetVaahakainTutorial(); startVaahakainTutorial(); document.querySelector('.mobile-nav-close').click();" style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; padding: 0; text-decoration: underline; opacity: 0.7; font-size: 0.9rem;" title="Show tutorial">
                         ?
                     </button>
                 </div>

@@ -52,54 +52,54 @@ class VaahakainTutorial {
         this.steps = [
             {
                 id: 'welcome',
-                title: 'مرحبا بك في ڤާހކައިން',
-                subtitle: 'Welcome to VAAHAKAINN',
-                description: 'مرحبا بك في عالم ڤާހކައިން الساحر! دعنا نأخذك في جولة سريعة لاستكشاف أجمل القصص والحكايات.',
+                title: 'Welcome to VAAHAKAINN',
+                subtitle: 'Get Started',
+                description: 'Welcome to the magical world of VAAHAKAINN! Let us take you on a quick tour to discover the most beautiful stories and tales.',
                 icon: '✨',
                 highlight: null,
                 position: 'center'
             },
             {
                 id: 'navigation',
-                title: 'التنقل',
-                subtitle: 'Navigation',
-                description: 'استخدم القائمة العلوية للتنقل بين الصفحات. يمكنك الوصول إلى الصفحة الرئيسية وقسم القصص من هنا.',
+                title: 'Navigation',
+                subtitle: 'Getting Around',
+                description: 'Use the top menu to navigate between pages. You can access the home page and stories section from here.',
                 icon: '🧭',
                 highlight: '.main-nav',
                 position: 'bottom'
             },
             {
                 id: 'stories',
-                title: 'القصص المميزة',
-                subtitle: 'Featured Stories',
-                description: 'هنا ستجد مجموعة مختارة من أجمل القصص. يمكنك النقر على أي قصة لقراءة المزيد من التفاصيل.',
+                title: 'Featured Stories',
+                subtitle: 'Discover Content',
+                description: 'Here you will find a curated collection of the most beautiful stories. Click on any story to read more details.',
                 icon: '📚',
                 highlight: '.stories-grid',
                 position: 'top'
             },
             {
                 id: 'story-card',
-                title: 'بطاقات القصص',
-                subtitle: 'Story Cards',
-                description: 'مرر الماوس فوق أي بطاقة قصة لرؤية وصف القصة والتفاصيل الإضافية. انقر على "استكشاف القصة" للبدء في القراءة.',
+                title: 'Story Cards',
+                subtitle: 'Interactive Elements',
+                description: 'Hover over any story card to see the story description and additional details. Click "Explore Story" to start reading.',
                 icon: '🎭',
                 highlight: '.story-card:first-child',
                 position: 'right'
             },
             {
                 id: 'social',
-                title: 'تابعنا',
-                subtitle: 'Follow Us',
-                description: 'لا تنسى متابعتنا على وسائل التواصل الاجتماعي للحصول على آخر التحديثات والقصص الجديدة!',
+                title: 'Follow Us',
+                subtitle: 'Stay Connected',
+                description: 'Don\'t forget to follow us on social media to get the latest updates and new stories!',
                 icon: '💫',
                 highlight: 'footer',
                 position: 'top'
             },
             {
                 id: 'complete',
-                title: 'مرحبا مرة أخرى!',
-                subtitle: 'Welcome Aboard!',
-                description: 'أنت الآن جاهز لاستكشاف عالم ڤާހކައިން الساحر! استمتع بالقراءة واكتشف قصصا رائعة تأخذك إلى عوالم مختلفة.',
+                title: 'Welcome Aboard!',
+                subtitle: 'Ready to Explore',
+                description: 'You are now ready to explore the magical world of VAAHAKAINN! Enjoy reading and discover wonderful stories that take you to different worlds.',
                 icon: '🎉',
                 highlight: null,
                 position: 'center'
