@@ -3,11 +3,13 @@
 /* Import Faruma font for admin */
 @import url('/static/fonts/faruma.css');
 
-/* Apply Faruma font and RTL to all text inputs and textareas */
-input[type="text"], 
-textarea,
-.vTextField,
-.vLargeTextField {
+/* Apply different styling based on field names */
+/* Dhivehi fields (RTL) */
+input[name*="_dv"],
+input[name*="title_dv"],
+textarea[name*="_dv"],
+textarea[name*="content_dv"],
+textarea[name*="description_dv"] {
     font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
     direction: rtl !important;
     text-align: right !important;
@@ -15,11 +17,34 @@ textarea,
     text-rendering: optimizeLegibility;
 }
 
-/* Specific styling for description fields */
-textarea[name*="description"],
+/* English fields (LTR) */
+input[name*="_en"],
+input[name*="title_en"],
+textarea[name*="_en"],
+textarea[name*="content_en"],
+textarea[name*="description_en"] {
+    font-family: 'Georgia', 'Times New Roman', serif !important;
+    direction: ltr !important;
+    text-align: left !important;
+    unicode-bidi: embed;
+}
+
+/* Legacy fields - apply mixed handling */
+input[name="title"]:not([name*="_en"]):not([name*="_dv"]),
+textarea[name="description"]:not([name*="_en"]):not([name*="_dv"]),
+.vTextField:not([name*="_en"]):not([name*="_dv"]),
+.vLargeTextField:not([name*="_en"]):not([name*="_dv"]) {
+    font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
+    direction: rtl !important;
+    text-align: right !important;
+    unicode-bidi: plaintext;
+    text-rendering: optimizeLegibility;
+}
+
+/* Updated specific styling for description fields */
+textarea[name*="description_dv"],
 textarea[name*="content_dv"],
 textarea[name*="title_dv"],
-input[name*="title"],
 textarea[name*="comment"] {
     font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
     direction: rtl !important;
@@ -29,8 +54,18 @@ textarea[name*="comment"] {
     line-height: 1.6 !important;
 }
 
+textarea[name*="description_en"],
+textarea[name*="content_en"],
+textarea[name*="title_en"] {
+    font-family: 'Georgia', 'Times New Roman', serif !important;
+    direction: ltr !important;
+    text-align: left !important;
+    unicode-bidi: embed;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+}
+
 /* Story title and episode title fields */
-input[name="title"],
 input[name="title_dv"] {
     font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
     direction: rtl !important;
@@ -39,9 +74,28 @@ input[name="title_dv"] {
     font-size: 16px !important;
 }
 
+input[name="title_en"] {
+    font-family: 'Georgia', 'Times New Roman', serif !important;
+    direction: ltr !important;
+    text-align: left !important;
+    unicode-bidi: embed;
+    font-size: 16px !important;
+}
+
+/* Legacy title field */
+input[name="title"]:not([name*="_en"]):not([name*="_dv"]) {
+    font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;
+    direction: rtl !important;
+    text-align: right !important;
+    unicode-bidi: plaintext;
+    font-size: 16px !important;
+}
+
 /* Make textareas larger for better editing */
-textarea[name*="description"],
-textarea[name*="content_dv"] {
+textarea[name*="description_dv"],
+textarea[name*="description_en"],
+textarea[name*="content_dv"],
+textarea[name*="content_en"] {
     min-height: 120px !important;
     resize: vertical;
 }

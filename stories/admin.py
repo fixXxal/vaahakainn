@@ -70,12 +70,35 @@ class EpisodeAdmin(admin.ModelAdmin):
 
 @admin.register(Story)
 class StoryAdmin(admin.ModelAdmin):
-	list_display = ('title', 'category', 'release_date', 'is_featured', 'character_count', 'total_comments', 'heart_reactions')
+	list_display = ('display_title', 'category', 'release_date', 'is_featured', 'character_count', 'total_comments', 'heart_reactions')
 	list_filter = ('category', 'release_date', 'is_featured')
-	search_fields = ('title', 'description')
+	search_fields = ('title_dv', 'title_en', 'title', 'description_dv', 'description_en', 'description')
 	list_editable = ('is_featured',)
-	fields = ('title', 'description', 'category', 'cover_image', 'release_date', 'is_featured', 'episodes')
+	fieldsets = (
+		('Title', {
+			'fields': ('title_dv', 'title_en'),
+			'description': 'Story title in both languages'
+		}),
+		('Description', {
+			'fields': ('description_dv', 'description_en'),
+			'description': 'Story description in both languages'
+		}),
+		('Story Details', {
+			'fields': ('category', 'cover_image', 'release_date', 'is_featured', 'episodes'),
+		}),
+		('Legacy Fields (Auto-populated)', {
+			'fields': ('title', 'description'),
+			'classes': ('collapse',),
+			'description': 'Legacy fields for backward compatibility - do not edit manually'
+		}),
+	)
+	readonly_fields = ('title', 'description')
 	inlines = [CharacterInline, CommentInline, ReactionInline]
+	
+	def display_title(self, obj):
+		title = obj.title_dv or obj.title_en or obj.title or f"Story #{obj.id}"
+		return title
+	display_title.short_description = 'Title'
 	
 	def character_count(self, obj):
 		return obj.characters.count()

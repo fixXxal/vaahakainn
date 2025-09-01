@@ -3,6 +3,8 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.core.validators import MinLengthValidator
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from cloudinary.models import CloudinaryField
 
 class Category(models.Model):
@@ -69,8 +71,16 @@ class Episode(models.Model):
 		return Reaction.objects.filter(content_type=ct, object_id=self.id, reaction_type='heart').count()
 
 class Story(models.Model):
-	title = models.CharField(max_length=200)
-	description = models.TextField()
+	# Keep legacy fields for backward compatibility
+	title = models.CharField(max_length=200, blank=True)
+	description = models.TextField(blank=True)
+	
+	# New bilingual fields
+	title_dv = models.CharField(max_length=200, blank=True, help_text='Title in Dhivehi')
+	title_en = models.CharField(max_length=200, blank=True, help_text='Title in English')
+	description_dv = models.TextField(blank=True, help_text='Description in Dhivehi')
+	description_en = models.TextField(blank=True, help_text='Description in English')
+	
 	cover_image = CloudinaryField('image', blank=True, null=True)
 	release_date = models.DateField()
 	category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name='stories')
@@ -78,7 +88,7 @@ class Story(models.Model):
 	is_featured = models.BooleanField(default=False, help_text='Feature this story on homepage')
 
 	def __str__(self):
-		return self.title
+		return self.title_dv or self.title_en or self.title or f"Story #{self.id}"
 
 	@property
 	def total_comments(self):
@@ -236,3 +246,13 @@ class ShortStory(models.Model):
 		from django.contrib.contenttypes.models import ContentType
 		ct = ContentType.objects.get_for_model(self)
 		return Reaction.objects.filter(content_type=ct, object_id=self.id, reaction_type='heart').count()
+
+
+@receiver(pre_save, sender=Story)
+def update_legacy_fields(sender, instance, **kwargs):
+	"""Automatically update legacy title and description fields when the bilingual fields change."""
+	# Update legacy title field
+	instance.title = instance.title_dv or instance.title_en or instance.title
+	
+	# Update legacy description field
+	instance.description = instance.description_dv or instance.description_en or instance.description

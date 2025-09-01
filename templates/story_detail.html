@@ -25,8 +25,15 @@
         
         <!-- Story Title -->
         <h1 class="faruma" style="margin-bottom: 1em; background: linear-gradient(135deg, #c287a3, #b4316a, #a52a5c); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; text-align: center !important; direction: rtl !important; font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;">
-            {{ story.title }}
+            {{ story.title_dv|default:story.title_en|default:story.title }}
         </h1>
+        
+        {% if story.title_en and story.title_dv != story.title_en %}
+        <!-- English subtitle if different -->
+        <h2 style="font-size: 1.8em; color: var(--text-secondary); margin-bottom: 1.5em; font-weight: 600; text-align: center; direction: ltr; font-family: 'Georgia', serif;">
+            {{ story.title_en }}
+        </h2>
+        {% endif %}
         
         <!-- Enhanced Story Metadata -->
         <div class="metadata-container" style="margin-bottom: 2em; display: flex; flex-wrap: wrap; gap: 0.5em; justify-content: center;">
@@ -141,11 +148,73 @@
         </div>
         
         <!-- Story Description -->
-        <div style="max-width: 800px; margin: 0 auto; background: linear-gradient(135deg, #ffffff 0%, #f8e8f0 100%); padding: 3em; border-radius: 25px; box-shadow: 0 15px 40px rgba(252, 228, 236, 0.4); border: 4px solid #c287a3; position: relative;">
-            <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); font-size: 1.2em; background: var(--background-primary); padding: 0 15px; color: #c287a3; font-weight: bold;">Description</div>
-            <p class="faruma" style="font-size: 1.5em; line-height: 1.8; color: #c287a3; margin: 0; text-align: center; font-weight: 600; font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important; direction: rtl !important; unicode-bidi: embed; text-rendering: optimizeLegibility;">
-                {{ story.description }}
-            </p>
+        <div style="max-width: 900px; margin: 0 auto;">
+            <!-- Toggle buttons for description -->
+            {% if story.description_dv and story.description_en %}
+            <div style="text-align: center; margin-bottom: 2em;">
+                <div style="display: inline-flex; background: var(--gradient-soft); border-radius: 25px; padding: 0.5em; border: 2px solid var(--accent-gold); box-shadow: 0 4px 15px rgba(252, 228, 236, 0.3);">
+                    <button id="descDhivehiBtn" class="desc-toggle-btn active" onclick="showDescription('dv')" style="
+                        padding: 0.6em 1.2em; 
+                        background: linear-gradient(135deg, #c287a3, #b4316a); 
+                        color: white; 
+                        border: none; 
+                        border-radius: 20px; 
+                        font-weight: 700; 
+                        cursor: pointer; 
+                        transition: all 0.3s ease;
+                        box-shadow: 0 2px 8px rgba(194, 135, 163, 0.4);">
+                        <span style="font-size: 1em; margin-right: 0.5em;">🇲🇻</span>
+                        Dhivehi
+                    </button>
+                    <button id="descEnglishBtn" class="desc-toggle-btn" onclick="showDescription('en')" style="
+                        padding: 0.6em 1.2em; 
+                        background: transparent; 
+                        color: var(--text-primary); 
+                        border: none; 
+                        border-radius: 20px; 
+                        font-weight: 700; 
+                        cursor: pointer; 
+                        transition: all 0.3s ease;">
+                        <span style="font-size: 1em; margin-right: 0.5em;">🇺🇸</span>
+                        English
+                    </button>
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Dhivehi Description -->
+            {% if story.description_dv %}
+            <div id="description-dv" class="description-content" style="max-width: 800px; margin: 0 auto; background: linear-gradient(135deg, #ffffff 0%, #f8e8f0 100%); padding: 3em; border-radius: 25px; box-shadow: 0 15px 40px rgba(252, 228, 236, 0.4); border: 4px solid #c287a3; position: relative; {% if story.description_en %}display: {% if story.description_dv %}block{% else %}none{% endif %};{% endif %}">
+                <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #c287a3; color: white; padding: 0.5em 1.5em; border-radius: 20px; font-weight: bold;">
+                    <span style="margin-right: 0.5em;">🇲🇻</span>Description in Dhivehi
+                </div>
+                <p class="faruma" style="font-size: 1.5em; line-height: 1.8; color: #c287a3; margin: 0; text-align: center; font-weight: 600; font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important; direction: rtl !important; unicode-bidi: embed; text-rendering: optimizeLegibility;">
+                    {{ story.description_dv|linebreaks }}
+                </p>
+            </div>
+            {% endif %}
+            
+            <!-- English Description -->
+            {% if story.description_en %}
+            <div id="description-en" class="description-content" style="max-width: 800px; margin: 0 auto; background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%); padding: 3em; border-radius: 25px; box-shadow: 0 15px 40px rgba(176, 196, 222, 0.4); border: 4px solid #4682b4; position: relative; {% if story.description_dv %}display: none;{% endif %}">
+                <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #4682b4; color: white; padding: 0.5em 1.5em; border-radius: 20px; font-weight: bold;">
+                    <span style="margin-right: 0.5em;">🇺🇸</span>Description in English
+                </div>
+                <p style="font-size: 1.3em; line-height: 1.8; color: #4682b4; margin: 0; text-align: center; font-weight: 600; font-family: 'Georgia', serif; direction: ltr !important; text-align: justify;">
+                    {{ story.description_en|linebreaks }}
+                </p>
+            </div>
+            {% endif %}
+            
+            <!-- Fallback for legacy description -->
+            {% if not story.description_dv and not story.description_en and story.description %}
+            <div style="max-width: 800px; margin: 0 auto; background: linear-gradient(135deg, #ffffff 0%, #f8e8f0 100%); padding: 3em; border-radius: 25px; box-shadow: 0 15px 40px rgba(252, 228, 236, 0.4); border: 4px solid #c287a3; position: relative;">
+                <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); font-size: 1.2em; background: var(--background-primary); padding: 0 15px; color: #c287a3; font-weight: bold;">Description</div>
+                <p class="faruma" style="font-size: 1.5em; line-height: 1.8; color: #c287a3; margin: 0; text-align: center; font-weight: 600; font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important; direction: rtl !important; unicode-bidi: embed; text-rendering: optimizeLegibility;">
+                    {{ story.description }}
+                </p>
+            </div>
+            {% endif %}
         </div>
         
         <div style="width: 200px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-gold), transparent); margin: 2em auto; animation: underlineGrow 3s ease-in-out infinite;"></div>
@@ -904,6 +973,42 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Description Toggle Function
+function showDescription(lang) {
+    const dhivehiDesc = document.getElementById('description-dv');
+    const englishDesc = document.getElementById('description-en');
+    const dhivehiBtn = document.getElementById('descDhivehiBtn');
+    const englishBtn = document.getElementById('descEnglishBtn');
+    
+    if (lang === 'dv' && dhivehiDesc) {
+        dhivehiDesc.style.display = 'block';
+        if (englishDesc) englishDesc.style.display = 'none';
+        if (dhivehiBtn) {
+            dhivehiBtn.style.background = 'linear-gradient(135deg, #c287a3, #b4316a)';
+            dhivehiBtn.style.color = 'white';
+            dhivehiBtn.style.boxShadow = '0 2px 8px rgba(194, 135, 163, 0.4)';
+        }
+        if (englishBtn) {
+            englishBtn.style.background = 'transparent';
+            englishBtn.style.color = 'var(--text-primary)';
+            englishBtn.style.boxShadow = 'none';
+        }
+    } else if (lang === 'en' && englishDesc) {
+        if (dhivehiDesc) dhivehiDesc.style.display = 'none';
+        englishDesc.style.display = 'block';
+        if (englishBtn) {
+            englishBtn.style.background = 'linear-gradient(135deg, #4682b4, #5f9ea0)';
+            englishBtn.style.color = 'white';
+            englishBtn.style.boxShadow = '0 2px 8px rgba(70, 130, 180, 0.4)';
+        }
+        if (dhivehiBtn) {
+            dhivehiBtn.style.background = 'transparent';
+            dhivehiBtn.style.color = 'var(--text-primary)';
+            dhivehiBtn.style.boxShadow = 'none';
+        }
+    }
+}
 
 // Show message function
 function showMessage(message, type) {

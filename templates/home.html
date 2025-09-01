@@ -100,9 +100,13 @@
                     
                     <div class="card-back">
                         <div class="card-content">
-                            <h3 class="story-title">{{ story.title }}</h3>
+                            <h3 class="story-title">{{ story.title_dv|default:story.title_en|default:story.title }}</h3>
                             <p class="story-description">
-                                {% if story.description %}
+                                {% if story.description_dv %}
+                                    {{ story.description_dv|truncatewords:20 }}
+                                {% elif story.description_en %}
+                                    {{ story.description_en|truncatewords:20 }}
+                                {% elif story.description %}
                                     {{ story.description|truncatewords:20 }}
                                 {% else %}
                                     Dive into this captivating story filled with adventure and wonder.

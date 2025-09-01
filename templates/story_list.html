@@ -202,7 +202,7 @@
                                            width: 100%;
                                            direction: rtl !important;
                                            font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;">
-                    {{ story.title }}
+                    {{ story.title_dv|default:story.title_en|default:story.title }}
                 </h2>
                 
                 <!-- Perfect Story Metadata -->
@@ -335,7 +335,7 @@
                                              max-width: 90%;
                                              margin: 0 auto;
                                              direction: rtl !important;">
-                        {{ story.description|truncatewords:20 }}
+                        {{ story.description_dv|default:story.description_en|default:story.description|truncatewords:20 }}
                     </p>
                 </div>
                 
