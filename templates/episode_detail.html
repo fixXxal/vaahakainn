@@ -295,6 +295,31 @@ function showMessage(message, type) {
     background: #c287a3 !important;
     color: white !important;
 }
+
+/* Mobile Responsive Episode Title */
+@media (max-width: 768px) {
+    .episode-detail h1.faruma {
+        font-size: 1.2em !important;
+        line-height: 1.3 !important;
+        margin-bottom: 0.8em !important;
+    }
+    
+    .episode-detail p {
+        font-size: 1em !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .episode-detail h1.faruma {
+        font-size: 1em !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0.6em !important;
+    }
+    
+    .episode-detail p {
+        font-size: 0.9em !important;
+    }
+}
 </style>
 
 {% endblock %}
