@@ -158,11 +158,15 @@ class ShortStoryAdmin(admin.ModelAdmin):
 
 @admin.register(Character)
 class CharacterAdmin(admin.ModelAdmin):
-	list_display = ('name', 'story', 'is_main_character', 'has_image', 'created_at')
+	list_display = ('display_name', 'story', 'is_main_character', 'has_image', 'created_at')
 	list_filter = ('is_main_character', 'story__category', 'created_at')
 	search_fields = ('name', 'description', 'story__title')
 	list_editable = ('is_main_character',)
-	fields = ('name', 'story', 'description', 'image', 'is_main_character')
+	fields = ('story', 'image', 'name', 'description', 'is_main_character')
+	
+	def display_name(self, obj):
+		return obj.name if obj.name else f'Character #{obj.id}'
+	display_name.short_description = 'Name'
 	
 	def has_image(self, obj):
 		return '✅' if obj.image else '❌'

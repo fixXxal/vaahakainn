@@ -175,8 +175,8 @@ class Reaction(models.Model):
 		return f'{self.get_reaction_type_display()}{username_part} on {self.content_object}'
 
 class Character(models.Model):
-	name = models.CharField(max_length=100, help_text='Character name')
-	description = models.TextField(blank=True, help_text='Character description and background')
+	name = models.CharField(max_length=100, blank=True, help_text='Character name (optional if shown in image)')
+	description = models.TextField(blank=True, help_text='Character description (optional if shown in image)')
 	image = CloudinaryField('image', blank=True, null=True, help_text='Character image')
 	story = models.ForeignKey(Story, on_delete=models.CASCADE, related_name='characters', help_text='Story this character belongs to')
 	is_main_character = models.BooleanField(default=False, help_text='Is this a main character?')
@@ -185,10 +185,12 @@ class Character(models.Model):
 
 	class Meta:
 		ordering = ['-is_main_character', 'name']
-		unique_together = [['story', 'name']]
 
 	def __str__(self):
-		return f"{self.name} ({self.story.title})"
+		if self.name:
+			return f"{self.name} ({self.story.title})"
+		else:
+			return f"Character #{self.id} ({self.story.title})"
 
 class ShortStory(models.Model):
 	title_dv = models.CharField(max_length=200, help_text='Title in Dhivehi')
