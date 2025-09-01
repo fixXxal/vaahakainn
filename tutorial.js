@@ -47,10 +47,13 @@ class OnboardingTutorial {
     }
     
     init() {
+        console.log('Tutorial initializing...');
         if (this.isCompleted()) {
+            console.log('Tutorial already completed, skipping');
             return;
         }
         
+        console.log('Starting tutorial...');
         this.bindEvents();
         setTimeout(() => this.start(), 1000);
     }
@@ -76,6 +79,7 @@ class OnboardingTutorial {
     }
     
     start() {
+        console.log('Tutorial starting - showing overlay and first step');
         this.isActive = true;
         this.currentStep = 0;
         this.showStep();
@@ -124,6 +128,11 @@ class OnboardingTutorial {
         const tooltip = document.getElementById('tutorial-tooltip');
         const arrow = document.getElementById('tooltip-arrow');
         const rect = target.getBoundingClientRect();
+        
+        // Ensure tooltip is visible to get accurate measurements
+        tooltip.style.visibility = 'visible';
+        tooltip.style.opacity = '1';
+        
         const tooltipRect = tooltip.getBoundingClientRect();
         
         // Reset arrow classes

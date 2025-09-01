@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cross-Browser Onboarding Tutorial</title>
+    <link rel="stylesheet" href="tutorial.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="app-container">
+        <header class="header" id="header">
+            <div class="logo">MyApp</div>
+            <nav class="nav">
+                <button class="nav-btn" id="notifications">🔔</button>
+                <button class="nav-btn" id="profile">👤</button>
+                <button class="nav-btn" id="settings">⚙️</button>
+            </nav>
+        </header>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-item" id="dashboard">📊 Dashboard</div>
+            <div class="sidebar-item" id="projects">📁 Projects</div>
+            <div class="sidebar-item" id="tasks">✅ Tasks</div>
+            <div class="sidebar-item" id="calendar">📅 Calendar</div>
+        </aside>
+
+        <main class="main-content">
+            <div class="welcome-section" id="welcome">
+                <h1>Welcome to MyApp!</h1>
+                <p>Your productivity workspace</p>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="primary-btn" id="create-project">Create Project</button>
+                <button class="secondary-btn" id="invite-team">Invite Team</button>
+            </div>
+
+            <div class="content-area" id="content-area">
+                <div class="card">
+                    <h3>Getting Started</h3>
+                    <p>This is your main workspace where you'll manage projects and collaborate with your team.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Tutorial Overlay -->
+    <div id="tutorial-overlay" class="tutorial-overlay hidden">
+        <div class="tutorial-backdrop"></div>
+        <div class="tutorial-tooltip" id="tutorial-tooltip">
+            <div class="tooltip-content">
+                <h3 class="tooltip-title" id="tooltip-title"></h3>
+                <p class="tooltip-description" id="tooltip-description"></p>
+                <div class="tooltip-actions">
+                    <button class="tooltip-btn skip-btn" id="skip-tutorial">Skip</button>
+                    <div class="tooltip-progress">
+                        <span id="step-counter">1 of 6</span>
+                    </div>
+                    <button class="tooltip-btn next-btn" id="next-step">Next</button>
+                </div>
+            </div>
+            <div class="tooltip-arrow" id="tooltip-arrow"></div>
+        </div>
+    </div>
+
+    <script src="tutorial-compatible.js"></script>
+</body>
+</html>
