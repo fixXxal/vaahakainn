@@ -19,6 +19,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/static/styles.css">
     <link rel="stylesheet" href="/static/fonts/faruma.css">
+    <link rel="stylesheet" href="/static/onboarding-tutorial.css">
     
     <!-- Preload Important Resources -->
     <link rel="preload" href="/static/enhanced-interactions.js" as="script">
@@ -72,6 +73,9 @@
         <nav class="main-nav">
             <a href="/" data-page="home" style="direction: ltr;">Home</a>
             <a href="/stories/" data-page="stories" style="direction: ltr;">Stories</a>
+            <button onclick="startVaahakainTutorial()" style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; padding: 0; text-decoration: underline; opacity: 0.7; font-size: 0.9rem;" title="Show tutorial">
+                ?
+            </button>
         </nav>
         
         <!-- Mobile Navigation Overlay -->
@@ -81,6 +85,9 @@
                 <div class="mobile-nav-links">
                     <a href="/" data-page="home" style="direction: ltr;">Home</a>
                     <a href="/stories/" data-page="stories" style="direction: ltr;">Stories</a>
+                    <button onclick="startVaahakainTutorial(); document.querySelector('.mobile-nav-close').click();" style="background: linear-gradient(145deg, #f8f6f0, #ede8d8); border: 2px solid #d4af37; border-radius: 15px; padding: 0.8rem 1.5rem; color: #8b4513; font-weight: 700; cursor: pointer; margin-top: 1rem; width: 100%;">
+                        🎯 عرض الدليل التفاعلي
+                    </button>
                 </div>
             </div>
         </nav>
@@ -157,6 +164,7 @@
 
     <!-- Enhanced JavaScript -->
     <script src="/static/enhanced-interactions.js"></script>
+    <script src="/static/onboarding-tutorial.js"></script>
     
     <!-- Page Loading and Initialization Script -->
     <script>

@@ -5,7 +5,8 @@
       "Bash(venv/Scripts/python.exe manage.py makemigrations stories:*)",
       "Bash(venv/Scripts/python.exe manage.py migrate:*)",
       "Bash(python3:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(venv/Scripts/python.exe manage.py runserver 127.0.0.1:8000)"
     ],
     "deny": [],
     "ask": []
