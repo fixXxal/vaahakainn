@@ -71,6 +71,11 @@ class Episode(models.Model):
 		return Reaction.objects.filter(content_type=ct, object_id=self.id, reaction_type='heart').count()
 
 class Story(models.Model):
+	STATUS_CHOICES = [
+		('ongoing', 'Ongoing'),
+		('completed', 'Completed'),
+	]
+	
 	# Keep legacy fields for backward compatibility
 	title = models.CharField(max_length=200, blank=True)
 	description = models.TextField(blank=True)
@@ -86,6 +91,7 @@ class Story(models.Model):
 	category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name='stories')
 	episodes = models.ManyToManyField(Episode, related_name='stories')
 	is_featured = models.BooleanField(default=False, help_text='Feature this story on homepage')
+	status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='ongoing', help_text='Story completion status')
 
 	def __str__(self):
 		return self.title_dv or self.title_en or self.title or f"Story #{self.id}"

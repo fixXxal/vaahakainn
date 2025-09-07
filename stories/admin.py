@@ -70,10 +70,10 @@ class EpisodeAdmin(admin.ModelAdmin):
 
 @admin.register(Story)
 class StoryAdmin(admin.ModelAdmin):
-	list_display = ('display_title', 'category', 'release_date', 'is_featured', 'character_count', 'total_comments', 'heart_reactions')
-	list_filter = ('category', 'release_date', 'is_featured')
+	list_display = ('display_title', 'category', 'status', 'release_date', 'is_featured', 'character_count', 'total_comments', 'heart_reactions')
+	list_filter = ('category', 'status', 'release_date', 'is_featured')
 	search_fields = ('title_dv', 'title_en', 'title', 'description_dv', 'description_en', 'description')
-	list_editable = ('is_featured',)
+	list_editable = ('is_featured', 'status')
 	fieldsets = (
 		('Title', {
 			'fields': ('title_dv', 'title_en'),
@@ -84,7 +84,7 @@ class StoryAdmin(admin.ModelAdmin):
 			'description': 'Story description in both languages'
 		}),
 		('Story Details', {
-			'fields': ('category', 'cover_image', 'release_date', 'is_featured', 'episodes'),
+			'fields': ('category', 'status', 'cover_image', 'release_date', 'is_featured', 'episodes'),
 		}),
 		('Legacy Fields (Auto-populated)', {
 			'fields': ('title', 'description'),

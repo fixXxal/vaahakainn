@@ -321,6 +321,50 @@
                         <span>{{ story.episodes.count }} episodes</span>
                         <div class="shine-effect" style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%); transition: left 0.6s ease;"></div>
                     </span>
+                    
+                    {% if story.status == 'completed' %}
+                    <span class="metadata-badge status-completed" style="background: linear-gradient(135deg, #22c55e, #16a34a); 
+                                 padding: 0.4rem 0.8rem; 
+                                 border-radius: 15px; 
+                                 border: 2px solid #22c55e; 
+                                 font-size: 0.8rem; 
+                                 color: #ffffff; 
+                                 font-weight: 600;
+                                 box-shadow: 0 2px 6px rgba(34, 197, 94, 0.3);
+                                 transition: all 0.3s ease;
+                                 display: inline-flex;
+                                 align-items: center;
+                                 gap: 0.3rem;
+                                 position: relative;
+                                 overflow: hidden;"
+                          onmouseover="this.style.transform='translateY(-1px) scale(1.03)'; this.style.boxShadow='0 4px 10px rgba(34, 197, 94, 0.4)'"
+                          onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 2px 6px rgba(34, 197, 94, 0.3)'">
+                        <span style="font-size: 0.9rem;">✅</span>
+                        <span>Completed</span>
+                        <div class="shine-effect" style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%); transition: left 0.6s ease;"></div>
+                    </span>
+                    {% else %}
+                    <span class="metadata-badge status-ongoing" style="background: linear-gradient(135deg, #3b82f6, #2563eb); 
+                                 padding: 0.4rem 0.8rem; 
+                                 border-radius: 15px; 
+                                 border: 2px solid #3b82f6; 
+                                 font-size: 0.8rem; 
+                                 color: #ffffff; 
+                                 font-weight: 600;
+                                 box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
+                                 transition: all 0.3s ease;
+                                 display: inline-flex;
+                                 align-items: center;
+                                 gap: 0.3rem;
+                                 position: relative;
+                                 overflow: hidden;"
+                          onmouseover="this.style.transform='translateY(-1px) scale(1.03)'; this.style.boxShadow='0 4px 10px rgba(59, 130, 246, 0.4)'"
+                          onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 2px 6px rgba(59, 130, 246, 0.3)'">
+                        <span style="font-size: 0.9rem;">📝</span>
+                        <span>Ongoing</span>
+                        <div class="shine-effect" style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%); transition: left 0.6s ease;"></div>
+                    </span>
+                    {% endif %}
                 </div>
                 
                 <!-- Beautiful Story Description -->

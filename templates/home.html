@@ -85,6 +85,13 @@
                                 {% if story.category %}
                                 <span class="story-category">{{ story.category.name }}</span>
                                 {% endif %}
+                                <span class="story-status story-status-{{ story.status }}">
+                                    {% if story.status == 'completed' %}
+                                        ✅ Completed
+                                    {% else %}
+                                        📝 Ongoing
+                                    {% endif %}
+                                </span>
                             </div>
                             
                             <h3 class="story-title">{{ story.title }}</h3>
@@ -744,7 +751,7 @@
     justify-content: center;
 }
 
-.release-date, .story-category {
+.release-date, .story-category, .story-status {
     background: rgba(195, 135, 163, 0.1);
     color: var(--text-secondary);
     padding: 0.2rem 0.6rem;
@@ -753,6 +760,18 @@
     font-weight: 600;
     white-space: nowrap;
     flex-shrink: 0;
+}
+
+.story-status-ongoing {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.story-status-completed {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
 .story-title {
