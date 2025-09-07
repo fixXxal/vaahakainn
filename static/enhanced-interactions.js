@@ -195,22 +195,29 @@ function createSoundEffect(freq1, freq2, volume) {
 
 // Theme transition effects
 function initThemeTransitions() {
-    // Smooth transitions between pages
-    window.addEventListener('beforeunload', () => {
-        document.body.style.transition = 'all 0.5s ease';
-        document.body.style.opacity = '0';
-        document.body.style.transform = 'scale(0.95)';
-    });
-    
-    // Page load animations
-    document.body.style.opacity = '0';
-    document.body.style.transform = 'scale(0.95)';
+    // Gentle page load animations only
+    document.body.style.opacity = '0.8';
+    document.body.style.transform = 'scale(0.98)';
     
     setTimeout(() => {
-        document.body.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        document.body.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
         document.body.style.opacity = '1';
         document.body.style.transform = 'scale(1)';
     }, 100);
+    
+    // Handle browser navigation smoothly
+    window.addEventListener('pageshow', function(event) {
+        // Reset styles when page is shown from cache (back/forward)
+        if (event.persisted) {
+            document.body.style.opacity = '1';
+            document.body.style.transform = 'scale(1)';
+            document.body.style.transition = 'none';
+            // Re-enable transitions after a brief delay
+            setTimeout(() => {
+                document.body.style.transition = 'all 0.3s ease';
+            }, 50);
+        }
+    });
 }
 
 // Storytelling effects

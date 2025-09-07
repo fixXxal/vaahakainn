@@ -176,7 +176,7 @@
             }, 1500);
         });
 
-        // Enhanced page transitions
+        // Enhanced page transitions with proper history support
         function initPageTransitions() {
             const links = document.querySelectorAll('a[data-page]');
             
@@ -184,21 +184,40 @@
                 link.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
                     
-                    if (href && !href.startsWith('#') && !href.startsWith('mailto:')) {
-                        e.preventDefault();
+                    // Only apply custom transitions for internal links, let browser handle history
+                    if (href && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('http')) {
+                        // Add subtle exit animation without preventing navigation
+                        document.body.style.transition = 'opacity 0.2s ease';
+                        document.body.style.opacity = '0.95';
                         
-                        // Add exit animation
-                        document.body.style.transition = 'all 0.5s ease';
-                        document.body.style.opacity = '0.8';
-                        document.body.style.transform = 'scale(0.98)';
-                        
+                        // Reset opacity after short delay
                         setTimeout(() => {
-                            window.location.href = href;
-                        }, 500);
+                            document.body.style.opacity = '1';
+                        }, 200);
+                        
+                        // Don't prevent default - let browser handle navigation normally
                     }
                 });
             });
         }
+        
+        // Handle browser back/forward navigation
+        window.addEventListener('popstate', function(event) {
+            // Add smooth transition for back/forward navigation
+            document.body.style.transition = 'opacity 0.3s ease';
+            document.body.style.opacity = '0.9';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+                // Re-initialize page features after navigation
+                if (typeof initScrollAnimations === 'function') {
+                    initScrollAnimations();
+                }
+                if (typeof initReadingProgress === 'function') {
+                    initReadingProgress();
+                }
+            }, 100);
+        });
 
         // Performance optimizations
         function initPerformanceOptimizations() {
@@ -232,6 +251,10 @@
             
             // Initialize accessibility features
             initAccessibilityFeatures();
+            
+            // Ensure proper page state on load
+            document.body.style.opacity = '1';
+            document.body.style.transform = 'scale(1)';
         });
 
         function initAccessibilityFeatures() {
