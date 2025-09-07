@@ -10,16 +10,11 @@
         {% if story.cover_image %}
         <div style="position: relative; max-width: 400px; margin: 0 auto 2em auto;">
             <img src="{{ story.cover_image.url }}" alt="{{ story.title }} cover" style="width: 100%; height: 400px; object-fit: cover; border-radius: 20px; box-shadow: none; border: 4px solid var(--accent-gold); transition: var(--transition);">
-            <div style="position: absolute; top: 15px; right: 20px; background: var(--primary-dark); color: var(--background-primary); padding: 0.5em 1em; border-radius: 20px; font-size: 0.9em; backdrop-filter: blur(10px);">
-                {{ episodes|length }} episodes
-            </div>
         </div>
         {% else %}
         <div style="max-width: 400px; margin: 0 auto 2em auto; height: 400px; background: var(--gradient-primary); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 6em; color: var(--background-primary); position: relative; overflow: hidden; border: 4px solid var(--accent-gold); box-shadow: none;">
             <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 200\"><rect x=\"40\" y=\"40\" width=\"120\" height=\"120\" fill=\"none\" stroke=\"rgba(255,255,255,0.1)\" stroke-width=\"3\"/><line x1=\"60\" y1=\"80\" x2=\"140\" y2=\"80\" stroke=\"rgba(255,255,255,0.1)\" stroke-width=\"2\"/><line x1=\"60\" y1=\"100\" x2=\"140\" y2=\"100\" stroke=\"rgba(255,255,255,0.1)\" stroke-width=\"2\"/><line x1=\"60\" y1=\"120\" x2=\"140\" y2=\"120\" stroke=\"rgba(255,255,255,0.1)\" stroke-width=\"2\"/></svg>'); opacity: 0.4;"></div>
-            <div style="position: absolute; top: 15px; right: 20px; background: var(--accent-gold); color: var(--text-primary); padding: 0.5em 1em; border-radius: 20px; font-size: 0.9em;">
-                {{ episodes|length }} episodes
-            </div>
+            <div style="font-size: 1em; z-index: 2;">📖</div>
         </div>
         {% endif %}
         
