@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.contenttypes.admin import GenericTabularInline
 from django.utils.html import format_html
-from .models import Author, Genre, Episode, Story, Category, Comment, Reaction, ShortStory, Character
+from .models import Author, Genre, Episode, Story, Category, Comment, Reaction, ShortStory
 
 # Inline classes for comments and reactions
 class CommentInline(GenericTabularInline):
@@ -18,11 +18,6 @@ class ReactionInline(GenericTabularInline):
 	readonly_fields = ('created_at', 'ip_address', 'user_agent')
 	ordering = ['-created_at']
 
-class CharacterInline(admin.TabularInline):
-	model = Character
-	extra = 1
-	fields = ('name', 'description', 'image', 'is_main_character')
-	classes = ['collapse']
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -70,7 +65,7 @@ class EpisodeAdmin(admin.ModelAdmin):
 
 @admin.register(Story)
 class StoryAdmin(admin.ModelAdmin):
-	list_display = ('display_title', 'category', 'status', 'release_date', 'is_featured', 'character_count', 'total_comments', 'heart_reactions')
+	list_display = ('display_title', 'category', 'status', 'release_date', 'is_featured', 'total_comments', 'heart_reactions')
 	list_filter = ('category', 'status', 'release_date', 'is_featured')
 	search_fields = ('title_dv', 'title_en', 'title', 'description_dv', 'description_en', 'description')
 	list_editable = ('is_featured', 'status')
@@ -93,16 +88,13 @@ class StoryAdmin(admin.ModelAdmin):
 		}),
 	)
 	readonly_fields = ('title', 'description')
-	inlines = [CharacterInline, CommentInline, ReactionInline]
+	inlines = [CommentInline, ReactionInline]
 	
 	def display_title(self, obj):
 		title = obj.title_dv or obj.title_en or obj.title or f"Story #{obj.id}"
 		return title
 	display_title.short_description = 'Title'
 	
-	def character_count(self, obj):
-		return obj.characters.count()
-	character_count.short_description = 'Characters'
 	
 	class Media:
 		css = {
@@ -179,23 +171,3 @@ class ShortStoryAdmin(admin.ModelAdmin):
 		return obj.heart_reactions
 	heart_reactions.short_description = '❤️ Hearts'
 
-@admin.register(Character)
-class CharacterAdmin(admin.ModelAdmin):
-	list_display = ('display_name', 'story', 'is_main_character', 'has_image', 'created_at')
-	list_filter = ('is_main_character', 'story__category', 'created_at')
-	search_fields = ('name', 'description', 'story__title')
-	list_editable = ('is_main_character',)
-	fields = ('story', 'image', 'name', 'description', 'is_main_character')
-	
-	def display_name(self, obj):
-		return obj.name if obj.name else f'Character #{obj.id}'
-	display_name.short_description = 'Name'
-	
-	def has_image(self, obj):
-		return '✅' if obj.image else '❌'
-	has_image.short_description = 'Image'
-	
-	class Media:
-		css = {
-			'all': ('admin/css/admin_rtl.css',)
-		}
