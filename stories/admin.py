@@ -107,7 +107,7 @@ class CommentAdmin(admin.ModelAdmin):
 	list_filter = ('is_approved', 'is_featured', 'created_at', 'content_type')
 	search_fields = ('username', 'comment', 'email')
 	list_editable = ('is_approved', 'is_featured')
-	readonly_fields = ('created_at', 'updated_at', 'ip_address', 'total_reactions', 'heart_reactions')
+	readonly_fields = ('content_object', 'created_at', 'updated_at', 'ip_address', 'total_reactions', 'heart_reactions')
 	fields = ('content_object', 'username', 'email', 'comment', 'is_approved', 'is_featured', 'ip_address', 'created_at', 'updated_at')
 	
 	class Media:
@@ -128,7 +128,7 @@ class ReactionAdmin(admin.ModelAdmin):
 	list_display = ('reaction_display', 'content_object', 'username', 'created_at')
 	list_filter = ('reaction_type', 'created_at', 'content_type')
 	search_fields = ('username',)
-	readonly_fields = ('created_at', 'ip_address', 'user_agent')
+	readonly_fields = ('content_object', 'created_at', 'ip_address', 'user_agent')
 	fields = ('content_object', 'reaction_type', 'username', 'ip_address', 'created_at')
 	
 	class Media:

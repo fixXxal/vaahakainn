@@ -144,7 +144,13 @@ class Comment(models.Model):
 		]
 
 	def __str__(self):
-		return f'Comment by {self.username} on {self.content_object}'
+		try:
+			if self.content_object:
+				return f'Comment by {self.username} on {self.content_object}'
+			else:
+				return f'Comment by {self.username} (no content)'
+		except:
+			return f'Comment by {self.username} (ID: {self.id})'
 
 	@property
 	def total_reactions(self):
@@ -188,7 +194,13 @@ class Reaction(models.Model):
 
 	def __str__(self):
 		username_part = f' by {self.username}' if self.username else ''
-		return f'{self.get_reaction_type_display()}{username_part} on {self.content_object}'
+		try:
+			if self.content_object:
+				return f'{self.get_reaction_type_display()}{username_part} on {self.content_object}'
+			else:
+				return f'{self.get_reaction_type_display()}{username_part} (no content)'
+		except:
+			return f'{self.get_reaction_type_display()}{username_part} (ID: {self.id})'
 
 
 class ShortStory(models.Model):
