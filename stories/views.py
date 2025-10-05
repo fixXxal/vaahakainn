@@ -124,30 +124,39 @@ def add_comment(request):
         username = data.get('username', '').strip()
         comment_text = data.get('comment', '').strip()
         email = data.get('email', '').strip()
-        
+
         # Validation
         if not username or len(username) < 2:
             return JsonResponse({'success': False, 'error': 'Username must be at least 2 characters'})
-        
+
         if not comment_text or len(comment_text) < 5:
             return JsonResponse({'success': False, 'error': 'Comment must be at least 5 characters'})
-            
+
         if not content_type or not object_id:
             return JsonResponse({'success': False, 'error': 'Invalid content reference'})
-        
-        # Get the content type
-        if content_type == 'story':
-            ct = ContentType.objects.get_for_model(Story)
-            content_obj = get_object_or_404(Story, pk=object_id)
-        elif content_type == 'episode':
-            ct = ContentType.objects.get_for_model(Episode)
-            content_obj = get_object_or_404(Episode, pk=object_id)
-        elif content_type == 'shortstory':
-            ct = ContentType.objects.get_for_model(ShortStory)
-            content_obj = get_object_or_404(ShortStory, pk=object_id)
-        else:
-            return JsonResponse({'success': False, 'error': 'Invalid content type'})
-        
+
+        # Convert object_id to integer
+        try:
+            object_id = int(object_id)
+        except (ValueError, TypeError):
+            return JsonResponse({'success': False, 'error': 'Invalid object ID'})
+
+        # Get the content type and validate object exists
+        try:
+            if content_type == 'story':
+                ct = ContentType.objects.get_for_model(Story)
+                content_obj = Story.objects.get(pk=object_id)
+            elif content_type == 'episode':
+                ct = ContentType.objects.get_for_model(Episode)
+                content_obj = Episode.objects.get(pk=object_id)
+            elif content_type == 'shortstory':
+                ct = ContentType.objects.get_for_model(ShortStory)
+                content_obj = ShortStory.objects.get(pk=object_id)
+            else:
+                return JsonResponse({'success': False, 'error': 'Invalid content type'})
+        except (Story.DoesNotExist, Episode.DoesNotExist, ShortStory.DoesNotExist):
+            return JsonResponse({'success': False, 'error': 'Content not found'})
+
         # Create comment
         comment = Comment.objects.create(
             content_type=ct,
@@ -158,13 +167,13 @@ def add_comment(request):
             ip_address=get_client_ip(request),
             is_approved=True  # Auto-approve for now
         )
-        
+
         return JsonResponse({
-            'success': True, 
+            'success': True,
             'comment_id': comment.id,
             'message': 'Comment added successfully!'
         })
-        
+
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
 
@@ -177,25 +186,34 @@ def add_reaction(request):
         object_id = data.get('object_id')
         reaction_type = data.get('reaction_type', 'heart')
         username = data.get('username', '').strip()
-        
+
         if not content_type or not object_id:
             return JsonResponse({'success': False, 'error': 'Invalid content reference'})
-        
-        # Get the content type
-        if content_type == 'story':
-            ct = ContentType.objects.get_for_model(Story)
-            content_obj = get_object_or_404(Story, pk=object_id)
-        elif content_type == 'episode':
-            ct = ContentType.objects.get_for_model(Episode)
-            content_obj = get_object_or_404(Episode, pk=object_id)
-        elif content_type == 'shortstory':
-            ct = ContentType.objects.get_for_model(ShortStory)
-            content_obj = get_object_or_404(ShortStory, pk=object_id)
-        elif content_type == 'comment':
-            ct = ContentType.objects.get_for_model(Comment)
-            content_obj = get_object_or_404(Comment, pk=object_id)
-        else:
-            return JsonResponse({'success': False, 'error': 'Invalid content type'})
+
+        # Convert object_id to integer
+        try:
+            object_id = int(object_id)
+        except (ValueError, TypeError):
+            return JsonResponse({'success': False, 'error': 'Invalid object ID'})
+
+        # Get the content type and validate object exists
+        try:
+            if content_type == 'story':
+                ct = ContentType.objects.get_for_model(Story)
+                content_obj = Story.objects.get(pk=object_id)
+            elif content_type == 'episode':
+                ct = ContentType.objects.get_for_model(Episode)
+                content_obj = Episode.objects.get(pk=object_id)
+            elif content_type == 'shortstory':
+                ct = ContentType.objects.get_for_model(ShortStory)
+                content_obj = ShortStory.objects.get(pk=object_id)
+            elif content_type == 'comment':
+                ct = ContentType.objects.get_for_model(Comment)
+                content_obj = Comment.objects.get(pk=object_id)
+            else:
+                return JsonResponse({'success': False, 'error': 'Invalid content type'})
+        except (Story.DoesNotExist, Episode.DoesNotExist, ShortStory.DoesNotExist, Comment.DoesNotExist):
+            return JsonResponse({'success': False, 'error': 'Content not found'})
         
         client_ip = get_client_ip(request)
         user_agent = request.META.get('HTTP_USER_AGENT', '')
