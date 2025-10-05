@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const formData = {
                 content_type: 'episode',
-                object_id: {{ episode.id }},
+                object_id: '{{ episode.id }}',
                 username: document.getElementById('username').value,
                 email: document.getElementById('email').value,
                 comment: document.getElementById('comment').value

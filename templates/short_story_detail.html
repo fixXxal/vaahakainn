@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const formData = {
                 content_type: 'shortstory',
-                object_id: {{ short_story.id }},
+                object_id: '{{ short_story.id }}',
                 username: document.getElementById('username').value,
                 email: document.getElementById('email').value,
                 comment: document.getElementById('comment').value
