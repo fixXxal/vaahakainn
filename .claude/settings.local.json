@@ -8,7 +8,12 @@
       "Bash(curl:*)",
       "Bash(venv/Scripts/python.exe manage.py runserver 127.0.0.1:8000)",
       "Bash(venv/Scripts/python.exe manage.py makemigrations:*)",
-      "Bash(venv/Scripts/python.exe manage.py:*)"
+      "Bash(venv/Scripts/python.exe manage.py:*)",
+      "Bash(railway logs:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Read(//usr/bin/**)",
+      "Bash(/mnt/c/Program Files/Git/bin/git.exe add stories/models.py)"
     ],
     "deny": [],
     "ask": []
