@@ -154,11 +154,15 @@ class Comment(models.Model):
 
 	@property
 	def total_reactions(self):
-		return self.reactions.count()
+		from django.contrib.contenttypes.models import ContentType
+		ct = ContentType.objects.get_for_model(self)
+		return Reaction.objects.filter(content_type=ct, object_id=self.id).count()
 
 	@property
 	def heart_reactions(self):
-		return self.reactions.filter(reaction_type='heart').count()
+		from django.contrib.contenttypes.models import ContentType
+		ct = ContentType.objects.get_for_model(self)
+		return Reaction.objects.filter(content_type=ct, object_id=self.id, reaction_type='heart').count()
 
 class Reaction(models.Model):
 	REACTION_CHOICES = [
