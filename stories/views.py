@@ -98,19 +98,32 @@ def story_detail(request, pk):
     story = get_object_or_404(Story, pk=pk)
     episodes = story.episodes.order_by('episode_number')
     lang = request.session.get('lang', 'dv')
-    
-    # Get comments for this story
-    story_ct = ContentType.objects.get_for_model(Story)
-    comments = Comment.objects.filter(
-        content_type=story_ct, 
-        object_id=story.id, 
+
+    # Aggregate episode comments in a single query
+    episode_ct = ContentType.objects.get_for_model(Episode)
+    episode_ids = list(episodes.values_list('id', flat=True))
+
+    from collections import defaultdict
+    comments_by_episode_id = defaultdict(list)
+    for comment in Comment.objects.filter(
+        content_type=episode_ct,
+        object_id__in=episode_ids,
         is_approved=True
-    ).order_by('-created_at')
-    
+    ).order_by('object_id', '-created_at'):
+        comments_by_episode_id[comment.object_id].append(comment)
+
+    episodes_with_comments = [
+        {'episode': ep, 'comments': comments_by_episode_id[ep.id]}
+        for ep in episodes
+        if comments_by_episode_id[ep.id]
+    ]
+    total_comments = sum(len(v) for v in comments_by_episode_id.values())
+
     return render(request, 'story_detail.html', {
         'story': story,
         'episodes': episodes,
-        'comments': comments,
+        'episodes_with_comments': episodes_with_comments,
+        'total_comments': total_comments,
         'lang': lang,
     })
 

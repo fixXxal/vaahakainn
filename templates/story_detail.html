@@ -398,65 +398,58 @@
 
         <!-- Comments Section -->
         <div style="max-width: 800px; margin: 0 auto;">
-            <h3 style="font-size: 2em; margin-bottom: 1.5em; background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; font-weight: 700;">Reader Comments ({{ comments|length }})</h3>
-            
-            <!-- Comment Form -->
-            <div style="background: linear-gradient(135deg, #ffffff 0%, #f8e8f0 100%); padding: 2.5em; border-radius: 20px; border: 3px solid #c287a3; margin-bottom: 3em; position: relative;">
-                <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #c287a3; color: white; padding: 0.5em 1.5em; border-radius: 20px; font-weight: bold;">Share Your Thoughts</div>
-                
-                <form id="commentForm" style="margin-top: 1em;">
-                    <div style="margin-bottom: 1.5em;">
-                        <label for="username" style="display: block; margin-bottom: 0.5em; font-weight: 600; color: #c287a3;">Your Name</label>
-                        <input type="text" id="username" name="username" required minlength="2" maxlength="50" style="width: 100%; padding: 0.8em; border: 2px solid #c287a3; border-radius: 10px; font-size: 1em; box-sizing: border-box; font-family: 'Faruma', 'Georgia', serif;">
-                    </div>
-                    
-                    <div style="margin-bottom: 1.5em;">
-                        <label for="email" style="display: block; margin-bottom: 0.5em; font-weight: 600; color: #c287a3;">Email (Optional)</label>
-                        <input type="email" id="email" name="email" style="width: 100%; padding: 0.8em; border: 2px solid #c287a3; border-radius: 10px; font-size: 1em; box-sizing: border-box;">
-                    </div>
-                    
-                    <div style="margin-bottom: 1.5em;">
-                        <label for="comment" style="display: block; margin-bottom: 0.5em; font-weight: 600; color: #c287a3;">Your Comment</label>
-                        <textarea id="comment" name="comment" required minlength="5" rows="4" style="width: 100%; padding: 0.8em; border: 2px solid #c287a3; border-radius: 10px; font-size: 1em; box-sizing: border-box; font-family: 'Faruma', 'Georgia', serif; resize: vertical; direction: ltr; text-align: left;"></textarea>
-                    </div>
-                    
-                    <button type="submit" style="background: linear-gradient(135deg, #c287a3, #ff6b9d); color: white; border: none; padding: 1em 2em; border-radius: 25px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(194, 135, 163, 0.4);">
-                        💬 Post Comment
-                    </button>
-                </form>
-            </div>
-            
-            <!-- Comments List -->
-            <div id="commentsList">
-                {% for comment in comments %}
-                <div class="comment-item" style="background: #ffffff; border-radius: 15px; padding: 2em; margin-bottom: 1.5em; border: 2px solid var(--accent-gold); position: relative; box-shadow: 0 4px 15px rgba(252, 228, 236, 0.2);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1em;">
+            <h3 style="font-size: 2em; margin-bottom: 1.5em; background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; font-weight: 700;">Reader Comments ({{ total_comments }})</h3>
+
+            {% if episodes_with_comments %}
+                {% for item in episodes_with_comments %}
+                <div style="margin-bottom: 3em;">
+                    <!-- Episode header -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5em; padding: 0.8em 1.5em; background: linear-gradient(135deg, #f8e8f0, #ffffff); border-radius: 15px; border: 2px solid var(--accent-gold);">
                         <div>
-                            <strong style="color: #c287a3; font-size: 1.1em;">{{ comment.username }}</strong>
-                            {% if comment.is_featured %}
-                            <span style="background: gold; color: black; padding: 0.2em 0.5em; border-radius: 10px; font-size: 0.8em; margin-left: 0.5em;">⭐ Featured</span>
-                            {% endif %}
+                            <span style="color: var(--text-secondary); font-size: 0.85em; font-weight: 600;">Episode {{ item.episode.episode_number }}</span>
+                            <h4 class="faruma" style="margin: 0.2em 0 0; color: #c287a3; font-size: 1.1em; font-weight: 700; font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important; direction: rtl !important;">{{ item.episode.title_dv }}</h4>
                         </div>
-                        <span style="color: var(--text-secondary); font-size: 0.9em;">{{ comment.created_at|date:"M d, Y" }}</span>
+                        <a href="{% url 'episode_detail' item.episode.pk %}" style="background: linear-gradient(135deg, #c287a3, #b4316a); color: white; padding: 0.5em 1.2em; border-radius: 20px; text-decoration: none; font-size: 0.85em; font-weight: 600; white-space: nowrap;">
+                            Join discussion →
+                        </a>
                     </div>
-                    
-                    <p class="faruma" style="font-family: 'Faruma', 'Georgia', serif !important; line-height: 1.6; color: var(--text-primary); margin-bottom: 1em;">
-                        {{ comment.comment|linebreaks }}
-                    </p>
-                    
-                    <div style="display: flex; align-items: center; gap: 1em;">
-                        <button class="reaction-btn reaction-btn-small" data-reaction="heart" data-content-type="comment" data-object-id="{{ comment.id }}" style="background: transparent; border: 2px solid #c287a3; color: #c287a3; padding: 0.4em 0.8em; border-radius: 20px; font-size: 0.9em; cursor: pointer; transition: all 0.3s ease;">
-                            ❤️ <span class="reaction-count">{{ comment.heart_reactions }}</span>
-                        </button>
+
+                    {% for comment in item.comments %}
+                    <div class="comment-item" style="background: #ffffff; border-radius: 15px; padding: 2em; margin-bottom: 1.5em; border: 2px solid var(--accent-gold); position: relative; box-shadow: 0 4px 15px rgba(252, 228, 236, 0.2);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1em;">
+                            <div>
+                                <strong style="color: #c287a3; font-size: 1.1em;">{{ comment.username }}</strong>
+                                {% if comment.is_featured %}
+                                <span style="background: gold; color: black; padding: 0.2em 0.5em; border-radius: 10px; font-size: 0.8em; margin-left: 0.5em;">⭐ Featured</span>
+                                {% endif %}
+                            </div>
+                            <span style="color: var(--text-secondary); font-size: 0.9em;">{{ comment.created_at|date:"M d, Y" }}</span>
+                        </div>
+
+                        <p class="faruma" style="font-family: 'Faruma', 'Georgia', serif !important; line-height: 1.6; color: var(--text-primary); margin-bottom: 1em;">
+                            {{ comment.comment|linebreaks }}
+                        </p>
+
+                        <div style="display: flex; align-items: center; gap: 1em;">
+                            <button class="reaction-btn reaction-btn-small" data-reaction="heart" data-content-type="comment" data-object-id="{{ comment.id }}" style="background: transparent; border: 2px solid #c287a3; color: #c287a3; padding: 0.4em 0.8em; border-radius: 20px; font-size: 0.9em; cursor: pointer; transition: all 0.3s ease;">
+                                ❤️ <span class="reaction-count">{{ comment.heart_reactions }}</span>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                {% empty %}
-                <div style="text-align: center; padding: 3em; background: var(--accent-gold); border-radius: 20px; border: 2px dashed #c287a3;">
-                    <h4 style="background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1em; font-weight: 600;">No comments yet</h4>
-                    <p style="color: var(--text-primary);">Be the first to share your thoughts about this story!</p>
+                    {% endfor %}
                 </div>
                 {% endfor %}
+            {% else %}
+            <div style="text-align: center; padding: 3em; background: var(--accent-gold); border-radius: 20px; border: 2px dashed #c287a3;">
+                <h4 style="background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1em; font-weight: 600;">No comments yet</h4>
+                <p style="color: var(--text-primary); margin-bottom: 1.5em;">Read an episode and be the first to share your thoughts!</p>
+                {% if episodes %}
+                <a href="{% url 'episode_detail' episodes.first.pk %}" style="background: linear-gradient(135deg, #c287a3, #b4316a); color: white; padding: 0.8em 1.5em; border-radius: 25px; text-decoration: none; font-weight: 600;">
+                    📖 Start Reading
+                </a>
+                {% endif %}
             </div>
+            {% endif %}
         </div>
     </section>
 
@@ -660,53 +653,8 @@ document.querySelectorAll('[style*="animation: fadeInUp"]').forEach((card, index
 });
 
 
-// Comments and Reactions JavaScript
+// Reactions JavaScript
 document.addEventListener('DOMContentLoaded', function() {
-    // Handle comment form submission
-    const commentForm = document.getElementById('commentForm');
-    if (commentForm) {
-        commentForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                content_type: 'story',
-                object_id: '{{ story.id }}',
-                username: document.getElementById('username').value,
-                email: document.getElementById('email').value,
-                comment: document.getElementById('comment').value
-            };
-            
-            try {
-                const response = await fetch('/api/comments/add/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    // Show success message
-                    showMessage('Comment posted successfully! 💬', 'success');
-                    
-                    // Reset form
-                    commentForm.reset();
-                    
-                    // Reload page to show new comment
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 1500);
-                } else {
-                    showMessage('Error: ' + result.error, 'error');
-                }
-            } catch (error) {
-                showMessage('Network error. Please try again.', 'error');
-            }
-        });
-    }
-    
     // Handle reaction buttons
     document.querySelectorAll('.reaction-btn').forEach(button => {
         button.addEventListener('click', async function() {
