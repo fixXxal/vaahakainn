@@ -30,15 +30,13 @@ def episode_detail(request, pk):
 	episode = get_object_or_404(Episode, pk=pk)
 	lang = request.session.get('lang', 'dv')
 	
-	# Get the story this episode belongs to
-	story = episode.stories.first()  # Get the first story this episode belongs to
-	
+	story = episode.story
+
 	# Get previous and next episodes within the same story
 	previous_episode = None
 	next_episode = None
-	
+
 	if story:
-		# Get all episodes for this story, ordered by episode number
 		story_episodes = story.episodes.order_by('episode_number')
 		
 		# Find previous episode
@@ -99,31 +97,9 @@ def story_detail(request, pk):
     episodes = story.episodes.order_by('episode_number')
     lang = request.session.get('lang', 'dv')
 
-    # Aggregate episode comments in a single query
-    episode_ct = ContentType.objects.get_for_model(Episode)
-    episode_ids = list(episodes.values_list('id', flat=True))
-
-    from collections import defaultdict
-    comments_by_episode_id = defaultdict(list)
-    for comment in Comment.objects.filter(
-        content_type=episode_ct,
-        object_id__in=episode_ids,
-        is_approved=True
-    ).order_by('object_id', '-created_at'):
-        comments_by_episode_id[comment.object_id].append(comment)
-
-    episodes_with_comments = [
-        {'episode': ep, 'comments': comments_by_episode_id[ep.id]}
-        for ep in episodes
-        if comments_by_episode_id[ep.id]
-    ]
-    total_comments = sum(len(v) for v in comments_by_episode_id.values())
-
     return render(request, 'story_detail.html', {
         'story': story,
         'episodes': episodes,
-        'episodes_with_comments': episodes_with_comments,
-        'total_comments': total_comments,
         'lang': lang,
     })
 

@@ -50,14 +50,27 @@ class GenreAdmin(admin.ModelAdmin):
 			'all': ('admin/css/admin_rtl.css',)
 		}
 
+class EpisodeInline(admin.TabularInline):
+	model = Episode
+	extra = 1
+	fields = ('episode_number', 'title_dv', 'author', 'genre', 'published_date')
+	ordering = ['episode_number']
+	show_change_link = True
+
+	class Media:
+		css = {
+			'all': ('admin/css/admin_rtl.css',)
+		}
+
+
 @admin.register(Episode)
 class EpisodeAdmin(admin.ModelAdmin):
-	list_display = ('episode_number', 'title_dv', 'author', 'genre', 'published_date', 'total_comments', 'heart_reactions')
-	list_filter = ('author', 'genre', 'published_date')
+	list_display = ('episode_number', 'title_dv', 'story', 'author', 'genre', 'published_date', 'total_comments', 'heart_reactions')
+	list_filter = ('story', 'author', 'genre', 'published_date')
 	search_fields = ('title_dv',)
-	fields = ('episode_number', 'title_dv', 'content_dv', 'published_date', 'author', 'genre')
+	fields = ('story', 'episode_number', 'title_dv', 'content_dv', 'published_date', 'author', 'genre')
 	inlines = [CommentInline, ReactionInline]
-	
+
 	class Media:
 		css = {
 			'all': ('admin/css/admin_rtl.css',)
@@ -79,7 +92,7 @@ class StoryAdmin(admin.ModelAdmin):
 			'description': 'Story description in both languages'
 		}),
 		('Story Details', {
-			'fields': ('category', 'status', 'cover_image', 'release_date', 'is_featured', 'episodes'),
+			'fields': ('category', 'status', 'cover_image', 'release_date', 'is_featured'),
 		}),
 		('Legacy Fields (Auto-populated)', {
 			'fields': ('title', 'description'),
@@ -88,14 +101,13 @@ class StoryAdmin(admin.ModelAdmin):
 		}),
 	)
 	readonly_fields = ('title', 'description')
-	inlines = [CommentInline, ReactionInline]
-	
+	inlines = [EpisodeInline, CommentInline, ReactionInline]
+
 	def display_title(self, obj):
 		title = obj.title_dv or obj.title_en or obj.title or f"Story #{obj.id}"
 		return title
 	display_title.short_description = 'Title'
-	
-	
+
 	class Media:
 		css = {
 			'all': ('admin/css/admin_rtl.css',)

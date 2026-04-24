@@ -396,61 +396,6 @@
             </div>
         </div>
 
-        <!-- Comments Section -->
-        <div style="max-width: 800px; margin: 0 auto;">
-            <h3 style="font-size: 2em; margin-bottom: 1.5em; background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; font-weight: 700;">Reader Comments ({{ total_comments }})</h3>
-
-            {% if episodes_with_comments %}
-                {% for item in episodes_with_comments %}
-                <div style="margin-bottom: 3em;">
-                    <!-- Episode header -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5em; padding: 0.8em 1.5em; background: linear-gradient(135deg, #f8e8f0, #ffffff); border-radius: 15px; border: 2px solid var(--accent-gold);">
-                        <div>
-                            <span style="color: var(--text-secondary); font-size: 0.85em; font-weight: 600;">Episode {{ item.episode.episode_number }}</span>
-                            <h4 class="faruma" style="margin: 0.2em 0 0; color: #c287a3; font-size: 1.1em; font-weight: 700; font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important; direction: rtl !important;">{{ item.episode.title_dv }}</h4>
-                        </div>
-                        <a href="{% url 'episode_detail' item.episode.pk %}" style="background: linear-gradient(135deg, #c287a3, #b4316a); color: white; padding: 0.5em 1.2em; border-radius: 20px; text-decoration: none; font-size: 0.85em; font-weight: 600; white-space: nowrap;">
-                            Join discussion →
-                        </a>
-                    </div>
-
-                    {% for comment in item.comments %}
-                    <div class="comment-item" style="background: #ffffff; border-radius: 15px; padding: 2em; margin-bottom: 1.5em; border: 2px solid var(--accent-gold); position: relative; box-shadow: 0 4px 15px rgba(252, 228, 236, 0.2);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1em;">
-                            <div>
-                                <strong style="color: #c287a3; font-size: 1.1em;">{{ comment.username }}</strong>
-                                {% if comment.is_featured %}
-                                <span style="background: gold; color: black; padding: 0.2em 0.5em; border-radius: 10px; font-size: 0.8em; margin-left: 0.5em;">⭐ Featured</span>
-                                {% endif %}
-                            </div>
-                            <span style="color: var(--text-secondary); font-size: 0.9em;">{{ comment.created_at|date:"M d, Y" }}</span>
-                        </div>
-
-                        <p class="faruma" style="font-family: 'Faruma', 'Georgia', serif !important; line-height: 1.6; color: var(--text-primary); margin-bottom: 1em;">
-                            {{ comment.comment|linebreaks }}
-                        </p>
-
-                        <div style="display: flex; align-items: center; gap: 1em;">
-                            <button class="reaction-btn reaction-btn-small" data-reaction="heart" data-content-type="comment" data-object-id="{{ comment.id }}" style="background: transparent; border: 2px solid #c287a3; color: #c287a3; padding: 0.4em 0.8em; border-radius: 20px; font-size: 0.9em; cursor: pointer; transition: all 0.3s ease;">
-                                ❤️ <span class="reaction-count">{{ comment.heart_reactions }}</span>
-                            </button>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-                {% endfor %}
-            {% else %}
-            <div style="text-align: center; padding: 3em; background: var(--accent-gold); border-radius: 20px; border: 2px dashed #c287a3;">
-                <h4 style="background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1em; font-weight: 600;">No comments yet</h4>
-                <p style="color: var(--text-primary); margin-bottom: 1.5em;">Read an episode and be the first to share your thoughts!</p>
-                {% if episodes %}
-                <a href="{% url 'episode_detail' episodes.first.pk %}" style="background: linear-gradient(135deg, #c287a3, #b4316a); color: white; padding: 0.8em 1.5em; border-radius: 25px; text-decoration: none; font-weight: 600;">
-                    📖 Start Reading
-                </a>
-                {% endif %}
-            </div>
-            {% endif %}
-        </div>
     </section>
 
 </div>

@@ -40,6 +40,7 @@ class Genre(models.Model):
 		return self.name
 
 class Episode(models.Model):
+	story = models.ForeignKey('Story', on_delete=models.CASCADE, related_name='episodes', null=True, blank=True)
 	episode_number = models.PositiveIntegerField()
 	title_dv = models.CharField(max_length=200)
 	title_en = models.CharField(max_length=200)
@@ -89,7 +90,6 @@ class Story(models.Model):
 	cover_image = CloudinaryField('image', blank=True, null=True)
 	release_date = models.DateField()
 	category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name='stories')
-	episodes = models.ManyToManyField(Episode, related_name='stories')
 	is_featured = models.BooleanField(default=False, help_text='Feature this story on homepage')
 	status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='ongoing', help_text='Story completion status')
 

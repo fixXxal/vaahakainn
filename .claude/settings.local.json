@@ -14,7 +14,8 @@
       "Bash(git commit:*)",
       "Read(//usr/bin/**)",
       "Bash(/mnt/c/Program Files/Git/bin/git.exe add stories/models.py)",
-      "Bash(sqlite3 /mnt/c/vaahakain/db.sqlite3 \".schema\")"
+      "Bash(sqlite3 /mnt/c/vaahakain/db.sqlite3 \".schema\")",
+      "Bash(python *)"
     ],
     "deny": [],
     "ask": []
