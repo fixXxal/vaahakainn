@@ -171,10 +171,21 @@
         applyTranslations();
     }
 
+    function attachToggleButton() {
+        var btn = document.getElementById('lang-toggle');
+        if (btn) {
+            btn.addEventListener('click', toggleLanguage);
+        }
+    }
+
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', applyTranslations);
+        document.addEventListener('DOMContentLoaded', function () {
+            applyTranslations();
+            attachToggleButton();
+        });
     } else {
         applyTranslations();
+        attachToggleButton();
     }
 
     window.t = t;
