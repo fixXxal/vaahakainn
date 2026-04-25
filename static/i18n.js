@@ -194,6 +194,13 @@
             }
         });
 
+        // Force episode badge to always show number first (LTR)
+        document.querySelectorAll('[data-i18n="episodes_lower"]').forEach(function(span) {
+            var parent = span.parentNode;
+            parent.style.direction = 'ltr';
+            parent.style.unicodeBidi = 'bidi-override';
+        });
+
         // Comment form RTL/LTR switching
         var commentForm = document.getElementById('commentForm');
         if (commentForm) {
