@@ -9,13 +9,13 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/static/logovhk.PNG",
+      "src": "/static/vhkin.PNG",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/static/logovhk.PNG",
+      "src": "/static/vhkin.PNG",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -27,7 +27,7 @@
   "scope": "/",
   "screenshots": [
     {
-      "src": "/static/logovhk.PNG",
+      "src": "/static/vhkin.PNG",
       "sizes": "1280x720",
       "type": "image/png",
       "platform": "wide"
@@ -41,7 +41,7 @@
       "url": "/",
       "icons": [
         {
-          "src": "/static/logovhk.PNG",
+          "src": "/static/vhkin.PNG",
           "sizes": "96x96"
         }
       ]
@@ -53,7 +53,7 @@
       "url": "/stories/",
       "icons": [
         {
-          "src": "/static/logovhk.PNG",
+          "src": "/static/vhkin.PNG",
           "sizes": "96x96"
         }
       ]

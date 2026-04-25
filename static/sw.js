@@ -7,7 +7,7 @@ const urlsToCache = [
   '/static/styles.css',
   '/static/enhanced-interactions.js',
   '/static/fonts/faruma.css',
-  '/static/logovhk.PNG',
+  '/static/vhkin.PNG',
   '/static/manifest.json'
 ];
 
@@ -202,14 +202,14 @@ self.addEventListener('push', function(event) {
     
     const options = {
       body: data.body || 'New story available now!',
-      icon: '/static/logovhk.PNG',
-      badge: '/static/logovhk.PNG',
+      icon: '/static/vhkin.PNG',
+      badge: '/static/vhkin.PNG',
       data: data,
       actions: [
         {
           action: 'open',
           title: 'Open',
-          icon: '/static/logovhk.PNG'
+          icon: '/static/vhkin.PNG'
         },
         {
           action: 'close',
