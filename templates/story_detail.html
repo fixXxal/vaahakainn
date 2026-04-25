@@ -181,7 +181,7 @@
             {% if story.description_dv %}
             <div id="description-dv" class="description-content" style="max-width: 800px; margin: 0 auto; background: linear-gradient(135deg, #ffffff 0%, #f8e8f0 100%); padding: 3em; border-radius: 25px; box-shadow: 0 15px 40px rgba(252, 228, 236, 0.4); border: 4px solid #c287a3; position: relative; {% if story.description_en %}display: {% if story.description_dv %}block{% else %}none{% endif %};{% endif %}">
                 <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #c287a3; color: white; padding: 0.5em 1.5em; border-radius: 20px; font-weight: bold;">
-                    <span style="margin-right: 0.5em;">🇲🇻</span>Description in Dhivehi
+                    <span style="margin-right: 0.5em;">🇲🇻</span><span data-i18n="desc_dhivehi">Description in Dhivehi</span>
                 </div>
                 <p class="faruma" style="font-size: 1.5em; line-height: 1.8; color: #c287a3; margin: 0; text-align: center; font-weight: 600; font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important; direction: rtl !important; unicode-bidi: embed; text-rendering: optimizeLegibility;">
                     {{ story.description_dv|linebreaks }}
@@ -192,7 +192,7 @@
             <!-- English Description -->
             {% if story.description_en %}
             <div id="description-en" class="description-content" style="max-width: 800px; margin: 0 auto; background: linear-gradient(135deg, #ffffff 0%, #f8e8f0 100%); padding: 3em; border-radius: 25px; box-shadow: 0 15px 40px rgba(252, 228, 236, 0.4); border: 4px solid #c287a3; position: relative; {% if story.description_dv %}display: none;{% endif %}">
-                <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #c287a3; color: white; padding: 0.5em 1.5em; border-radius: 20px; font-weight: bold;">
+                <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #c287a3; color: white; padding: 0.5em 1.5em; border-radius: 20px; font-weight: bold;" data-i18n="description">
                     Description
                 </div>
                 <p style="font-size: 1.3em; line-height: 1.8; color: #c287a3; margin: 0; text-align: center; font-weight: 600; font-family: 'Georgia', serif; direction: ltr !important; text-align: justify;">
@@ -204,7 +204,7 @@
             <!-- Fallback for legacy description -->
             {% if not story.description_dv and not story.description_en and story.description %}
             <div style="max-width: 800px; margin: 0 auto; background: linear-gradient(135deg, #ffffff 0%, #f8e8f0 100%); padding: 3em; border-radius: 25px; box-shadow: 0 15px 40px rgba(252, 228, 236, 0.4); border: 4px solid #c287a3; position: relative;">
-                <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); font-size: 1.2em; background: var(--background-primary); padding: 0 15px; color: #c287a3; font-weight: bold;">Description</div>
+                <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); font-size: 1.2em; background: var(--background-primary); padding: 0 15px; color: #c287a3; font-weight: bold;" data-i18n="description">Description</div>
                 <p class="faruma" style="font-size: 1.5em; line-height: 1.8; color: #c287a3; margin: 0; text-align: center; font-weight: 600; font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important; direction: rtl !important; unicode-bidi: embed; text-rendering: optimizeLegibility;">
                     {{ story.description }}
                 </p>
@@ -221,7 +221,7 @@
         <!-- Section Header -->
         <div style="text-align: center; margin-bottom: 2rem; position: relative;">
             <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--text-primary); font-weight: 700;">
-                <span style="color: var(--text-primary); padding: 0.3rem 1rem; background: var(--gradient-primary); border-radius: 20px; border: 2px solid var(--accent-rose); box-shadow: 0 4px 12px rgba(252, 228, 236, 0.3); font-size: 1rem;">
+                <span style="color: var(--text-primary); padding: 0.3rem 1rem; background: var(--gradient-primary); border-radius: 20px; border: 2px solid var(--accent-rose); box-shadow: 0 4px 12px rgba(252, 228, 236, 0.3); font-size: 1rem;" data-i18n="story_chapters">
                     Story Chapters
                 </span>
             </h2>
@@ -265,7 +265,7 @@
                 
                 <!-- Episode Number Badge -->
                 <div style="position: absolute; top: -5px; right: 20px; background: var(--primary-dark); color: var(--background-primary); padding: 0.3em 1em; border-radius: 0 0 10px 10px; font-weight: bold; font-size: 0.9em; z-index: 2;">
-                    Episode {{ episode.episode_number }}
+                    <span data-i18n="episode_prefix">Episode</span> {{ episode.episode_number }}
                 </div>
                 
                 <!-- Episode Content -->
@@ -344,7 +344,7 @@
                         
                         <!-- Button Content -->
                         <span style="font-size: 1.1em; z-index: 2; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));">📜</span>
-                        <span style="z-index: 2; letter-spacing: 1px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4)); font-family: serif;">READ</span>
+                        <span style="z-index: 2; letter-spacing: 1px; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4)); font-family: serif;" data-i18n="read">READ</span>
                     </a>
                     
                     <!-- CSS Animations -->
@@ -373,8 +373,8 @@
         {% else %}
         <!-- No Episodes State -->
         <div style="text-align: center; padding: 4em 2em; background: var(--background-secondary); border-radius: 20px; border: 2px dashed var(--accent-gold); margin: 2em auto; max-width: 600px;">
-            <h3 style="font-size: 2em; background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1em; font-weight: 700;">No episodes available</h3>
-            <p style="font-size: 1.1em; color: var(--text-primary);">
+            <h3 style="font-size: 2em; background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1em; font-weight: 700;" data-i18n="no_episodes">No episodes available</h3>
+            <p style="font-size: 1.1em; color: var(--text-primary);" data-i18n="no_episodes_text">
                 We are working on adding episodes for this story soon. Stay tuned!
             </p>
         </div>
@@ -385,7 +385,7 @@
     <section style="margin-top: 4em; padding-top: 3em; border-top: 3px solid var(--accent-gold);">
         <!-- Story Reactions -->
         <div style="text-align: center; margin-bottom: 3em;">
-            <h3 style="font-size: 1.8em; margin-bottom: 1em; background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">How did you like this story?</h3>
+            <h3 style="font-size: 1.8em; margin-bottom: 1em; background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;" data-i18n="how_story">How did you like this story?</h3>
             <div style="display: flex; justify-content: center; gap: 1em; flex-wrap: wrap;">
                 <button class="reaction-btn" data-reaction="heart" data-content-type="story" data-object-id="{{ story.id }}" style="background: linear-gradient(135deg, #ff6b9d, #c287a3); color: white; border: none; padding: 0.8em 1.5em; border-radius: 25px; font-size: 1.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(194, 135, 163, 0.3);">
                     ❤️ <span class="reaction-count">{{ story.heart_reactions }}</span>
@@ -488,35 +488,34 @@ class StoryEpisodePagination {
 
     generatePaginationHTML() {
         let html = '';
-        
-        // Previous button
-        html += `<button class="pagination-btn" data-page="${this.currentPage - 1}" ${this.currentPage === 1 ? 'disabled' : ''}>
-                    ← Previous
+        const prevLabel = window.t ? window.t('prev') : '← Previous';
+        const nextLabel = window.t ? window.t('next') : 'Next →';
+
+        html += `<button class="pagination-btn" data-page="${this.currentPage - 1}" data-i18n="prev" ${this.currentPage === 1 ? 'disabled' : ''}>
+                    ${prevLabel}
                 </button>`;
-        
-        // Page range buttons
+
         for (let i = 1; i <= this.totalPages; i++) {
             const start = (i - 1) * this.episodesPerPage + 1;
             const end = Math.min(i * this.episodesPerPage, this.totalEpisodes);
             const isActive = i === this.currentPage;
-            
+
             html += `<button class="pagination-btn ${isActive ? 'active' : ''}" data-page="${i}">
                         ${start}–${end}
                     </button>`;
         }
-        
-        // Next button
-        html += `<button class="pagination-btn" data-page="${this.currentPage + 1}" ${this.currentPage === this.totalPages ? 'disabled' : ''}>
-                    Next →
+
+        html += `<button class="pagination-btn" data-page="${this.currentPage + 1}" data-i18n="next" ${this.currentPage === this.totalPages ? 'disabled' : ''}>
+                    ${nextLabel}
                 </button>`;
-        
+
         return html;
     }
 
     addEventListeners(containerId) {
         const container = document.getElementById(containerId);
         const buttons = container.querySelectorAll('.pagination-btn[data-page]');
-        
+
         buttons.forEach(button => {
             button.addEventListener('click', (e) => {
                 const page = parseInt(e.target.getAttribute('data-page'));
@@ -628,21 +627,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (result.action === 'added') {
                         countSpan.textContent = currentCount + 1;
                         this.style.transform = 'scale(1.1)';
-                        showMessage('Reaction added! ❤️', 'success');
+                        showMessage(window.t ? window.t('reaction_added') : 'Reaction added! ❤️', 'success');
                     } else {
                         countSpan.textContent = Math.max(0, currentCount - 1);
                         this.style.transform = 'scale(0.9)';
-                        showMessage('Reaction removed', 'info');
+                        showMessage(window.t ? window.t('reaction_removed') : 'Reaction removed', 'info');
                     }
-                    
+
                     setTimeout(() => {
                         this.style.transform = 'scale(1)';
                     }, 200);
                 } else {
-                    showMessage('Error: ' + result.error, 'error');
+                    showMessage((window.t ? window.t('error_prefix') : 'Error: ') + result.error, 'error');
                 }
             } catch (error) {
-                showMessage('Network error. Please try again.', 'error');
+                showMessage(window.t ? window.t('network_error') : 'Network error. Please try again.', 'error');
             }
         });
     });

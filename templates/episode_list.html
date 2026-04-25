@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container">
-    <h1 style="font-size: 4em; margin-bottom: 1em; background: linear-gradient(135deg, #c287a3, #b4316a, #a52a5c); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; text-align: center;">
+    <h1 style="font-size: 4em; margin-bottom: 1em; background: linear-gradient(135deg, #c287a3, #b4316a, #a52a5c); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; text-align: center;" data-i18n="episodes_title">
         Episodes
     </h1>
 
@@ -48,7 +48,7 @@
                              font-size: 0.9em; 
                              color: var(--text-primary); 
                              font-weight: 600;">
-                    📖 Episode {{ episode.episode_number }}
+                    📖 <span data-i18n="episode_prefix">Episode</span> {{ episode.episode_number }}
                 </span>
                 {% if episode.author %}
                 <span style="background: linear-gradient(135deg, #f4e4c1, var(--accent-gold)); 
@@ -99,14 +99,14 @@
                    onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 20px rgba(194, 135, 163, 0.4)'"
                    onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 5px 15px rgba(194, 135, 163, 0.3)'">
                     <span>📚</span>
-                    <span>Read Episode</span>
+                    <span data-i18n="read_episode">Read Episode</span>
                 </a>
             </div>
         </div>
         {% empty %}
         <div style="text-align: center; padding: 3em; background: var(--gradient-tertiary); border-radius: 20px; border: 3px solid var(--accent-gold);">
-            <h2 style="color: var(--text-primary); margin-bottom: 1em;">No episodes found</h2>
-            <p style="color: var(--text-primary);">Check back soon for new episodes!</p>
+            <h2 style="color: var(--text-primary); margin-bottom: 1em;" data-i18n="no_episodes_found">No episodes found</h2>
+            <p style="color: var(--text-primary);" data-i18n="check_back">Check back soon for new episodes!</p>
         </div>
         {% endfor %}
     </div>
@@ -117,10 +117,10 @@
     </div>
     {% else %}
     <div style="text-align: center; padding: 4em; background: var(--gradient-tertiary); border-radius: 25px; border: 4px solid var(--accent-gold); margin: 3em 0;">
-        <h2 style="color: var(--text-primary); margin-bottom: 1.5em;">No episodes available</h2>
-        <p style="color: var(--text-primary); font-size: 1.2em;">New episodes coming soon!</p>
+        <h2 style="color: var(--text-primary); margin-bottom: 1.5em;" data-i18n="no_episodes">No episodes available</h2>
+        <p style="color: var(--text-primary); font-size: 1.2em;" data-i18n="new_episodes">New episodes coming soon!</p>
         <div style="margin-top: 2em;">
-            <a href="/" style="display: inline-flex; align-items: center; gap: 0.5em; background: linear-gradient(135deg, #c287a3, #b4316a); color: #ffffff; padding: 1em 2em; border-radius: 25px; text-decoration: none; font-weight: 700;">
+            <a href="/" style="display: inline-flex; align-items: center; gap: 0.5em; background: linear-gradient(135deg, #c287a3, #b4316a); color: #ffffff; padding: 1em 2em; border-radius: 25px; text-decoration: none; font-weight: 700;" data-i18n="back_to_home_icon">
                 🏠 Back to Home
             </a>
         </div>
@@ -215,28 +215,27 @@ class EpisodePagination {
 
     generatePaginationHTML() {
         let html = '';
-        
-        // Previous button
-        html += `<button class="pagination-btn" data-page="${this.currentPage - 1}" ${this.currentPage === 1 ? 'disabled' : ''}>
-                    ← Previous
+        const prevLabel = window.t ? window.t('prev') : '← Previous';
+        const nextLabel = window.t ? window.t('next') : 'Next →';
+
+        html += `<button class="pagination-btn" data-page="${this.currentPage - 1}" data-i18n="prev" ${this.currentPage === 1 ? 'disabled' : ''}>
+                    ${prevLabel}
                 </button>`;
-        
-        // Page range buttons
+
         for (let i = 1; i <= this.totalPages; i++) {
             const start = (i - 1) * this.episodesPerPage + 1;
             const end = Math.min(i * this.episodesPerPage, this.totalEpisodes);
             const isActive = i === this.currentPage;
-            
+
             html += `<button class="pagination-btn ${isActive ? 'active' : ''}" data-page="${i}">
                         ${start}–${end}
                     </button>`;
         }
-        
-        // Next button
-        html += `<button class="pagination-btn" data-page="${this.currentPage + 1}" ${this.currentPage === this.totalPages ? 'disabled' : ''}>
-                    Next →
+
+        html += `<button class="pagination-btn" data-page="${this.currentPage + 1}" data-i18n="next" ${this.currentPage === this.totalPages ? 'disabled' : ''}>
+                    ${nextLabel}
                 </button>`;
-        
+
         return html;
     }
 

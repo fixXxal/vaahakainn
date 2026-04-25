@@ -7,7 +7,7 @@
     <div style="text-align: center; margin-bottom: 3em; position: relative;">
         
         <p style="font-size: 1.2em; margin-bottom: 0.5em; text-align: center; color: var(--text-primary); opacity: 0.7; font-weight: 600;">
-            Episode {{ episode.episode_number }}
+            <span data-i18n="episode_prefix">Episode</span> {{ episode.episode_number }}
         </p>
         <h1 class="faruma" style="font-size: 1.5em; margin-bottom: 1em; background: linear-gradient(135deg, #c287a3, #b4316a, #a52a5c); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; text-align: center !important; direction: rtl !important;">
             {{ episode.title_dv }}
@@ -26,25 +26,25 @@
     <div style="text-align: center; margin-top: 3em; display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5em; padding: 1.5em; background: var(--gradient-soft); border-radius: 20px; border: 2px solid var(--accent-gold); box-shadow: 0 6px 20px rgba(252, 228, 236, 0.3);">
         <!-- Back Button -->
         {% if story %}
-        <a href="{% url 'story_detail' story.pk %}" class="btn" style="background: var(--accent-amber); color: var(--text-primary); border: 2px solid var(--accent-gold);">
+        <a href="{% url 'story_detail' story.pk %}" class="btn" style="background: var(--accent-amber); color: var(--text-primary); border: 2px solid var(--accent-gold);" data-i18n="back_to_story">
             ← Back to Story
         </a>
         {% else %}
-        <a href="/" class="btn" style="background: var(--accent-amber); color: var(--text-primary); border: 2px solid var(--accent-gold);">
+        <a href="/" class="btn" style="background: var(--accent-amber); color: var(--text-primary); border: 2px solid var(--accent-gold);" data-i18n="back_home_btn">
             ← Back to Home
         </a>
         {% endif %}
-        
+
         <!-- Previous Episode -->
         {% if previous_episode %}
-        <a href="{% url 'episode_detail' previous_episode.pk %}" class="btn" style="background: var(--accent-gold); color: var(--text-primary); border: 2px solid var(--accent-amber);">
+        <a href="{% url 'episode_detail' previous_episode.pk %}" class="btn" style="background: var(--accent-gold); color: var(--text-primary); border: 2px solid var(--accent-amber);" data-i18n="prev">
             ← Previous
         </a>
         {% endif %}
-        
+
         <!-- Next Episode -->
         {% if next_episode %}
-        <a href="{% url 'episode_detail' next_episode.pk %}" class="btn" style="background: var(--accent-gold); color: var(--text-primary); border: 2px solid var(--accent-amber);">
+        <a href="{% url 'episode_detail' next_episode.pk %}" class="btn" style="background: var(--accent-gold); color: var(--text-primary); border: 2px solid var(--accent-amber);" data-i18n="next">
             Next →
         </a>
         {% endif %}
@@ -54,7 +54,7 @@
     <section style="margin-top: 4em; padding-top: 3em; border-top: 3px solid var(--accent-gold);">
         <!-- Episode Reactions -->
         <div style="text-align: center; margin-bottom: 3em;">
-            <h3 style="font-size: 1.8em; margin-bottom: 1em; background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">How did you like this episode?</h3>
+            <h3 style="font-size: 1.8em; margin-bottom: 1em; background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;" data-i18n="how_episode">How did you like this episode?</h3>
             <div style="display: flex; justify-content: center; gap: 1em; flex-wrap: wrap;">
                 <button class="reaction-btn" data-reaction="heart" data-content-type="episode" data-object-id="{{ episode.id }}" style="background: linear-gradient(135deg, #ff6b9d, #c287a3); color: white; border: none; padding: 0.8em 1.5em; border-radius: 25px; font-size: 1.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(194, 135, 163, 0.3);">
                     ❤️ <span class="reaction-count">{{ episode.heart_reactions }}</span>
@@ -67,29 +67,29 @@
 
         <!-- Comments Section -->
         <div style="max-width: 800px; margin: 0 auto;">
-            <h3 style="font-size: 2em; margin-bottom: 1.5em; background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; font-weight: 700;">Reader Comments ({{ comments|length }})</h3>
+            <h3 style="font-size: 2em; margin-bottom: 1.5em; background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; font-weight: 700;"><span data-i18n="reader_comments">Reader Comments</span> ({{ comments|length }})</h3>
             
             <!-- Comment Form -->
             <div style="background: linear-gradient(135deg, #ffffff 0%, #f8e8f0 100%); padding: 2.5em; border-radius: 20px; border: 3px solid #c287a3; margin-bottom: 3em; position: relative;">
-                <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #c287a3; color: white; padding: 0.5em 1.5em; border-radius: 20px; font-weight: bold;">Share Your Thoughts</div>
+                <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #c287a3; color: white; padding: 0.5em 1.5em; border-radius: 20px; font-weight: bold;" data-i18n="share_thoughts">Share Your Thoughts</div>
                 
                 <form id="commentForm" style="margin-top: 1em;">
                     <div style="margin-bottom: 1.5em;">
-                        <label for="username" style="display: block; margin-bottom: 0.5em; font-weight: 600; color: #c287a3;">Your Name</label>
+                        <label for="username" style="display: block; margin-bottom: 0.5em; font-weight: 600; color: #c287a3;" data-i18n="your_name">Your Name</label>
                         <input type="text" id="username" name="username" required minlength="2" maxlength="50" style="width: 100%; padding: 0.8em; border: 2px solid #c287a3; border-radius: 10px; font-size: 1em; box-sizing: border-box; font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important;">
                     </div>
                     
                     <div style="margin-bottom: 1.5em;">
-                        <label for="email" style="display: block; margin-bottom: 0.5em; font-weight: 600; color: #c287a3;">Email (Optional)</label>
+                        <label for="email" style="display: block; margin-bottom: 0.5em; font-weight: 600; color: #c287a3;" data-i18n="email_optional">Email (Optional)</label>
                         <input type="email" id="email" name="email" style="width: 100%; padding: 0.8em; border: 2px solid #c287a3; border-radius: 10px; font-size: 1em; box-sizing: border-box;">
                     </div>
                     
                     <div style="margin-bottom: 1.5em;">
-                        <label for="comment" style="display: block; margin-bottom: 0.5em; font-weight: 600; color: #c287a3;">Your Comment</label>
+                        <label for="comment" style="display: block; margin-bottom: 0.5em; font-weight: 600; color: #c287a3;" data-i18n="your_comment">Your Comment</label>
                         <textarea id="comment" name="comment" required minlength="5" rows="4" style="width: 100%; padding: 0.8em; border: 2px solid #c287a3; border-radius: 10px; font-size: 1em; box-sizing: border-box; font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important; resize: vertical; direction: ltr; text-align: left;"></textarea>
                     </div>
                     
-                    <button type="submit" style="background: linear-gradient(135deg, #c287a3, #ff6b9d); color: white; border: none; padding: 1em 2em; border-radius: 25px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(194, 135, 163, 0.4);">
+                    <button type="submit" style="background: linear-gradient(135deg, #c287a3, #ff6b9d); color: white; border: none; padding: 1em 2em; border-radius: 25px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(194, 135, 163, 0.4);" data-i18n="post_comment">
                         💬 Post Comment
                     </button>
                 </form>
@@ -103,7 +103,7 @@
                         <div>
                             <strong style="color: #c287a3; font-size: 1.1em;">{{ comment.username }}</strong>
                             {% if comment.is_featured %}
-                            <span style="background: gold; color: black; padding: 0.2em 0.5em; border-radius: 10px; font-size: 0.8em; margin-left: 0.5em;">⭐ Featured</span>
+                            <span style="background: gold; color: black; padding: 0.2em 0.5em; border-radius: 10px; font-size: 0.8em; margin-left: 0.5em;" data-i18n="featured_label">⭐ Featured</span>
                             {% endif %}
                         </div>
                         <span style="color: var(--text-secondary); font-size: 0.9em;">{{ comment.created_at|date:"M d, Y" }}</span>
@@ -121,8 +121,8 @@
                 </div>
                 {% empty %}
                 <div style="text-align: center; padding: 3em; background: var(--accent-gold); border-radius: 20px; border: 2px dashed #c287a3;">
-                    <h4 style="background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1em; font-weight: 600;">No comments yet</h4>
-                    <p style="color: var(--text-primary);">Be the first to share your thoughts about this episode!</p>
+                    <h4 style="background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1em; font-weight: 600;" data-i18n="no_comments">No comments yet</h4>
+                    <p style="color: var(--text-primary);" data-i18n="be_first">Be the first to share your thoughts about this episode!</p>
                 </div>
                 {% endfor %}
             </div>
@@ -172,24 +172,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (result.success) {
                     // Show success message
-                    showMessage('Comment posted successfully! 💬', 'success');
-                    
+                    showMessage(window.t ? window.t('comment_posted') : 'Comment posted successfully! 💬', 'success');
+
                     // Reset form
                     commentForm.reset();
-                    
+
                     // Reload page to show new comment
                     setTimeout(() => {
                         window.location.reload();
                     }, 1500);
                 } else {
-                    showMessage('Error: ' + result.error, 'error');
+                    showMessage((window.t ? window.t('error_prefix') : 'Error: ') + result.error, 'error');
                 }
             } catch (error) {
-                showMessage('Network error. Please try again.', 'error');
+                showMessage(window.t ? window.t('network_error') : 'Network error. Please try again.', 'error');
             }
         });
     }
-    
+
     // Handle reaction buttons
     document.querySelectorAll('.reaction-btn').forEach(button => {
         button.addEventListener('click', async function() {
@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 reaction_type: this.dataset.reaction,
                 username: document.getElementById('username')?.value || ''
             };
-            
+
             try {
                 const response = await fetch('/api/reactions/add/', {
                     method: 'POST',
@@ -208,31 +208,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     body: JSON.stringify(reactionData)
                 });
-                
+
                 const result = await response.json();
-                
+
                 if (result.success) {
                     const countSpan = this.querySelector('.reaction-count');
                     const currentCount = parseInt(countSpan.textContent) || 0;
-                    
+
                     if (result.action === 'added') {
                         countSpan.textContent = currentCount + 1;
                         this.style.transform = 'scale(1.1)';
-                        showMessage('Reaction added! ❤️', 'success');
+                        showMessage(window.t ? window.t('reaction_added') : 'Reaction added! ❤️', 'success');
                     } else {
                         countSpan.textContent = Math.max(0, currentCount - 1);
                         this.style.transform = 'scale(0.9)';
-                        showMessage('Reaction removed', 'info');
+                        showMessage(window.t ? window.t('reaction_removed') : 'Reaction removed', 'info');
                     }
-                    
+
                     setTimeout(() => {
                         this.style.transform = 'scale(1)';
                     }, 200);
                 } else {
-                    showMessage('Error: ' + result.error, 'error');
+                    showMessage((window.t ? window.t('error_prefix') : 'Error: ') + result.error, 'error');
                 }
             } catch (error) {
-                showMessage('Network error. Please try again.', 'error');
+                showMessage(window.t ? window.t('network_error') : 'Network error. Please try again.', 'error');
             }
         });
     });
