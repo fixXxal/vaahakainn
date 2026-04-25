@@ -206,10 +206,10 @@ header nav::after {
 .site-title {
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    justify-content: flex-start !important;
+    position: relative;
+    left: auto;
+    transform: none;
     z-index: 2;
 }
 
@@ -850,14 +850,14 @@ li::before {
         box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
     }
     
-    /* Mobile Site Title - Centered and Responsive */
+    /* Mobile Site Title - Left Aligned */
     .site-title {
         display: flex !important;
         align-items: center !important;
-        justify-content: center !important;
-        position: absolute !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
+        justify-content: flex-start !important;
+        position: relative !important;
+        left: auto !important;
+        transform: none !important;
         z-index: 2 !important;
     }
     
