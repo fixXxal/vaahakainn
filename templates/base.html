@@ -16,10 +16,10 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="/static/vhkin.PNG">
     
-    <!-- Restore dark theme before first paint to prevent white flash -->
+    <!-- Apply theme before first paint to prevent flash — dark is the default -->
     <script>
         (function() {
-            if (localStorage.getItem('theme') === 'dark') {
+            if (localStorage.getItem('theme') !== 'light') {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
         })();
