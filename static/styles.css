@@ -1552,6 +1552,13 @@ li::before {
     color: #1a1a1a !important;
 }
 
+/* --- Footer logo dark mode background --- */
+[data-theme="dark"] .footer-logo {
+    background: linear-gradient(135deg, #1f1f1f 0%, #2a1a22 100%);
+    padding: 6px;
+    border-radius: 15px;
+}
+
 /* --- Theme toggle button in dark mode --- */
 [data-theme="dark"] #night-mode-toggle {
     background: linear-gradient(135deg, #2d1f2a, #3a2535) !important;
