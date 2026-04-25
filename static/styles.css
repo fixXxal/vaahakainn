@@ -38,6 +38,7 @@
     --gradient-tertiary: linear-gradient(135deg, #1a1a1a 0%, #e8d1dc 100%);
     --gradient-dark: #ffffff;
     --gradient-warm: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+    --gradient-soft: linear-gradient(135deg, #ffffff 0%, #f8e8f0 100%);
     
     /* Smooth Animations */
     --transition-fast: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
