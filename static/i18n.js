@@ -86,7 +86,7 @@
             stories_heading: 'ވާހަކަތައް',
             handpicked_subtitle: '',
             episodes: 'ބައިތައް',
-            episodes_lower: 'ބައި',
+            episodes_lower: 'އެޕިސޯޑް',
             completed: 'ނިމިފައި',
             ongoing: 'ކުރިއަށް',
             explore_story: 'ވާހަކަ ބަލާ',
@@ -104,13 +104,13 @@
             back_to_home: 'ހޯމް ދޭ',
             back_to_home_icon: '🏠 ހޯމް',
             back_home_btn: '← ހޯމް',
-            story_chapters: 'ވާހަކަ ބައިތައް',
+            story_chapters: 'ވާހަކައިގެ ބައިތައް',
             episode_prefix: 'ބައި',
             read: 'ކިޔާ',
-            prev: '← ކުރިން',
-            next: 'ދެން →',
-            how_story: 'ވާހަކަ ކިހިނެ؟',
-            how_episode: 'ބައި ކިހިނެ؟',
+            prev: 'ކުރީގެ ބައި',
+            next: 'ދެން އޮތް ބައި',
+            how_story: 'މި ވާހަކައާމެދު ދެކިލައްވަނީ ކިހިނެއްތޯ؟',
+            how_episode: 'މި ބަޔާމެދު ދެކިލައްވަނީ ކިހިނެއްތޯ؟',
             no_episodes: 'ބައިތައް ނެތް',
             no_episodes_text: 'ވާހަކައިގެ ބައިތައް ތައްޔާރު ކުރަނީ.',
             episodes_title: 'ބައިތައް',
@@ -118,13 +118,13 @@
             no_episodes_found: 'ބައެއް ނެތް',
             check_back: 'ވަރަހ ބައިތައް ބަލާ!',
             new_episodes: 'ވަރަހ ބައިތައް',
-            back_to_story: '← ވާހަކަ',
+            back_to_story: 'ވާހަކައަށް އެނބުރި ވަޑައިގަތުމަށް',
             reader_comments: 'ހިޔާލު',
-            share_thoughts: 'ހިޔާލު ދެ',
+            share_thoughts: 'ހިޔާލު ފޮނުއްވަވާ',
             your_name: 'ނަން',
             email_optional: 'އީ-މެއިލް (ހިޔާރީ)',
             your_comment: 'ހިޔާލު',
-            post_comment: '💬 ހިޔާލު ލިޔޭ',
+            post_comment: '💬 ކޮމެންޓް ފޮނުވާ',
             featured_label: '⭐ ފީޗާ',
             no_comments: 'ހިޔާލެއް ނެތް',
             be_first: 'ބައިއާ ބެހޭ ހިޔާލު ފުރަތަމަ ހިއްސާ ކޮށްލާ!',
@@ -161,6 +161,39 @@
                 el.textContent = T[lang][key];
             }
         });
+
+        // Reformat episode labels in Dhivehi: "Episode 1" → "1 ވަނަ ބައި"
+        document.querySelectorAll('[data-i18n="episode_prefix"]').forEach(function (span) {
+            // Store the episode number once in a data attribute
+            if (!span.dataset.episodeNumber) {
+                var parent = span.parentNode;
+                parent.childNodes.forEach(function (node) {
+                    if (node.nodeType === 3) {
+                        var txt = node.textContent.trim();
+                        if (txt) span.dataset.episodeNumber = txt;
+                    }
+                });
+            }
+            var num = span.dataset.episodeNumber;
+            if (!num) return;
+            var parent = span.parentNode;
+            // Clear all text nodes in parent
+            parent.childNodes.forEach(function (node) {
+                if (node.nodeType === 3) node.textContent = '';
+            });
+            if (lang === 'dv') {
+                span.dir = 'rtl';
+                // ‏ = RTL mark, ensures number anchors to the right in RTL
+                span.textContent = 'އެޕިސޯޑް ' + num;
+            } else {
+                span.dir = '';
+                span.textContent = 'Episode';
+                // Restore number as text after span
+                var after = document.createTextNode(' ' + num);
+                parent.appendChild(after);
+            }
+        });
+
         var btn = document.getElementById('lang-toggle');
         if (btn) {
             btn.textContent = lang === 'en' ? 'ދިވެހި' : 'ENG';
