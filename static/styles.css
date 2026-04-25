@@ -1644,6 +1644,23 @@ li::before {
     color: #f0f0f0 !important;
 }
 
+/* --- Remove white blur/glow from explore buttons in dark mode --- */
+[data-theme="dark"] .episode-scroll-text {
+    text-shadow: none !important;
+}
+
+[data-theme="dark"] .episode-scroll-paper::before {
+    display: none !important;
+}
+
+[data-theme="dark"] .episode-scroll-ribbon {
+    box-shadow: none !important;
+}
+
+[data-theme="dark"] .episode-scroll-ribbon::before {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
 /* --- home.html scroll buttons --- */
 [data-theme="dark"] .scroll-paper {
     background: linear-gradient(145deg, #1f1f1f, #252525) !important;
