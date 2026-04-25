@@ -85,7 +85,7 @@
             featured: 'ފީޗަރ ކުރެވިފައިވާ',
             stories_heading: 'ވާހަކަތައް',
             handpicked_subtitle: '',
-            episodes: 'ބައިތައް',
+            episodes: 'އެޕިސޯޑް',
             episodes_lower: 'އެޕިސޯޑް',
             completed: 'ނިމިފައި',
             ongoing: 'ކުރިއަށް',
@@ -127,7 +127,7 @@
             post_comment: '💬 ކޮމެންޓް ފޮނުވާ',
             featured_label: '⭐ ފީޗާ',
             no_comments: 'ހިޔާލެއް ނެތް',
-            be_first: 'ބައިއާ ބެހޭ ހިޔާލު ފުރަތަމަ ހިއްސާ ކޮށްލާ!',
+            be_first: 'މި އެޕިސޯޑް އާއި ބެހޭ ހިޔާލު ފުރަތަމަ ހިއްސާ ކޮށްލާ!',
             desc_dhivehi: 'ދިވެހި ތަފްސީލު',
             description: 'ތަފްސީލު',
             reaction_added: 'ރިއެކްޝަން ލެވިއްޖެ! ❤️',
@@ -193,6 +193,26 @@
                 parent.appendChild(after);
             }
         });
+
+        // Comment form RTL/LTR switching
+        var commentForm = document.getElementById('commentForm');
+        if (commentForm) {
+            var dir = lang === 'dv' ? 'rtl' : 'ltr';
+            var align = lang === 'dv' ? 'right' : 'left';
+            commentForm.style.direction = dir;
+            ['username', 'email', 'comment'].forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el) {
+                    el.style.direction = dir;
+                    el.style.textAlign = align;
+                }
+            });
+            var labels = commentForm.querySelectorAll('label');
+            labels.forEach(function(label) {
+                label.style.direction = dir;
+                label.style.textAlign = align;
+            });
+        }
 
         var btn = document.getElementById('lang-toggle');
         if (btn) {

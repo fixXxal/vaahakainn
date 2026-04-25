@@ -1661,6 +1661,13 @@ li::before {
     background: rgba(255, 255, 255, 0.1) !important;
 }
 
+/* --- Episode badge: always LTR so number appears first --- */
+:lang(dv) .episode-badge,
+:lang(dv) .episode-count {
+    direction: ltr !important;
+    unicode-bidi: embed !important;
+}
+
 /* --- home.html scroll buttons --- */
 [data-theme="dark"] .scroll-paper {
     background: linear-gradient(145deg, #1f1f1f, #252525) !important;
