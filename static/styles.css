@@ -1358,23 +1358,254 @@ li::before {
     }
 }
 
-/* Dark Theme Support */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --cream: #ffffff;
-        --parchment: #ffffff;
-        --dark-text: #1a1a1a;
-    }
-    
-    body {
-        background: #ffffff;
-    }
-    
-    .container {
-        background: #ffffff !important;
-        color: #1a1a1a !important;
-    }
+/* ============================================================
+   DARK THEME  –  toggled via data-theme="dark" on <html>
+   ============================================================ */
+[data-theme="dark"] {
+    color-scheme: dark;
+
+    --background-primary: #0d0d0d;
+    --background-secondary: #1a1a1a;
+    --background-tertiary: #222222;
+    --text-primary: #f0f0f0;
+    --text-secondary: #a0a0a0;
+    --text-muted: #606060;
+    --text-light: #f0f0f0;
+    --text-accent: #c287a3;
+
+    --accent-gold: #2a1f28;
+    --accent-amber: #2d1f2a;
+    --accent-sage: #221a28;
+    --accent-cream: #1f1f1f;
+    --accent-burgundy: #f0f0f0;
+    --accent-rose: #3a2535;
+
+    --gradient-primary: linear-gradient(135deg, #1f1f1f 0%, #2a1a22 100%);
+    --gradient-secondary: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+    --gradient-tertiary: linear-gradient(135deg, #1f1f1f 0%, #2a1a22 100%);
+    --gradient-warm: linear-gradient(135deg, #1a1a1a 0%, #1f1f1f 100%);
+    --gradient-dark: #1a1a1a;
+    --background-overlay: rgba(0, 0, 0, 0.5);
+
+    --primary-dark: #f0f0f0;
+    --primary-medium: #b0b0b0;
+    --primary-light: #808080;
+    --dark-text: #f0f0f0;
+    --light-text: #0d0d0d;
+    --cream: #1f1f1f;
+    --parchment: #1f1f1f;
+    --primary-brown: #f0f0f0;
+    --secondary-brown: #a0a0a0;
+    --shadow-soft: 0 4px 15px rgba(0,0,0,0.5);
+    --shadow-hover: 0 8px 30px rgba(0,0,0,0.6);
 }
+
+/* --- Base --- */
+[data-theme="dark"] body {
+    background: #0d0d0d !important;
+    color: #f0f0f0 !important;
+}
+
+/* --- Header --- */
+[data-theme="dark"] header {
+    background: #111111 !important;
+    border-bottom-color: #2d1f2a !important;
+}
+[data-theme="dark"] .hamburger-line {
+    background: #f0f0f0 !important;
+}
+
+/* --- Nav --- */
+[data-theme="dark"] .main-nav a {
+    background: #1f1f1f !important;
+    color: #f0f0f0 !important;
+    border-color: #3a2535 !important;
+}
+[data-theme="dark"] .main-nav a:hover {
+    background: #2d1f2a !important;
+    color: #f0f0f0 !important;
+}
+
+/* --- Container --- */
+[data-theme="dark"] .container {
+    background: #1a1a1a !important;
+    color: #f0f0f0 !important;
+    border-color: #2d1f2a !important;
+}
+
+/* --- Story cards --- */
+[data-theme="dark"] .story-card {
+    background: #1f1f1f !important;
+    color: #f0f0f0 !important;
+    border-color: #2d1f2a !important;
+}
+
+/* --- Episode reading area --- */
+[data-theme="dark"] .episode-content {
+    background: #1a1a1a !important;
+    color: #f0f0f0 !important;
+    border-color: #2d1f2a !important;
+}
+[data-theme="dark"] .episode-content p {
+    color: #e8e8e8 !important;
+}
+[data-theme="dark"] .episode-content::before {
+    background: repeating-linear-gradient(
+        transparent, transparent 1.8em,
+        rgba(100, 60, 80, 0.06) 1.8em,
+        rgba(100, 60, 80, 0.06) calc(1.8em + 1px)
+    ) !important;
+}
+
+/* --- Comment items --- */
+[data-theme="dark"] .comment-item {
+    background: #1f1f1f !important;
+    border-color: #2d1f2a !important;
+}
+
+/* --- Footer --- */
+[data-theme="dark"] footer {
+    background: #111111 !important;
+    border-top-color: #2d1f2a !important;
+    color: #f0f0f0 !important;
+}
+[data-theme="dark"] footer p,
+[data-theme="dark"] footer h3,
+[data-theme="dark"] footer h4 {
+    color: #f0f0f0 !important;
+}
+[data-theme="dark"] footer a {
+    color: #f0f0f0 !important;
+    background: rgba(194, 135, 163, 0.1) !important;
+    border-color: #3a2535 !important;
+}
+
+/* --- Mobile nav --- */
+[data-theme="dark"] .mobile-nav-content {
+    background: #1a1a1a !important;
+}
+[data-theme="dark"] .mobile-nav-links a {
+    background: #252525 !important;
+    color: #f0f0f0 !important;
+    border-color: #3a2535 !important;
+}
+[data-theme="dark"] .mobile-nav-close {
+    color: #f0f0f0 !important;
+}
+[data-theme="dark"] .mobile-nav-overlay {
+    background: rgba(0, 0, 0, 0.92) !important;
+}
+
+/* --- Forms --- */
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+    background: #252525 !important;
+    color: #f0f0f0 !important;
+    border-color: #c287a3 !important;
+}
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+    color: #606060 !important;
+}
+[data-theme="dark"] label {
+    color: #c287a3 !important;
+}
+
+/* --- Page loader --- */
+[data-theme="dark"] #page-loader {
+    background: linear-gradient(135deg, #0d0d0d, #1a1015) !important;
+}
+[data-theme="dark"] #page-loader p {
+    color: #f0f0f0 !important;
+}
+
+/* --- Pagination --- */
+[data-theme="dark"] .pagination-btn {
+    background: linear-gradient(135deg, #1f1f1f, #252525) !important;
+    border-color: #3a2535 !important;
+    color: #c287a3 !important;
+}
+[data-theme="dark"] .pagination-btn:hover,
+[data-theme="dark"] .pagination-btn.active {
+    background: linear-gradient(135deg, #c287a3, #b4316a) !important;
+    color: #ffffff !important;
+}
+
+/* --- Metadata badges (light-bg variants) --- */
+[data-theme="dark"] .metadata-badge.episodes {
+    background: linear-gradient(135deg, #2a2030, #252525) !important;
+    color: #d0d0d0 !important;
+    border-color: #3a3045 !important;
+}
+[data-theme="dark"] .metadata-badge.author,
+[data-theme="dark"] .metadata-badge.date {
+    color: #1a1a1a !important;
+}
+
+/* --- Theme toggle button in dark mode --- */
+[data-theme="dark"] #night-mode-toggle {
+    background: linear-gradient(135deg, #2d1f2a, #3a2535) !important;
+    border-color: rgba(194, 135, 163, 0.4) !important;
+}
+
+/* -------------------------------------------------------
+   Inline style overrides  (beat hardcoded colors in templates)
+   ------------------------------------------------------- */
+
+/* Solid white backgrounds */
+[data-theme="dark"] [style*="background: #ffffff"],
+[data-theme="dark"] [style*="background:#ffffff"],
+[data-theme="dark"] [style*="background-color: #ffffff"],
+[data-theme="dark"] [style*="background-color:#ffffff"] {
+    background: #1f1f1f !important;
+    background-color: #1f1f1f !important;
+}
+
+/* White-starting gradients */
+[data-theme="dark"] [style*="background: linear-gradient(135deg, #ffffff"] {
+    background: linear-gradient(135deg, #1f1f1f 0%, #252525 100%) !important;
+}
+
+/* Light-pink gradients (descriptions, comment forms, episode cards) */
+[data-theme="dark"] [style*="background: linear-gradient(135deg, #f8e8f0"] {
+    background: linear-gradient(135deg, #1f1f1f 0%, #2a1a22 100%) !important;
+}
+[data-theme="dark"] [style*="background: linear-gradient(135deg, #e8d1dc"] {
+    background: linear-gradient(135deg, #1a1a1a 0%, #1f1f1f 100%) !important;
+}
+[data-theme="dark"] [style*="background: linear-gradient(135deg, #f4e4c1"],
+[data-theme="dark"] [style*="background: linear-gradient(135deg, #ffffff, #f8f8f8"] {
+    background: linear-gradient(135deg, #2a2030 0%, #1f1f1f 100%) !important;
+}
+
+/* Solid light pink / near-white backgrounds */
+[data-theme="dark"] [style*="background: #f8e8f0"],
+[data-theme="dark"] [style*="background: #f8f8f8"],
+[data-theme="dark"] [style*="background: #e8d1dc"] {
+    background: #1f1f1f !important;
+}
+
+/* Hardcoded near-black text */
+[data-theme="dark"] [style*="color: #1a1a1a"] {
+    color: #f0f0f0 !important;
+}
+
+/* Generic text defaults (non-!important — inline pink/gradient text still wins) */
+[data-theme="dark"] p  { color: #e0e0e0; }
+[data-theme="dark"] li { color: #e0e0e0; }
+[data-theme="dark"] h1, [data-theme="dark"] h2,
+[data-theme="dark"] h3, [data-theme="dark"] h4,
+[data-theme="dark"] h5, [data-theme="dark"] h6 { color: #f0f0f0; }
+
+/* --- Scrollbar --- */
+[data-theme="dark"] ::-webkit-scrollbar { background: #111111; width: 8px; }
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: #3a2535; border-radius: 4px; }
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: #c287a3; }
+
+/* --- Text selection --- */
+[data-theme="dark"] ::selection { background: #b4316a; color: #ffffff; }
 
 /* High Contrast Support */
 @media (prefers-contrast: high) {

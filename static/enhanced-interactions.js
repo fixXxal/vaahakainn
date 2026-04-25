@@ -297,9 +297,7 @@ function createSparkleExplosion(element) {
 }
 
 function initReadingMode() {
-    // Create reading mode toggle
     const toggleButton = document.createElement('button');
-    toggleButton.innerHTML = '🌙';
     toggleButton.id = 'night-mode-toggle';
     toggleButton.style.cssText = `
         position: fixed;
@@ -321,20 +319,22 @@ function initReadingMode() {
         align-items: center;
         justify-content: center;
     `;
-    
-    toggleButton.addEventListener('click', () => {
-        document.body.classList.toggle('reading-mode');
-        toggleButton.innerHTML = document.body.classList.contains('reading-mode') ? '☀️' : '🌙';
-        localStorage.setItem('readingMode', document.body.classList.contains('reading-mode'));
-    });
-    
+
+    const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark';
+
+    const applyTheme = (dark) => {
+        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+        toggleButton.innerHTML = dark ? '☀️' : '🌙';
+        toggleButton.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+    };
+
+    toggleButton.addEventListener('click', () => applyTheme(!isDark()));
+
     document.body.appendChild(toggleButton);
-    
-    // Restore reading mode from localStorage
-    if (localStorage.getItem('readingMode') === 'true') {
-        document.body.classList.add('reading-mode');
-        toggleButton.innerHTML = '☀️';
-    }
+
+    // Restore saved preference (data-theme may already be set by the <head> script)
+    applyTheme(isDark());
 }
 
 // Animation helper functions
@@ -367,15 +367,6 @@ style.textContent = `
     .cursor-hover {
         transform: scale(1.5) !important;
         background: radial-gradient(circle, #f8e8f0, #e8d1dc) !important;
-    }
-    
-    .reading-mode {
-        filter: sepia(20%) brightness(0.8) contrast(1.1);
-    }
-    
-    .reading-mode .container {
-        background: #ffffff !important;
-        color: #1a1a1a !important;
     }
     
     /* Responsive night mode button */

@@ -16,6 +16,15 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="/static/logovhk.PNG">
     
+    <!-- Restore dark theme before first paint to prevent white flash -->
+    <script>
+        (function() {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/static/styles.css">
     <link rel="stylesheet" href="/static/fonts/faruma.css">
