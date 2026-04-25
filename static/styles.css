@@ -850,7 +850,7 @@ li::before {
         box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
     }
     
-    /* Mobile Site Title - Left Aligned */
+    /* Mobile Site Title - Left Aligned, offset from fixed theme toggle */
     .site-title {
         display: flex !important;
         align-items: center !important;
@@ -859,6 +859,7 @@ li::before {
         left: auto !important;
         transform: none !important;
         z-index: 2 !important;
+        margin-left: 50px !important;
     }
     
     .site-title img {
@@ -1104,11 +1105,15 @@ li::before {
         min-height: 75px !important;
     }
     
+    .site-title {
+        margin-left: 45px !important;
+    }
+
     .site-title img {
         height: 50px !important;
         width: 50px !important;
     }
-    
+
     /* Smaller but still readable navigation for tiny screens */
     .main-nav {
         gap: 0.6rem !important;
