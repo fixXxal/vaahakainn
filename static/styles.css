@@ -1661,8 +1661,7 @@ li::before {
     background: rgba(255, 255, 255, 0.1) !important;
 }
 
-/* --- Episode badge: always LTR so number appears first --- */
-:lang(dv) .episode-badge,
+/* --- Episode count on home page: always LTR so number appears first --- */
 :lang(dv) .episode-count {
     direction: ltr !important;
     unicode-bidi: embed !important;
