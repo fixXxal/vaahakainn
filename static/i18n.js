@@ -68,6 +68,8 @@
             all_short_stories: 'All Short Stories',
             read_story: 'Read Story',
             back_to_short_stories: 'Back to Short Stories',
+            brand_name: 'VAAHAKAINN.',
+            footer_tagline: 'A magical world of stories and tales, where words meet imagination to create an unforgettable reading experience',
         },
         dv: {
             nav_home: 'ހޯމް',
@@ -77,12 +79,12 @@
             copyright: '© 2025 VAAHAKAINN. - ހުރިހާ ހައްގެއް ލިބިގެންވޭ',
             made_with: 'ހެދިފައި',
             for_story_lovers: 'ވާހަކަ ލޯބިވެރިންނަށް',
-            welcome: 'VAAHAKAINN. ތިހޭ',
-            hero_subtitle: 'ތަފާތު ދުނިޔޭތަކުގެ ހިތްހަމަ ޖެހޭ ވާހަކަ ތަކަކާ ދަތުރުތަކުން ފުރިގެންދާ ހިތްގައިމު ވާހަކަ ކަލެކްޝަނެއް ހޯދާ',
+            welcome: 'ވާހަކައިން. އަށް މަރުހަބާ',
+            hero_subtitle: 'އެޑްވެންޗާ އާއި އިމޭޖިނޭޝަންތަކުން ފުރިގެންވާ ތަފާތު ދުނިޔެތަކަށް ދަތުރު ކުރާ ހިތްގައިމު ވާހަކަތަކާއި ހިތްގައިމު ވާހަކަތަކުގެ ކަލެކްޝަން އެއް ހޯދާށެވެ',
             scroll_explore: 'ތިރިކޮށް ބަލާ',
-            featured: 'ހޮވި',
-            stories_heading: 'ވާހަކަ',
-            handpicked_subtitle: 'ހަނދާން ނުނެތޭ ދަތުރުތަކަށް ގެންދާ ހޮވި ވާހަކަތައް',
+            featured: 'ފީޗާޑް',
+            stories_heading: 'ސްޓޯރީސް',
+            handpicked_subtitle: 'ހަނދާން ނައްތާނުލެވޭ ދަތުރުތަކަށް ގެންގޮސްދޭނެ ވާހަކަތަކެއް',
             episodes: 'ބައިތައް',
             episodes_lower: 'ބައި',
             completed: 'ނިމިފައި',
@@ -137,6 +139,8 @@
             all_short_stories: 'ހުރިހާ ކުރު ވާހަކަ',
             read_story: 'ވާހަކަ ކިޔާ',
             back_to_short_stories: '← ކުރު ވާހަކަ',
+            brand_name: 'ވާހަކައިން.',
+            footer_tagline: 'ވާހަކަތަކާ ހިޔާލީ ދުނިޔޭގެ ހިތްގައިމު ތަޖުރިބާ — ކިޔުންތެރިންނަށް ހިތްހަމަ ޖެހޭ ވާހަކަ ދުނިޔެ',
         }
     };
 
