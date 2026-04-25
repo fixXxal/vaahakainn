@@ -1,11 +1,12 @@
 // Service Worker for VAAHAKAINN
 // Provides offline functionality and caching for better performance
 
-const CACHE_NAME = 'vaahakainn-v1.0.0';
+const CACHE_NAME = 'vaahakainn-v1.0.5';
 const urlsToCache = [
   '/',
   '/static/styles.css',
   '/static/enhanced-interactions.js',
+  '/static/i18n.js',
   '/static/fonts/faruma.css',
   '/static/vhkin.PNG',
   '/static/manifest.json'
