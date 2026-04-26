@@ -1661,7 +1661,7 @@ li::before {
     background: rgba(255, 255, 255, 0.1) !important;
 }
 
-/* --- Episode badges: always LTR so order stays consistent --- */
+/* --- Episode badges: always LTR so emoji stays first --- */
 .episode-badge,
 .episode-count,
 .metadata-badge {
