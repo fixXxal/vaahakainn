@@ -88,7 +88,7 @@
             episodes: 'އެޕިސޯޑް',
             episodes_lower: 'އެޕިސޯޑް',
             completed: 'ނިމިފައި',
-            ongoing: 'ކުރިއަށް',
+            ongoing: 'ކުރިއަށްދަނީ',
             explore_story: 'ކިޔާލުމަށް',
             stories_coming_soon: 'ވަރަހ ވާހަކަ',
             crafting_tales: 'ތިމަންމެން ހިތްގައިމު ވާހަކަތައް ތައްޔާރު ކުރަނީ. ހިތްގައިމު ދަތުރަށް ތިބެ!',
