@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.core.validators import MinLengthValidator
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 from cloudinary.models import CloudinaryField
 
@@ -256,8 +256,29 @@ class ShortStory(models.Model):
 @receiver(pre_save, sender=Story)
 def update_legacy_fields(sender, instance, **kwargs):
 	"""Automatically update legacy title and description fields when the bilingual fields change."""
-	# Update legacy title field
 	instance.title = instance.title_dv or instance.title_en or instance.title
-	
-	# Update legacy description field
 	instance.description = instance.description_dv or instance.description_en or instance.description
+
+
+@receiver(post_save, sender=Episode)
+def notify_episode_created(sender, instance, created, **kwargs):
+	if not created:
+		return
+	from .telegram_notify import notify_new_episode
+	notify_new_episode(instance)
+
+
+@receiver(post_save, sender=Story)
+def notify_story_created(sender, instance, created, **kwargs):
+	if not created:
+		return
+	from .telegram_notify import notify_new_story
+	notify_new_story(instance)
+
+
+@receiver(post_save, sender=ShortStory)
+def notify_short_story_created(sender, instance, created, **kwargs):
+	if not created:
+		return
+	from .telegram_notify import notify_new_short_story
+	notify_new_short_story(instance)
