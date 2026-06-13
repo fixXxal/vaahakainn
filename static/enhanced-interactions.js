@@ -202,7 +202,7 @@ function initThemeTransitions() {
     setTimeout(() => {
         document.body.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
         document.body.style.opacity = '1';
-        document.body.style.transform = 'scale(1)';
+        document.body.style.transform = 'none'; // 'none' (not scale(1)) so position:fixed children float to the viewport
     }, 100);
     
     // Handle browser navigation smoothly
@@ -210,7 +210,7 @@ function initThemeTransitions() {
         // Reset styles when page is shown from cache (back/forward)
         if (event.persisted) {
             document.body.style.opacity = '1';
-            document.body.style.transform = 'scale(1)';
+            document.body.style.transform = 'none'; // 'none' (not scale(1)) so position:fixed children float to the viewport
             document.body.style.transition = 'none';
             // Re-enable transitions after a brief delay
             setTimeout(() => {
