@@ -1,11 +1,10 @@
 // Service Worker for VAAHAKAINN
 // Provides offline functionality and caching for better performance
 
-const CACHE_NAME = 'vaahakainn-v1.5.1';
+const CACHE_NAME = 'vaahakainn-v1.6.0';
 const urlsToCache = [
   '/',
   '/static/styles.css',
-  '/static/app.css',
   '/static/enhanced-interactions.js',
   '/static/i18n.js',
   '/static/fonts/faruma.css',
@@ -156,12 +155,12 @@ self.addEventListener('fetch', function(event) {
                 </head>
                 <body>
                     <div class="offline-content">
-                        <div class="offline-icon"><svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4H10a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4.5A1.5 1.5 0 0 1 3 16.5z"/><path d="M21 5.5A1.5 1.5 0 0 0 19.5 4H14a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h5.5a1.5 1.5 0 0 0 1.5-1.5z"/></svg></div>
+                        <div class="offline-icon">📚</div>
                         <h1>VAAHAKAINN</h1>
                         <h2>You're Offline</h2>
                         <p>It seems you're not connected to the internet right now. Please check your connection and try again.</p>
                         <button class="retry-btn" onclick="window.location.reload()">
-                            Try Again
+                            🔄 Try Again
                         </button>
                     </div>
                 </body>

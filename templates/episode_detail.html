@@ -56,13 +56,11 @@
         <div style="text-align: center; margin-bottom: 3em;">
             <h3 style="font-size: 1.8em; margin-bottom: 1em; background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;" data-i18n="how_episode">How did you like this episode?</h3>
             <div style="display: flex; justify-content: center; gap: 1em; flex-wrap: wrap;">
-                <button class="reaction-btn" data-reaction="heart" data-content-type="episode" data-object-id="{{ episode.id }}">
-                    <svg class="app-icon" viewBox="0 0 24 24"><path d="M12 20s-7-4.35-9.5-8.5C.9 8.6 2.4 5.5 5.5 5.5c1.9 0 3.2 1.1 3.5 1.8 1.7-3.6 8.5-2.6 8.5 1.7 0 4.15-7 11.5-7 11.5z"/></svg>
-                    <span class="reaction-count">{{ episode.heart_reactions }}</span>
+                <button class="reaction-btn" data-reaction="heart" data-content-type="episode" data-object-id="{{ episode.id }}" style="background: linear-gradient(135deg, #ff6b9d, #c287a3); color: white; border: none; padding: 0.8em 1.5em; border-radius: 25px; font-size: 1.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(194, 135, 163, 0.3);">
+                    ❤️ <span class="reaction-count">{{ episode.heart_reactions }}</span>
                 </button>
-                <button class="reaction-btn" data-reaction="like" data-content-type="episode" data-object-id="{{ episode.id }}">
-                    <svg class="app-icon" viewBox="0 0 24 24"><path d="M7 11v9H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1z"/><path d="M7 11l4-7a2 2 0 0 1 2 1.2V9h4.6a2 2 0 0 1 2 2.3l-1.1 6A2 2 0 0 1 16.5 19H7"/></svg>
-                    <span class="reaction-count">{{ episode.total_reactions }}</span>
+                <button class="reaction-btn" data-reaction="like" data-content-type="episode" data-object-id="{{ episode.id }}" style="background: linear-gradient(135deg, #4ecdc4, #44a08d); color: white; border: none; padding: 0.8em 1.5em; border-radius: 25px; font-size: 1.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(76, 205, 196, 0.3);">
+                    👍 <span class="reaction-count">{{ episode.total_reactions }}</span>
                 </button>
             </div>
         </div>
@@ -92,7 +90,7 @@
                     </div>
                     
                     <button type="submit" style="background: linear-gradient(135deg, #c287a3, #ff6b9d); color: white; border: none; padding: 1em 2em; border-radius: 25px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(194, 135, 163, 0.4);" data-i18n="post_comment">
-                        Post Comment
+                        💬 Post Comment
                     </button>
                 </form>
             </div>
@@ -105,7 +103,7 @@
                         <div>
                             <strong style="color: #c287a3; font-size: 1.1em;">{{ comment.username }}</strong>
                             {% if comment.is_featured %}
-                            <span style="background: gold; color: black; padding: 0.2em 0.5em; border-radius: 10px; font-size: 0.8em; margin-left: 0.5em;" data-i18n="featured_label">Featured</span>
+                            <span style="background: gold; color: black; padding: 0.2em 0.5em; border-radius: 10px; font-size: 0.8em; margin-left: 0.5em;" data-i18n="featured_label">⭐ Featured</span>
                             {% endif %}
                         </div>
                         <span style="color: var(--text-secondary); font-size: 0.9em;">{{ comment.created_at|date:"M d, Y" }}</span>
@@ -116,9 +114,8 @@
                     </p>
                     
                     <div style="display: flex; align-items: center; gap: 1em;">
-                        <button class="reaction-btn reaction-btn-small" data-reaction="heart" data-content-type="comment" data-object-id="{{ comment.id }}">
-                            <svg class="app-icon" viewBox="0 0 24 24"><path d="M12 20s-7-4.35-9.5-8.5C.9 8.6 2.4 5.5 5.5 5.5c1.9 0 3.2 1.1 3.5 1.8 1.7-3.6 8.5-2.6 8.5 1.7 0 4.15-7 11.5-7 11.5z"/></svg>
-                            <span class="reaction-count">{{ comment.heart_reactions }}</span>
+                        <button class="reaction-btn reaction-btn-small" data-reaction="heart" data-content-type="comment" data-object-id="{{ comment.id }}" style="background: transparent; border: 2px solid #c287a3; color: #c287a3; padding: 0.4em 0.8em; border-radius: 20px; font-size: 0.9em; cursor: pointer; transition: all 0.3s ease;">
+                            ❤️ <span class="reaction-count">{{ comment.heart_reactions }}</span>
                         </button>
                     </div>
                 </div>
@@ -176,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (result.success) {
                     // Show success message
-                    showMessage(window.t ? window.t('comment_posted') : 'Comment posted successfully!', 'success');
+                    showMessage(window.t ? window.t('comment_posted') : 'Comment posted successfully! 💬', 'success');
 
                     // Reset form
                     commentForm.reset();
@@ -223,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (result.action === 'added') {
                         countSpan.textContent = currentCount + 1;
                         this.style.transform = 'scale(1.1)';
-                        showMessage(window.t ? window.t('reaction_added') : 'Reaction added!', 'success');
+                        showMessage(window.t ? window.t('reaction_added') : 'Reaction added! ❤️', 'success');
                     } else {
                         countSpan.textContent = Math.max(0, currentCount - 1);
                         this.style.transform = 'scale(0.9)';
