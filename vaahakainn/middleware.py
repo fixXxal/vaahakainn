@@ -33,6 +33,16 @@ CONTENT_SECURITY_POLICY = "; ".join([
 
 PERMISSIONS_POLICY = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
 
+# Cross-origin isolation. We add the two SAFE ones and intentionally DO NOT set
+# Cross-Origin-Embedder-Policy (require-corp), which would block Cloudinary
+# images, Google Fonts and the Telegram SDK.
+#   COOP: only applies to top-level windows (ignored inside the Telegram iframe),
+#         "-allow-popups" keeps any popup flows working.
+#   CORP: "same-origin" is not enforced on the Telegram iframe because Telegram
+#         does not send COEP, so the Mini App keeps working.
+CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
+CROSS_ORIGIN_RESOURCE_POLICY = "same-origin"
+
 
 class SecurityHeadersMiddleware:
     def __init__(self, get_response):
@@ -43,4 +53,6 @@ class SecurityHeadersMiddleware:
         # setdefault so we never clobber a header set elsewhere
         response.setdefault("Content-Security-Policy", CONTENT_SECURITY_POLICY)
         response.setdefault("Permissions-Policy", PERMISSIONS_POLICY)
+        response.setdefault("Cross-Origin-Opener-Policy", CROSS_ORIGIN_OPENER_POLICY)
+        response.setdefault("Cross-Origin-Resource-Policy", CROSS_ORIGIN_RESOURCE_POLICY)
         return response
