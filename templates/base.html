@@ -526,6 +526,117 @@
             0% { transform: translateX(0); opacity: 1; }
             100% { transform: translateX(100%); opacity: 0; }
         }
+
+        /* PWA "Add to Home Screen" banner */
+        .pwa-install{
+            position: fixed; left: 50%; bottom: calc(16px + var(--tg-safe-bottom, 0px));
+            transform: translateX(-50%) translateY(170%);
+            z-index: 10001; width: calc(100% - 24px); max-width: 480px;
+            background: #ffffff; color: var(--text-primary, #1a1a1a);
+            border: 1px solid rgba(0,0,0,.1); border-radius: 16px;
+            box-shadow: 0 12px 32px rgba(0,0,0,.18);
+            padding: 14px 16px; opacity: 0; pointer-events: none;
+            transition: transform .35s cubic-bezier(.22,1,.36,1), opacity .35s ease;
+            font-family: 'Faruma','Noto Sans Dhivehi',-apple-system,Arial,sans-serif;
+        }
+        .pwa-install.show{ transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
+        .pwa-install-inner{ display:flex; align-items:center; gap:12px; }
+        .pwa-install-icon{ width:46px; height:46px; border-radius:11px; flex:none; object-fit:cover; }
+        .pwa-install-text{ display:flex; flex-direction:column; gap:2px; flex:1; min-width:0; text-align:left; }
+        .pwa-install-text strong{ font-size:.95rem; line-height:1.25; }
+        .pwa-install-text > span{ font-size:.8rem; opacity:.78; line-height:1.3; }
+        .pwa-ios-steps{ display:flex; align-items:center; gap:6px; }
+        .pwa-share-ico{ width:16px; height:16px; flex:none; }
+        .pwa-install-btn{
+            flex:none; background: linear-gradient(135deg,#c287a3,#b4316a); color:#fff; border:none;
+            padding:.62em 1.1em; border-radius:12px; font-weight:700; font-size:.9rem; cursor:pointer;
+            font-family:inherit; white-space:nowrap;
+        }
+        .pwa-install-btn:hover{ filter:brightness(1.06); }
+        .pwa-close{
+            position:absolute; top:6px; right:10px; background:none; border:none; font-size:20px;
+            line-height:1; color:var(--text-primary,#1a1a1a); opacity:.5; cursor:pointer;
+        }
+        .pwa-close:hover{ opacity:.9; }
+        [data-theme="dark"] .pwa-install{ background:#1c1a1f; color:#efeae7; border-color:rgba(255,255,255,.12); box-shadow:0 14px 36px rgba(0,0,0,.6); }
+        [data-theme="dark"] .pwa-close{ color:#efeae7; }
+        @media (max-width:380px){ .pwa-install-text strong{ font-size:.88rem; } .pwa-install-btn{ padding:.55em .85em; } }
     </style>
+
+    <!-- PWA: Add to Home Screen banner (Android: 1-tap install · iOS: how-to) -->
+    <div id="pwa-install" class="pwa-install" role="dialog" aria-label="Install app">
+        <button id="pwa-close" class="pwa-close" aria-label="Close">&times;</button>
+        <div class="pwa-install-inner">
+            <img src="/static/vhkin.PNG" alt="VAAHAKAINN" class="pwa-install-icon">
+            <div class="pwa-install-text">
+                <strong data-i18n="pwa_title">Add VAAHAKAINN to your Home Screen</strong>
+                <span id="pwa-generic-sub" data-i18n="pwa_subtitle">Open stories like an app — full-screen and faster.</span>
+                <span id="pwa-ios-steps" class="pwa-ios-steps" style="display:none">
+                    <svg class="pwa-share-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/></svg>
+                    <span data-i18n="pwa_ios">Tap the Share button, then "Add to Home Screen".</span>
+                </span>
+            </div>
+            <button id="pwa-install-btn" class="pwa-install-btn" data-i18n="pwa_install">Install</button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Never show inside the Telegram Mini App or when already installed.
+            var inTelegram = window.isTelegramMiniApp;
+            var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)
+                             || window.navigator.standalone === true;
+            if (inTelegram || standalone) return;
+
+            // Respect a recent dismissal (don't nag — wait 10 days).
+            var KEY = 'pwaPromptDismissedAt';
+            var TEN_DAYS = 10 * 24 * 60 * 60 * 1000;
+            var last = parseInt(localStorage.getItem(KEY) || '0', 10);
+            if (last && (Date.now() - last) < TEN_DAYS) return;
+
+            var banner = document.getElementById('pwa-install');
+            if (!banner) return;
+            var installBtn = document.getElementById('pwa-install-btn');
+            var iosSteps = document.getElementById('pwa-ios-steps');
+            var genericSub = document.getElementById('pwa-generic-sub');
+            var closeBtn = document.getElementById('pwa-close');
+
+            function show() { banner.classList.add('show'); }
+            function hide(remember) {
+                banner.classList.remove('show');
+                if (remember) { try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {} }
+            }
+            closeBtn.addEventListener('click', function() { hide(true); });
+
+            var ua = navigator.userAgent || '';
+            var isIOS = /iphone|ipad|ipod/i.test(ua)
+                        || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); // iPadOS
+            var deferred = null;
+
+            // Android / Chromium: capture the install event, show a 1-tap button.
+            window.addEventListener('beforeinstallprompt', function(e) {
+                e.preventDefault();
+                deferred = e;
+                iosSteps.style.display = 'none';
+                genericSub.style.display = '';
+                installBtn.style.display = '';
+                show();
+            });
+            installBtn.addEventListener('click', function() {
+                if (!deferred) return;
+                deferred.prompt();
+                deferred.userChoice.then(function() { deferred = null; hide(true); });
+            });
+            window.addEventListener('appinstalled', function() { hide(true); });
+
+            // iOS Safari: no install API — show the how-to, hide the button.
+            if (isIOS) {
+                installBtn.style.display = 'none';
+                genericSub.style.display = 'none';
+                iosSteps.style.display = 'flex';
+                setTimeout(show, 2500);
+            }
+        })();
+    </script>
 </body>
 </html>

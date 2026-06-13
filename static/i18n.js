@@ -2,6 +2,10 @@
     var T = {
         en: {
             nav_home: 'Home',
+            pwa_title: 'Add VAAHAKAINN to your Home Screen',
+            pwa_subtitle: 'Open stories like an app — full-screen and faster.',
+            pwa_install: 'Install',
+            pwa_ios: 'Tap the Share button, then "Add to Home Screen".',
             nav_stories: 'Stories',
             loading: 'Loading stories...',
             follow_us: 'Follow Us',
@@ -73,6 +77,10 @@
         },
         dv: {
             nav_home: 'ހޯމް',
+            pwa_title: 'VAAHAKAINN ހޯމް ސްކްރީނަށް އިތުރުކުރައްވާ',
+            pwa_subtitle: 'އެޕެއް ފަދައިން ވާހަކަ ކިޔުއްވާ — ފުލް ސްކްރީން އަދި ހަލުވި',
+            pwa_install: 'އިންސްޓޯލް',
+            pwa_ios: 'ޝެއާ ބަޓަން އަށް ފިއްތަވައި، ދެން "Add to Home Screen" ޚިޔާރުކުރައްވާ',
             nav_stories: 'ވާހަކަ',
             loading: 'ވާހަކަ ލޯޑްވަނީ...',
             follow_us: 'ފޮލޯ ކޮށްލައްވާ',
