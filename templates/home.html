@@ -604,178 +604,9 @@
     padding: 0 2rem;
 }
 
-.story-card {
-    perspective: 1000px;
-    -webkit-perspective: 1000px;
-    height: 400px;
-}
-
-.card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
-    transition: transform 0.6s ease;
-    -webkit-transition: -webkit-transform 0.6s ease;
-    will-change: transform;
-}
-
-.story-card:hover .card-inner {
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
-}
-
-.card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    border-radius: 20px;
-    overflow: hidden;
-    background: #ffffff;
-    border: 2px solid rgba(195, 135, 163, 0.1);
-    box-shadow: 0 8px 32px rgba(195, 135, 163, 0.1);
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-}
-
-.card-back {
-    transform: rotateY(180deg) translateZ(0);
-    -webkit-transform: rotateY(180deg) translateZ(0);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-}
-
-.story-cover {
-    position: relative;
-    height: 250px;
-    overflow: hidden;
-}
-
-.story-cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.story-card:hover .story-cover img {
-    transform: scale(1.1);
-}
-
-.story-placeholder {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(195, 135, 163, 0.1), rgba(180, 49, 106, 0.1));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.placeholder-icon {
-    font-size: 4rem;
-    opacity: 0.6;
-}
-
-.cover-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    padding: 1rem;
-}
-
-.episode-count {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 0.1rem 0.3rem;
-    border-radius: 12px;
-    text-align: center;
-    color: var(--text-primary);
-    font-weight: 700;
-    font-size: 0.55rem;
-    min-width: fit-content;
-    max-width: 60px;
-}
-
-.count-number {
-    display: block;
-    font-size: 0.6rem;
-}
-
-.count-text {
-    display: block;
-    font-size: 0.5rem;
-    opacity: 0.8;
-}
-
-.story-info {
-    padding: 1.5rem;
-}
-
-.story-meta {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.release-date, .story-category, .story-status {
-    background: rgba(195, 135, 163, 0.1);
-    color: var(--text-secondary);
-    padding: 0.2rem 0.6rem;
-    border-radius: 50px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    white-space: nowrap;
-    flex-shrink: 0;
-}
-
-.story-status-ongoing {
-    background: rgba(59, 130, 246, 0.1);
-    color: #3b82f6;
-    border: 1px solid rgba(59, 130, 246, 0.3);
-}
-
-.story-status-completed {
-    background: rgba(34, 197, 94, 0.1);
-    color: #22c55e;
-    border: 1px solid rgba(34, 197, 94, 0.3);
-}
-
-.story-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #b4316a;
-    line-height: 1.3;
-}
-
-.story-stats {
-    display: flex;
-    gap: 1rem;
-}
-
-.stat {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
-.card-content {
-    text-align: center;
-}
+/* Story-card styling now lives entirely in app.css (2026 design system).
+   The old fixed-height 3D flip-card rules were removed to stop the cover/text
+   overlap and to keep one source of truth across all pages and devices. */
 
 .card-content .story-title {
     color: #b4316a;
@@ -1173,46 +1004,9 @@
         grid-template-columns: 1fr;
         padding: 0 1rem;
     }
-    
-    .story-card {
-        height: 420px !important;
-    }
-    
-    .story-info {
-        padding: 1.2rem !important;
-    }
-    
-    .story-meta {
-        gap: 0.4rem !important;
-        margin-bottom: 0.8rem !important;
-    }
-    
-    .release-date, .story-category {
-        font-size: 0.7rem !important;
-        padding: 0.15rem 0.5rem !important;
-        border-radius: 20px !important;
-    }
-    
-    .story-title {
-        font-size: 1.2rem !important;
-        margin-bottom: 0.8rem !important;
-    }
-    
-    .episode-count {
-        padding: 0.1rem 0.3rem !important;
-        border-radius: 12px !important;
-        font-size: 0.55rem !important;
-        max-width: 60px !important;
-    }
-    
-    .count-number {
-        font-size: 0.6rem !important;
-    }
-    
-    .count-text {
-        font-size: 0.5rem !important;
-    }
-    
+
+    /* card sizing handled responsively by app.css */
+
     .stats-container {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1242,51 +1036,8 @@
     .stats-container {
         grid-template-columns: 1fr;
     }
-    
-    .story-card {
-        height: 380px !important;
-    }
-    
-    .story-info {
-        padding: 1rem !important;
-    }
-    
-    .story-meta {
-        gap: 0.3rem !important;
-        margin-bottom: 0.6rem !important;
-        flex-direction: column !important;
-        align-items: center !important;
-    }
-    
-    .release-date, .story-category {
-        font-size: 0.65rem !important;
-        padding: 0.1rem 0.4rem !important;
-        border-radius: 15px !important;
-        margin-bottom: 0.2rem;
-        min-width: 80px;
-        text-align: center;
-    }
-    
-    .story-title {
-        font-size: 1.1rem !important;
-        margin-bottom: 0.6rem !important;
-        line-height: 1.2 !important;
-    }
-    
-    .episode-count {
-        padding: 0.1rem 0.3rem !important;
-        border-radius: 12px !important;
-        font-size: 0.55rem !important;
-        max-width: 60px !important;
-    }
-    
-    .count-number {
-        font-size: 0.6rem !important;
-    }
-    
-    .count-text {
-        font-size: 0.5rem !important;
-    }
+
+    /* card sizing handled responsively by app.css */
 }
 </style>
 

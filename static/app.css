@@ -237,6 +237,44 @@ footer a:hover{border-color:var(--brand) !important;color:var(--brand) !importan
 a:focus-visible,button:focus-visible,.btn:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{
   outline:2px solid var(--brand) !important;outline-offset:2px !important;border-radius:6px}
 
+/* ---- Responsive: works on phones, tablets, laptops, desktop, PWA --------
+   Use min() so a card column never gets wider than the screen (no overflow /
+   horizontal scroll on small Android/iOS devices). */
+.stories-grid, .story-list{
+  grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr)) !important;
+}
+.enhanced-story-grid, .short-story-grid{
+  grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr)) !important;
+  gap:1.5rem !important; padding:1.5rem 0 !important; max-width:var(--maxw) !important;
+}
+/* List-page card (story_list / short_story_list): adapt to theme + flatten the
+   decorative light frame so it doesn't clash in dark mode. */
+.enhanced-story-card{
+  border:1px solid var(--line) !important;
+  background:var(--surface) !important;
+  box-shadow:var(--shadow-sm) !important;
+  opacity:1 !important;                 /* never stay invisible if entrance anim fails */
+  transform:none !important;
+}
+.enhanced-story-card > div[style*="z-index: -1"]{display:none !important}
+
+/* Cover safety: fixed-ratio, image fully covers, badges never spill the card */
+.story-cover{min-height:150px}
+.story-card, .enhanced-story-card{max-width:100%}
+.story-card img, .enhanced-story-card img{max-width:100%}
+
+@media (max-width:600px){
+  body{font-size:16px}
+  .story-info{padding:1rem 1rem 1.15rem !important}
+  .story-card .story-title{font-size:1.12rem !important}
+  .reaction-btn{font-size:.85rem !important}
+}
+/* Header stays usable on small screens */
+@media (max-width:768px){
+  header{padding:.6rem 1rem !important}
+  .site-title img{height:40px !important;width:40px !important}
+}
+
 /* ---- Motion discipline (kept here too so it ships with the system) ------ */
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
