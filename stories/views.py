@@ -1,10 +1,36 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.contrib.contenttypes.models import ContentType
+from django.core.cache import cache
+import logging
 from .models import Episode, Story, Category, Comment, Reaction, ShortStory
 import json
+
+logger = logging.getLogger(__name__)
+
+# Limits to keep user-submitted content sane and prevent abuse.
+MAX_USERNAME_LEN = 50
+MAX_COMMENT_LEN = 2000
+MAX_EMAIL_LEN = 254
+
+# Simple per-IP rate limiting backed by the cache. Not perfectly shared across
+# gunicorn workers with the default in-memory cache, but it meaningfully blunts
+# spam/flooding with no extra dependencies. For strict limits, point CACHES at Redis.
+def _rate_limited(request, action, limit, window_seconds):
+    ip = get_client_ip(request) or 'unknown'
+    key = f'ratelimit:{action}:{ip}'
+    count = cache.get(key, 0)
+    if count >= limit:
+        return True
+    # add() sets the key with TTL only if absent, so the window starts on first hit
+    cache.add(key, 0, window_seconds)
+    try:
+        cache.incr(key)
+    except ValueError:
+        cache.set(key, 1, window_seconds)
+    return False
 
 def home(request):
 	featured_stories = Story.objects.order_by('-release_date')[:3]
@@ -26,6 +52,7 @@ def episode_list(request):
 		'lang': lang,
 	})
 
+@ensure_csrf_cookie
 def episode_detail(request, pk):
 	episode = get_object_or_404(Episode, pk=pk)
 	lang = request.session.get('lang', 'dv')
@@ -92,6 +119,7 @@ def story_list(request):
         'lang': lang,
     })
 
+@ensure_csrf_cookie
 def story_detail(request, pk):
     story = get_object_or_404(Story, pk=pk)
     episodes = story.episodes.order_by('episode_number')
@@ -103,9 +131,15 @@ def story_detail(request, pk):
         'lang': lang,
     })
 
-@csrf_exempt
 @require_POST
 def add_comment(request):
+    # Throttle: max 5 comments per minute per IP.
+    if _rate_limited(request, 'comment', limit=5, window_seconds=60):
+        return JsonResponse(
+            {'success': False, 'error': 'You are posting too quickly. Please wait a moment.'},
+            status=429,
+        )
+
     try:
         data = json.loads(request.body)
         content_type = data.get('content_type')
@@ -118,8 +152,17 @@ def add_comment(request):
         if not username or len(username) < 2:
             return JsonResponse({'success': False, 'error': 'Username must be at least 2 characters'})
 
+        if len(username) > MAX_USERNAME_LEN:
+            return JsonResponse({'success': False, 'error': 'Username is too long'})
+
         if not comment_text or len(comment_text) < 5:
             return JsonResponse({'success': False, 'error': 'Comment must be at least 5 characters'})
+
+        if len(comment_text) > MAX_COMMENT_LEN:
+            return JsonResponse({'success': False, 'error': 'Comment is too long'})
+
+        if len(email) > MAX_EMAIL_LEN:
+            return JsonResponse({'success': False, 'error': 'Email is too long'})
 
         if not content_type or not object_id:
             return JsonResponse({'success': False, 'error': 'Invalid content reference'})
@@ -163,12 +206,21 @@ def add_comment(request):
             'message': 'Comment added successfully!'
         })
 
-    except Exception as e:
-        return JsonResponse({'success': False, 'error': str(e)})
+    except json.JSONDecodeError:
+        return JsonResponse({'success': False, 'error': 'Invalid request'}, status=400)
+    except Exception:
+        logger.exception('add_comment failed')
+        return JsonResponse({'success': False, 'error': 'Something went wrong. Please try again.'}, status=500)
 
-@csrf_exempt
 @require_POST
 def add_reaction(request):
+    # Throttle: max 30 reactions per minute per IP (reactions are lighter than comments).
+    if _rate_limited(request, 'reaction', limit=30, window_seconds=60):
+        return JsonResponse(
+            {'success': False, 'error': 'Too many requests. Please slow down.'},
+            status=429,
+        )
+
     try:
         data = json.loads(request.body)
         content_type = data.get('content_type')
@@ -240,9 +292,12 @@ def add_reaction(request):
                 'reaction_id': reaction.id,
                 'total_reactions': content_obj.total_reactions
             })
-            
-    except Exception as e:
-        return JsonResponse({'success': False, 'error': str(e)})
+
+    except json.JSONDecodeError:
+        return JsonResponse({'success': False, 'error': 'Invalid request'}, status=400)
+    except Exception:
+        logger.exception('add_reaction failed')
+        return JsonResponse({'success': False, 'error': 'Something went wrong. Please try again.'}, status=500)
 
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -272,6 +327,7 @@ def short_story_list(request):
         'lang': lang,
     })
 
+@ensure_csrf_cookie
 def short_story_detail(request, pk):
     short_story = get_object_or_404(ShortStory, pk=pk, is_published=True)
     lang = request.session.get('lang', 'dv')

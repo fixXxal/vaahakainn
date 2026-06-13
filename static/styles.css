@@ -2301,3 +2301,231 @@ li::before {
 .category-filter-btn:hover:before {
     left: 100%;
 }
+
+/* ============================================================================
+   PROFESSIONAL REFINEMENT LAYER — 2026
+   Appended last so it overrides the legacy styles above without deleting them.
+   Principles: subtract decoration, one disciplined accent, calm motion,
+   real (subtle) elevation, consistent radius, tactile buttons, solid type.
+   ============================================================================ */
+
+:root {
+    /* Brand (rose) — the one accent, used sparingly */
+    --rf-brand: #b4316a;
+    --rf-brand-strong: #97285a;
+    --rf-brand-soft: #c287a3;
+    /* Neutrals / surfaces (light) */
+    --rf-ink: #211c1f;
+    --rf-muted: #6c646b;
+    --rf-line: rgba(33, 28, 31, 0.12);
+    --rf-line-strong: rgba(33, 28, 31, 0.22);
+    --rf-hover: rgba(180, 49, 106, 0.06);
+    /* Elevation — soft, low-contrast, professional */
+    --rf-shadow: 0 1px 2px rgba(20, 12, 18, .06), 0 4px 14px rgba(20, 12, 18, .06);
+    --rf-shadow-lg: 0 6px 24px rgba(20, 12, 18, .12);
+    --rf-radius: 12px;
+    --rf-radius-lg: 16px;
+}
+
+[data-theme="dark"] {
+    --rf-brand: #d76a99;
+    --rf-brand-strong: #c4577f;
+    --rf-ink: #f1eef0;
+    --rf-muted: #a59ba2;
+    --rf-line: rgba(255, 255, 255, 0.10);
+    --rf-line-strong: rgba(255, 255, 255, 0.18);
+    --rf-hover: rgba(215, 106, 153, 0.12);
+    --rf-shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 6px 18px rgba(0, 0, 0, .30);
+    --rf-shadow-lg: 0 10px 30px rgba(0, 0, 0, .45);
+}
+
+/* ---- Motion discipline (stops phone heat / battery drain) ---------------- */
+
+/* Respect the OS "reduce motion" / battery-saver preference. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Freeze every animation while the tab is hidden/backgrounded. */
+body.page-hidden *,
+body.page-hidden *::before,
+body.page-hidden *::after {
+    animation-play-state: paused !important;
+}
+
+/* Remove always-on decorative loops that repainted the screen non-stop
+   (sweeping lines, glows, sparkles, floating particles, pulsing borders). */
+header::before, header::after,
+header nav::before, header nav::after,
+.container::before, .container::after,
+.main-nav a::before, .main-nav a::after,
+.main-nav a:before, .main-nav a:after,
+.btn::before,
+.category-filter-btn::before, .category-filter-btn:before {
+    content: none !important;
+    animation: none !important;
+    background: none !important;
+    display: none !important;
+}
+.particles, .particle { display: none !important; }
+.hero-pattern { animation: none !important; }
+.main-nav a,
+.category-filter-btn,
+.badge-icon,
+.typing-complete {
+    animation: none !important;
+}
+
+/* ---- Typography: solid, readable headings (kills rainbow gradient text) -- */
+h1, h2, h3, h4, h5, h6 {
+    background: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    -webkit-text-fill-color: currentColor !important;
+    text-shadow: none !important;
+    color: var(--rf-ink) !important;
+    letter-spacing: -0.01em;
+}
+/* Brand-coloured wordmarks/hero only */
+.hero-title, .hero-title *,
+#page-loader h2,
+footer h3 {
+    color: var(--rf-brand) !important;
+}
+/* Compensate for the viewport fix (was zoomed to 0.8) — tame the giant hero. */
+.hero-title { font-size: clamp(2.4rem, 7vw, 3.6rem) !important; line-height: 1.1; }
+.main-title { font-size: clamp(1.8rem, 4.5vw, 2.5rem) !important; }
+
+/* ---- Surfaces: hairline borders + soft shadow instead of candy borders --- */
+.container {
+    border: 1px solid var(--rf-line) !important;
+    border-radius: var(--rf-radius-lg) !important;
+    box-shadow: var(--rf-shadow) !important;
+}
+.story-card {
+    border: 1px solid var(--rf-line) !important;
+    border-radius: 14px !important;
+    box-shadow: var(--rf-shadow) !important;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease !important;
+}
+.story-card:hover {
+    transform: translateY(-4px) !important;   /* replaces the -12px + scale + 3D tilt */
+    box-shadow: var(--rf-shadow-lg) !important;
+    border-color: var(--rf-line-strong) !important;
+}
+
+/* ---- Navigation: clean pill links, no stacked effects ------------------- */
+.main-nav a {
+    background: transparent !important;
+    border: 1px solid var(--rf-line) !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+    padding: .5rem .95rem !important;
+    font-weight: 600 !important;
+    overflow: visible !important;
+    transition: background-color .18s ease, border-color .18s ease, color .18s ease !important;
+}
+.main-nav a:hover {
+    background: var(--rf-hover) !important;
+    border-color: var(--rf-brand) !important;
+    color: var(--rf-brand) !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ---- Buttons: one tactile, confident style ------------------------------ */
+.btn,
+.pagination-btn,
+.category-filter-btn {
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0 !important;
+    transition: background-color .18s ease, border-color .18s ease,
+                color .18s ease, transform .06s ease, box-shadow .18s ease !important;
+}
+.btn {
+    background: var(--rf-brand) !important;
+    color: #fff !important;
+    border: 1px solid var(--rf-brand-strong) !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .14) !important;
+    padding: .62rem 1.2rem !important;
+}
+.btn:hover {
+    background: var(--rf-brand-strong) !important;
+    color: #fff !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 16px rgba(180, 49, 106, .28) !important;
+}
+.btn:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .2) !important;
+}
+
+/* ---- Accessibility: clear keyboard focus -------------------------------- */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--rf-brand) !important;
+    outline-offset: 2px !important;
+    border-radius: 6px;
+}
+
+/* ---- Editorial type system --------------------------------------------------
+   Latin UI/body in Inter, titles in Fraunces (a literary serif), and Faruma kept
+   ONLY for Dhivehi. Each stack ends in the Dhivehi fonts so Thaana glyphs always
+   render via per-glyph fallback even on an "English" element — Dhivehi never breaks.
+   (faruma.css loads after this file, so [lang="dv"]/.faruma still force Faruma.) */
+:root {
+    --rf-font-display: 'Fraunces', 'Faruma', 'Noto Sans Dhivehi', Georgia, 'Times New Roman', serif;
+    --rf-font-ui: 'Inter', 'Faruma', 'Noto Sans Dhivehi', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+    font-family: var(--rf-font-ui) !important;
+    font-size: 17px;
+    line-height: 1.65;
+    letter-spacing: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Headings: serif display face, calm weights, no candy underline */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--rf-font-display) !important;
+    font-weight: 600 !important;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+    display: block !important;
+    margin: 0 0 0.5em !important;
+}
+h1 { font-size: clamp(2rem, 4.5vw, 3rem) !important; font-weight: 600 !important; }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem) !important; }
+h3 { font-size: clamp(1.2rem, 2vw, 1.4rem) !important; }
+
+/* Remove emoji list bullets (📜) — a clear amateur tell */
+li::before { content: none !important; }
+
+/* Clean, consistent form controls for the comment box */
+input[type="text"], input[type="email"], textarea, select {
+    font-family: var(--rf-font-ui) !important;
+    font-size: 1rem !important;
+    border-radius: 10px !important;
+    padding: 0.7rem 0.9rem !important;
+    border: 1px solid var(--rf-line) !important;
+    box-shadow: none !important;
+    transition: border-color .18s ease, box-shadow .18s ease !important;
+}
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focus {
+    border-color: var(--rf-brand) !important;
+    box-shadow: 0 0 0 3px var(--rf-hover) !important;
+    outline: none !important;
+}

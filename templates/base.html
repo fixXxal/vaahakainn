@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=2.0, user-scalable=yes, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
     <title>{% block title %}VAAHAKAINN.{% endblock %}</title>
     
     <!-- Enhanced Meta Tags -->
@@ -55,9 +56,9 @@
     <!-- Font Loading Optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Preload Dhivehi font for better performance -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Dhivehi:wght@300;400;500;600;700&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Dhivehi:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Editorial type system: Fraunces (display serif) + Inter (UI/body) for Latin,
+         Noto Sans Dhivehi as the Dhivehi fallback. Faruma is loaded via faruma.css. -->
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Dhivehi:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body class="loading">
@@ -239,20 +240,29 @@
     
     <!-- Page Loading and Initialization Script -->
     <script>
-        // Page loading management
-        window.addEventListener('load', function() {
+        // Read a cookie by name (used to send Django's CSRF token with fetch POSTs)
+        window.getCookie = function(name) {
+            const match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+            return match ? decodeURIComponent(match.pop()) : '';
+        };
+
+        // Page loading management — hide the splash as soon as the page is ready.
+        // (No artificial delay; an enforced wait just makes the site feel slow.)
+        function hidePageLoader() {
             const loader = document.getElementById('page-loader');
-            const body = document.body;
-            
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                loader.style.transform = 'scale(1.1)';
-                
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                    body.classList.remove('loading');
-                }, 800);
-            }, 1500);
+            document.body.classList.remove('loading');
+            if (!loader) return;
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 300);
+        }
+        window.addEventListener('load', hidePageLoader);
+        // Safety net: never let the splash get stuck if 'load' is delayed.
+        setTimeout(hidePageLoader, 2500);
+
+        // Battery/heat saver: pause all CSS animations while the tab is hidden or
+        // the page is in the background, so nothing keeps the GPU/CPU busy off-screen.
+        document.addEventListener('visibilitychange', function() {
+            document.body.classList.toggle('page-hidden', document.hidden);
         });
 
         // Enhanced page transitions with proper history support

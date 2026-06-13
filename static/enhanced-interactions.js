@@ -233,29 +233,9 @@ function initStorytellingEffects() {
 
 
 function addStoryCardEffects(card) {
-    // 3D tilt effect
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
-    });
-    
-    // Sparkle effect on hover
-    card.addEventListener('mouseenter', () => {
-        createSparkleExplosion(card);
-    });
+    // Intentionally minimal: the hover lift is handled in CSS (transform/box-shadow),
+    // which is GPU-friendly. The old 3D-tilt + sparkle-burst were removed for a
+    // calmer, more professional feel and to avoid per-frame work on hover.
 }
 
 function createSparkleEffect(x, y) {

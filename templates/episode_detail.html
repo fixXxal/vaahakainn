@@ -164,6 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'X-CSRFToken': window.getCookie('csrftoken'),
                     },
                     body: JSON.stringify(formData)
                 });
@@ -205,6 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'X-CSRFToken': window.getCookie('csrftoken'),
                     },
                     body: JSON.stringify(reactionData)
                 });

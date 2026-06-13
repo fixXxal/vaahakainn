@@ -42,14 +42,31 @@ CSRF_TRUSTED_ORIGINS = [
     'https://www.vaahakainn.com',
 ]
 
-# Temporarily disable CSRF for debugging
-CSRF_COOKIE_SECURE = False
+# Cookie security.
+# Secure flags are ON by default and only relaxed when DEBUG is on (local http dev).
+# This means production (HTTPS) gets secure cookies automatically; you don't have to
+# remember to flip anything before deploying.
+CSRF_COOKIE_SECURE = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SAMESITE = 'Lax'
-SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = False  # must stay readable so JS can send the X-CSRFToken header
 
 # Security settings for production
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=False, cast=bool)
+SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=not DEBUG, cast=bool)
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+# NOTE: X-Frame-Options is intentionally left at Django's default (SAMEORIGIN) rather
+# than DENY because the site is embedded as a Telegram Mini App (iframe on Telegram Web).
+
+# HTTP Strict Transport Security — force HTTPS for a year (prod only).
+# Start with a small value if you're unsure, then raise it once you've confirmed
+# every subdomain serves HTTPS. preload requires includeSubDomains + a year.
+SECURE_HSTS_SECONDS = 0 if DEBUG else config('SECURE_HSTS_SECONDS', default=31536000, cast=int)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
+SECURE_HSTS_PRELOAD = not DEBUG
 
 
 # Application definition
