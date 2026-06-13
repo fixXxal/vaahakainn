@@ -11,16 +11,16 @@
         <div style="position: relative; max-width: 400px; margin: 0 auto 2em auto;">
             <img src="{{ short_story.cover_image.url }}" alt="{{ short_story.title_en }} cover" style="width: 100%; height: 400px; object-fit: cover; border-radius: 20px; box-shadow: none; border: 4px solid var(--accent-gold); transition: var(--transition);">
             <div style="position: absolute; top: 15px; right: 20px; background: var(--primary-dark); color: var(--background-primary); padding: 0.5em 1em; border-radius: 20px; font-size: 0.9em; backdrop-filter: blur(10px);">
-                📖 Complete Story
+                <svg class="app-icon" viewBox="0 0 24 24"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4H10a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4.5A1.5 1.5 0 0 1 3 16.5z"/><path d="M21 5.5A1.5 1.5 0 0 0 19.5 4H14a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h5.5a1.5 1.5 0 0 0 1.5-1.5z"/></svg> Complete Story
             </div>
         </div>
         {% else %}
         <div style="max-width: 400px; margin: 0 auto 2em auto; height: 400px; background: var(--gradient-primary); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 6em; color: var(--background-primary); position: relative; overflow: hidden; border: 4px solid var(--accent-gold); box-shadow: none;">
             <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 200\"><rect x=\"40\" y=\"40\" width=\"120\" height=\"120\" fill=\"none\" stroke=\"rgba(255,255,255,0.1)\" stroke-width=\"3\"/><line x1=\"60\" y1=\"80\" x2=\"140\" y2=\"80\" stroke=\"rgba(255,255,255,0.1)\" stroke-width=\"2\"/><line x1=\"60\" y1=\"100\" x2=\"140\" y2=\"100\" stroke=\"rgba(255,255,255,0.1)\" stroke-width=\"2\"/><line x1=\"60\" y1=\"120\" x2=\"140\" y2=\"120\" stroke=\"rgba(255,255,255,0.1)\" stroke-width=\"2\"/></svg>'); opacity: 0.4;"></div>
             <div style="position: absolute; top: 15px; right: 20px; background: var(--accent-gold); color: var(--text-primary); padding: 0.5em 1em; border-radius: 20px; font-size: 0.9em;">
-                📖 Complete Story
+                <svg class="app-icon" viewBox="0 0 24 24"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4H10a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4.5A1.5 1.5 0 0 1 3 16.5z"/><path d="M21 5.5A1.5 1.5 0 0 0 19.5 4H14a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h5.5a1.5 1.5 0 0 0 1.5-1.5z"/></svg> Complete Story
             </div>
-            📖
+            <svg class="app-icon" viewBox="0 0 24 24"><path d="M3 5.5A1.5 1.5 0 0 1 4.5 4H10a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4.5A1.5 1.5 0 0 1 3 16.5z"/><path d="M21 5.5A1.5 1.5 0 0 0 19.5 4H14a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h5.5a1.5 1.5 0 0 0 1.5-1.5z"/></svg>
         </div>
         {% endif %}
         
@@ -53,7 +53,7 @@
                          overflow: hidden;"
                   onmouseover="this.style.transform='translateY(-2px) scale(1.05)'; this.style.boxShadow='0 5px 12px rgba(248, 232, 192, 0.5)'"
                   onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 3px 8px rgba(248, 232, 192, 0.3)'">
-                <span style="font-size: 0.9rem;">✍️</span>
+                <span style="font-size: 0.9rem;"><svg class="app-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
                 <span>{{ short_story.author.name }}</span>
                 <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%); transition: left 0.6s ease;" onmouseenter="this.style.left='100%'"></div>
             </span>
@@ -78,7 +78,7 @@
                 {% if short_story.genre.icon %}
                     <span style="font-size: 0.9rem;">{{ short_story.genre.icon }}</span>
                 {% else %}
-                    <span style="font-size: 0.9rem;">🎭</span>
+                    <span style="font-size: 0.9rem;"><svg class="app-icon" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span>
                 {% endif %}
                 <span>{{ short_story.genre.name }}</span>
                 <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%); transition: left 0.6s ease;" onmouseenter="this.style.left='100%'"></div>
@@ -104,7 +104,7 @@
                 {% if short_story.category.icon %}
                     <span style="font-size: 0.9rem;">{{ short_story.category.icon }}</span>
                 {% else %}
-                    <span style="font-size: 0.9rem;">🏷️</span>
+                    <span style="font-size: 0.9rem;"><svg class="app-icon" viewBox="0 0 24 24"><path d="M20.6 13.4 12 22 2 12V2h10z"/><circle cx="7" cy="7" r="1.6"/></svg></span>
                 {% endif %}
                 <span>{{ short_story.category.name }}</span>
                 <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%); transition: left 0.6s ease;" onmouseenter="this.style.left='100%'"></div>
@@ -124,7 +124,7 @@
                          gap: 0.3rem;"
                   onmouseover="this.style.transform='translateY(-1px) scale(1.03)'"
                   onmouseout="this.style.transform='translateY(0) scale(1)'">
-                <span style="font-size: 0.9rem;">📅</span>
+                <span style="font-size: 0.9rem;"><svg class="app-icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></span>
                 <span>{{ short_story.published_date|date:"M d, Y" }}</span>
             </span>
         </div>
@@ -148,7 +148,7 @@
                         cursor: pointer; 
                         transition: all 0.3s ease;
                         box-shadow: 0 2px 8px rgba(194, 135, 163, 0.4);">
-                        <span style="font-size: 1.1em; margin-right: 0.5em;">🇲🇻</span>
+                        <span style="font-size: 1.1em; margin-right: 0.5em;"><svg class="app-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></svg></span>
                         Dhivehi
                     </button>
                     <button id="englishBtn" class="content-toggle-btn" onclick="showContent('en')" style="
@@ -160,7 +160,7 @@
                         font-weight: 700; 
                         cursor: pointer; 
                         transition: all 0.3s ease;">
-                        <span style="font-size: 1.1em; margin-right: 0.5em;">🇺🇸</span>
+                        <span style="font-size: 1.1em; margin-right: 0.5em;"><svg class="app-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></svg></span>
                         English
                     </button>
                 </div>
@@ -177,7 +177,7 @@
                 line-height: 2;
                 font-size: 1.3em;">
                 <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #c287a3; color: white; padding: 0.5em 1.5em; border-radius: 20px; font-weight: bold;">
-                    <span style="margin-right: 0.5em;">🇲🇻</span>Story in Dhivehi
+                    <span style="margin-right: 0.5em;"><svg class="app-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></svg></span>Story in Dhivehi
                 </div>
                 <div class="faruma" style="color: #333; font-family: 'Faruma', 'Noto Sans Dhivehi', Arial, serif !important; direction: rtl !important; text-align: justify;">
                     {{ short_story.content_dv|linebreaks }}
@@ -195,7 +195,7 @@
                 font-size: 1.3em;
                 display: none;">
                 <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #4682b4; color: white; padding: 0.5em 1.5em; border-radius: 20px; font-weight: bold;">
-                    <span style="margin-right: 0.5em;">🇺🇸</span>Story in English
+                    <span style="margin-right: 0.5em;"><svg class="app-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></svg></span>Story in English
                 </div>
                 <div style="color: #333; font-family: 'Georgia', serif; text-align: justify;">
                     {{ short_story.content_en|linebreaks }}
@@ -210,11 +210,13 @@
         <div style="text-align: center; margin-bottom: 3em;">
             <h3 style="font-size: 1.8em; margin-bottom: 1em; background: linear-gradient(135deg, #c287a3, #b4316a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;" data-i18n="how_story">How did you like this story?</h3>
             <div style="display: flex; justify-content: center; gap: 1em; flex-wrap: wrap;">
-                <button class="reaction-btn" data-reaction="heart" data-content-type="shortstory" data-object-id="{{ short_story.id }}" style="background: linear-gradient(135deg, #ff6b9d, #c287a3); color: white; border: none; padding: 0.8em 1.5em; border-radius: 25px; font-size: 1.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(194, 135, 163, 0.3);">
-                    ❤️ <span class="reaction-count">{{ short_story.heart_reactions }}</span>
+                <button class="reaction-btn" data-reaction="heart" data-content-type="shortstory" data-object-id="{{ short_story.id }}">
+                    <svg class="app-icon" viewBox="0 0 24 24"><path d="M12 20s-7-4.35-9.5-8.5C.9 8.6 2.4 5.5 5.5 5.5c1.9 0 3.2 1.1 3.5 1.8 1.7-3.6 8.5-2.6 8.5 1.7 0 4.15-7 11.5-7 11.5z"/></svg>
+                    <span class="reaction-count">{{ short_story.heart_reactions }}</span>
                 </button>
-                <button class="reaction-btn" data-reaction="like" data-content-type="shortstory" data-object-id="{{ short_story.id }}" style="background: linear-gradient(135deg, #4ecdc4, #44a08d); color: white; border: none; padding: 0.8em 1.5em; border-radius: 25px; font-size: 1.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(76, 205, 196, 0.3);">
-                    👍 <span class="reaction-count">{{ short_story.total_reactions }}</span>
+                <button class="reaction-btn" data-reaction="like" data-content-type="shortstory" data-object-id="{{ short_story.id }}">
+                    <svg class="app-icon" viewBox="0 0 24 24"><path d="M7 11v9H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1z"/><path d="M7 11l4-7a2 2 0 0 1 2 1.2V9h4.6a2 2 0 0 1 2 2.3l-1.1 6A2 2 0 0 1 16.5 19H7"/></svg>
+                    <span class="reaction-count">{{ short_story.total_reactions }}</span>
                 </button>
             </div>
         </div>
@@ -244,7 +246,7 @@
                     </div>
                     
                     <button type="submit" style="background: linear-gradient(135deg, #c287a3, #ff6b9d); color: white; border: none; padding: 1em 2em; border-radius: 25px; font-size: 1.1em; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(194, 135, 163, 0.4);" data-i18n="post_comment">
-                        💬 Post Comment
+                        Post Comment
                     </button>
                 </form>
             </div>
@@ -257,7 +259,7 @@
                         <div>
                             <strong style="color: #c287a3; font-size: 1.1em;">{{ comment.username }}</strong>
                             {% if comment.is_featured %}
-                            <span style="background: gold; color: black; padding: 0.2em 0.5em; border-radius: 10px; font-size: 0.8em; margin-left: 0.5em;" data-i18n="featured_label">⭐ Featured</span>
+                            <span style="background: gold; color: black; padding: 0.2em 0.5em; border-radius: 10px; font-size: 0.8em; margin-left: 0.5em;" data-i18n="featured_label">Featured</span>
                             {% endif %}
                         </div>
                         <span style="color: var(--text-secondary); font-size: 0.9em;">{{ comment.created_at|date:"M d, Y" }}</span>
@@ -268,8 +270,9 @@
                     </p>
                     
                     <div style="display: flex; align-items: center; gap: 1em;">
-                        <button class="reaction-btn reaction-btn-small" data-reaction="heart" data-content-type="comment" data-object-id="{{ comment.id }}" style="background: transparent; border: 2px solid #c287a3; color: #c287a3; padding: 0.4em 0.8em; border-radius: 20px; font-size: 0.9em; cursor: pointer; transition: all 0.3s ease;">
-                            ❤️ <span class="reaction-count">{{ comment.heart_reactions }}</span>
+                        <button class="reaction-btn reaction-btn-small" data-reaction="heart" data-content-type="comment" data-object-id="{{ comment.id }}">
+                            <svg class="app-icon" viewBox="0 0 24 24"><path d="M12 20s-7-4.35-9.5-8.5C.9 8.6 2.4 5.5 5.5 5.5c1.9 0 3.2 1.1 3.5 1.8 1.7-3.6 8.5-2.6 8.5 1.7 0 4.15-7 11.5-7 11.5z"/></svg>
+                            <span class="reaction-count">{{ comment.heart_reactions }}</span>
                         </button>
                     </div>
                 </div>
@@ -351,7 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const result = await response.json();
                 
                 if (result.success) {
-                    showMessage(window.t ? window.t('comment_posted') : 'Comment posted successfully! 💬', 'success');
+                    showMessage(window.t ? window.t('comment_posted') : 'Comment posted successfully!', 'success');
                     commentForm.reset();
                     setTimeout(() => {
                         window.location.reload();
@@ -394,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (result.action === 'added') {
                         countSpan.textContent = currentCount + 1;
                         this.style.transform = 'scale(1.1)';
-                        showMessage(window.t ? window.t('reaction_added') : 'Reaction added! ❤️', 'success');
+                        showMessage(window.t ? window.t('reaction_added') : 'Reaction added!', 'success');
                     } else {
                         countSpan.textContent = Math.max(0, currentCount - 1);
                         this.style.transform = 'scale(0.9)';

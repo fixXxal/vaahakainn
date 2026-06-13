@@ -302,9 +302,13 @@ function initReadingMode() {
 
     const isDark = () => document.documentElement.getAttribute('data-theme') === 'dark';
 
+    // SVG icons (Lucide style) — sun when in dark mode (click to go light), moon when in light mode
+    const SUN_ICON = '<svg class="app-icon" viewBox="0 0 24 24" style="width:18px;height:18px"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg>';
+    const MOON_ICON = '<svg class="app-icon" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8"/></svg>';
+
     const applyTheme = (dark) => {
         document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-        toggleButton.innerHTML = dark ? '☀️' : '🌙';
+        toggleButton.innerHTML = dark ? SUN_ICON : MOON_ICON;
         toggleButton.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
         localStorage.setItem('theme', dark ? 'dark' : 'light');
     };
