@@ -245,6 +245,13 @@
             return match ? decodeURIComponent(match.pop()) : '';
         };
 
+        // Battery/heat saver: freeze CSS animations while the page/app is
+        // backgrounded (other tab, app switched, screen off). Paired with the
+        // .page-hidden rule in styles.css. No visible change during normal use.
+        document.addEventListener('visibilitychange', function() {
+            document.body.classList.toggle('page-hidden', document.hidden);
+        });
+
         // Page loading management
         window.addEventListener('load', function() {
             const loader = document.getElementById('page-loader');

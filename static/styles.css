@@ -2301,3 +2301,25 @@ li::before {
 .category-filter-btn:hover:before {
     left: 100%;
 }
+
+/* ============================================================
+   Performance: keep the design, cut the wasted battery/heat.
+   1) Honor the OS "reduce motion" / battery-saver preference —
+      animations turn off for users who asked for that.
+   2) Freeze every animation while the page/app is backgrounded
+      (other tab, app switched, screen off) so nothing keeps the
+      GPU busy off-screen. No visible change during normal use.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+body.page-hidden *,
+body.page-hidden *::before,
+body.page-hidden *::after {
+    animation-play-state: paused !important;
+}
