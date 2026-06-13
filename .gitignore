@@ -13,11 +13,12 @@ media/
 venv/
 env/
 
-# IDE files
+# IDE / local tooling files
 .vscode/
 .idea/
 *.swp
 *.swo
+.claude/
 
 # OS files
 .DS_Store
