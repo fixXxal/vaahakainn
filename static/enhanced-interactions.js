@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all interactive features
     initScrollAnimations();
     // initMagicalCursor(); // Disabled - remove custom cursor
-    initReadingProgress();
+    // initReadingProgress(); // Disabled - redundant with native scrollbar
     initParallaxEffects();
     initSoundEffects();
     initThemeTransitions();
@@ -95,6 +95,7 @@ function createMagicalCursor() {
 
 // Reading progress indicator
 function initReadingProgress() {
+    return; // Disabled - top scroll progress bar removed (native scrollbar is enough)
     const progressBar = createProgressBar();
     document.body.appendChild(progressBar);
 

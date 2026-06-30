@@ -305,9 +305,10 @@
                 if (typeof initScrollAnimations === 'function') {
                     initScrollAnimations();
                 }
-                if (typeof initReadingProgress === 'function') {
-                    initReadingProgress();
-                }
+                // Top scroll progress bar disabled - native scrollbar is enough
+                // if (typeof initReadingProgress === 'function') {
+                //     initReadingProgress();
+                // }
             }, 100);
         });
 
